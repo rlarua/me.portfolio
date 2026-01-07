@@ -20,11 +20,11 @@ import {
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('all');
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [isHistoryVisible, setIsHistoryVisible] = useState(false);
 
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === 'Escape') setSelectedProject(null);
+      if (e.key === 'Escape') setIsMenuOpen(false);
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
@@ -111,6 +111,56 @@ const App = () => {
   const filteredProjects = activeTab === 'all' 
     ? projects 
     : projects.filter(p => p.category === activeTab);
+
+  const projectHistory = [
+    {
+      period: "2022 ~ 2025",
+      milestone: "Enterprise AI & Platform",
+      projects: [
+        { title: "ISH Platform", client: "InterX", period: "2024.11~2025.02", desc: "제조 현장 도메인 지식 기반 Semantic 메타데이터 관리 시스템 개발", icon: <Layout className="w-4 h-4" /> },
+        { title: "NIR Data Gathering", client: "대상(Daesang)", period: "2024.04~2024.05", desc: "바이오 공정 내 NIR 분석 데이터 자동화 측정 및 수집 시스템", icon: <Server className="w-4 h-4" /> },
+        { title: "설비지능화 Platform", client: "삼성SDI, InterX", period: "2023.09~2023.12", desc: "TSDB 기반 대용량 데이터 설계 및 운영 플랫폼 구축", icon: <Database className="w-4 h-4" /> },
+        { title: "GreenCar iOS", client: "그린카", desc: "그린카 차세대 앱 개발 및 유지보수 (MAU 2.2M)", icon: <Smartphone className="w-4 h-4" /> },
+        { title: "지역보건의료시스템", client: "한국사회보장원", desc: "공공 보건 및 건강관리 시스템 개발", icon: <Server className="w-4 h-4" /> },
+        { title: "AI_SVR Module", client: "한국도로공사(TDC 코리아)", period: "2022.03~2022.05", desc: "AI 기반 적재불량 판별 모듈 개발", icon: <Cpu className="w-4 h-4" /> }
+      ]
+    },
+    {
+      period: "2019 ~ 2021",
+      milestone: "Consumer Product Full-Stack",
+      projects: [
+        { title: "Gudak 6", client: "스크루바, 와캔", period: "2021.03~2021.05", desc: "인공지능 기반 필터 비활성 카메라 서비스 개발", icon: <Cpu className="w-4 h-4" /> },
+        { title: "SIXCUT", client: "와캔(Waken)", desc: "랜덤 콜라주 카메라 서비스 개발", icon: <Smartphone className="w-4 h-4" /> },
+        { title: "PrinShare 고도화", client: "스크루바(Screw Bar)", desc: "서비스 성능 최적화 및 정부 지원 과제 수행", icon: <Zap className="w-4 h-4" /> },
+        { title: "PrinShare", client: "스크루바(Screw Bar)", period: "2019.01~2019.05", desc: "이미지 분석 및 입고 인화 서비스, Redis 기반 캐시 레이어 설계", icon: <Database className="w-4 h-4" /> },
+        { title: "Artalleys", client: "Artalleys", desc: "미술품 커머스 플랫폼 구축", icon: <Globe className="w-4 h-4" /> },
+        { title: "열전발전 시스템", client: "포스코, LG화학", desc: "고효율 친환경 열전발전 제어 시스템 개발", icon: <Cpu className="w-4 h-4" /> }
+      ]
+    },
+    {
+      period: "2015 ~ 2018",
+      milestone: "Global Startup CTO",
+      projects: [
+        { title: "B9", client: "MBC PLUS", period: "2018.06~2018.12", desc: "반려동물 전용 미디어 플랫폼 구축 및 MBC 제휴 운영", icon: <Layout className="w-4 h-4" /> },
+        { title: "Love.ly", client: "Applr", desc: "글로벌 실시간 스트리밍 플랫폼 구축", icon: <Server className="w-4 h-4" /> },
+        { title: "GUDAK", client: "스크루바(Screw Bar)", desc: "필름 카메라 시뮬레이션 애플리케이션 개발", icon: <Smartphone className="w-4 h-4" /> },
+        { title: "72CAST", client: "BMW, Mediacorp", desc: "라이브 커머스 MVP 개발", icon: <Zap className="w-4 h-4" /> },
+        { title: "BAUBOX", client: "Applr", desc: "반려동물 용품 정기구독 서비스 개발", icon: <Globe className="w-4 h-4" /> }
+      ]
+    },
+    {
+      period: "2007 ~ 2014",
+      milestone: "Public Infrastructure Engineering",
+      projects: [
+        { title: "SK One Pos", client: "SK M&S", desc: "주유소 결제 및 운영 시스템 개발", icon: <Smartphone className="w-4 h-4" /> },
+        { title: "고정식 축중기 Platform", client: "한국도로공사", period: "2012.02~2013.06", desc: "축중기 현장 운영을 위한 계측·판정·관제 소프트웨어 구축", icon: <Server className="w-4 h-4" /> },
+        { title: "SI Automation", client: "CyberLogitec", desc: "해양 물류 자동화 시스템 구축", icon: <Zap className="w-4 h-4" /> },
+        { title: "대방 건설 ERP", client: "대방건설", desc: "사내 자원 관리 시스템(ERP) 개발", icon: <Database className="w-4 h-4" /> },
+        { title: "서울대 주차관제 시스템", client: "서울대학교", desc: "주차 차단기 제어 및 관제 시스템 구축", icon: <Layout className="w-4 h-4" /> },
+        { title: "이동식 축중기 인디게이터", client: "한국도로공사", desc: "과적 단속을 위한 이동식 축중기 중량 표시기 개발", icon: <Cpu className="w-4 h-4" /> }
+      ]
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-slate-50 text-charcoal-black font-sans selection:bg-sunset-gold/20">
@@ -276,11 +326,11 @@ const App = () => {
                     ))}
                   </div>
 
-                  <div className="pt-4 flex items-center justify-between border-t border-slate-100">
-                    <span className="text-xs text-slate-400 font-medium">{project.period}</span>
-                    <button onClick={() => setSelectedProject(project)} className="text-sm font-bold text-sunset-gold flex items-center gap-1 group-hover:gap-2 transition-all">
-                      상세보기 <ChevronRight className="w-4 h-4" />
-                    </button>
+                  <div className="pt-4 border-t border-slate-100">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Duration</span>
+                      <span className="text-sm text-slate-700 font-bold">{project.period}</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -289,263 +339,222 @@ const App = () => {
         </div>
       </section>
 
-      {/* Project Detail Modal */}
-      {selectedProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
-          <div className="absolute inset-0 bg-black/40" onClick={() => setSelectedProject(null)}></div>
-          <div className="relative bg-white rounded-2xl max-w-2xl w-full p-8 mx-4">
-            <button onClick={() => setSelectedProject(null)} className="absolute top-4 right-4 p-2">
-              <X />
-            </button>
-            <div className="space-y-3">
-              <div className="text-xs font-bold text-sunset-gold uppercase tracking-wider">{selectedProject.client}</div>
-              <h3 className="text-2xl font-bold text-slate-900">{selectedProject.title}</h3>
-              <div className="text-sm text-slate-500">{selectedProject.period}</div>
-              <p className="mt-4 text-slate-700">{selectedProject.description}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {selectedProject.tags.map(tag => (
-                  <span key={tag} className="px-2 py-1 bg-charcoal-black/5 border border-charcoal-black/10 rounded text-[12px] font-semibold text-slate-600">{tag}</span>
-                ))}
-              </div>
-              <div className="mt-6 flex justify-end">
-                <button onClick={() => setSelectedProject(null)} className="px-4 py-2 bg-charcoal-black text-white rounded-lg">닫기</button>
-              </div>
-            </div>
-          </div>
+
+      {/* Toggle Button for Project History */}
+      <div className="py-16 px-4 bg-gradient-to-b from-slate-50 to-white flex flex-col items-center gap-4">
+        <div className="text-center space-y-2 mb-2">
+          <p className="text-sm text-slate-500 font-medium">더 많은 프로젝트가 궁금하신가요?</p>
         </div>
-      )}
+        <button
+          onClick={() => setIsHistoryVisible(!isHistoryVisible)}
+          className="group flex items-center gap-3 px-8 py-4 bg-charcoal-black hover:bg-sunset-gold border-2 border-charcoal-black hover:border-sunset-gold rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+        >
+          <span className="text-lg font-bold text-white">
+            {isHistoryVisible ? '전체 이력 숨기기' : '전체 프로젝트 보기 (30+)'}
+          </span>
+          <ChevronRight className={`w-5 h-5 text-white transition-transform duration-300 ${
+            isHistoryVisible ? 'rotate-90' : 'rotate-0'
+          }`} />
+        </button>
+      </div>
 
       {/* Complete Project History Timeline */}
-      <section className="py-24 px-4 bg-white" hidden>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Complete Project History</h2>
-            <p className="text-slate-600">2007년부터 현재까지의 전체 프로젝트 이력을 연대순으로 정리했습니다.</p>
+      <div className={`transition-all duration-700 ease-in-out transform ${
+        isHistoryVisible 
+          ? 'opacity-100 translate-y-0 max-h-[10000px]' 
+          : 'opacity-0 -translate-y-4 max-h-0 overflow-hidden'
+      }`}>
+      {isHistoryVisible && (
+      <section className="py-24 px-4 bg-white relative overflow-hidden animate-in fade-in slide-in-from-top-4 duration-700">
+        {/* Abstract Background Element */}
+        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-sunset-gold/5 blur-[120px] rounded-full"></div>
+        <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-tech-cyan/5 blur-[120px] rounded-full"></div>
+
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="text-center mb-20 space-y-4">
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">Complete Project History</h2>
+            <div className="w-20 h-1.5 bg-sunset-gold mx-auto rounded-full"></div>
+            <p className="text-slate-600 text-lg max-w-2xl mx-auto">2007년부터 현재까지의 전체 프로젝트 이력을 연대순으로 정리했습니다.</p>
           </div>
 
-          {/* Timeline Container */}
           <div className="relative">
-            {/* Vertical Line */}
-            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 transform md:-translate-x-1/2"></div>
+            {/* Main Vertical Timeline Line */}
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-sunset-gold/50 via-slate-200 to-tech-cyan/50 transform md:-translate-x-1/2 hidden sm:block"></div>
 
-            {/* Phase 1: 2007-2014 */}
-            <div className="mb-16">
-              <div className="flex items-center mb-8">
-                <div className="flex-1 md:text-right md:pr-12">
-                  <h3 className="text-2xl font-bold text-charcoal-black">2007 ~ 2014</h3>
-                  <p className="text-sunset-gold font-semibold">Public Infrastructure Engineering</p>
-                </div>
-                <div className="hidden md:block w-4 h-4 bg-sunset-gold rounded-full border-4 border-white shadow-lg relative z-10"></div>
-                <div className="flex-1"></div>
-              </div>
-              
-              <div className="space-y-6 ml-8 md:ml-0">
-                {[
-                  { title: "이동식 축중기 인디게이터", client: "한국도로공사", desc: "과적 단속을 위한 이동식 축중기 중량 표시기 개발" },
-                  { title: "서울대 주차관제 시스템", client: "서울대학교", desc: "주차 차단기 제어 및 관제 시스템 구축" },
-                  { title: "대방 건설 ERP", client: "대방건설", desc: "사내 자원 관리 시스템(ERP) 개발" },
-                  { title: "SI Automation", client: "CyberLogitec", desc: "해양 물류 자동화 시스템 구축" },
-                  { title: "고정식 축중기 Platform", client: "한국도로공사", desc: "축중기 현장 운영을 위한 계측·판정·관제 소프트웨어 구축 (2012.02~2013.06)" },
-                  { title: "SK One Pos", client: "SK M&S", desc: "주유소 결제 및 운영 시스템 개발" }
-                ].map((project, idx) => (
-                  <div key={idx} className="md:grid md:grid-cols-2 md:gap-8">
-                    <div className="md:text-right md:pr-12"></div>
-                    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-sunset-gold/50 transition-all">
-                      <div className="text-xs font-bold text-sunset-gold mb-1">{project.client}</div>
-                      <h4 className="font-bold text-slate-900 mb-2">{project.title}</h4>
-                      <p className="text-sm text-slate-600">{project.desc}</p>
-                    </div>
+            {projectHistory.map((phase, phaseIdx) => (
+              <div key={phaseIdx} className="mb-24 last:mb-0">
+                {/* Phase Header */}
+                <div className="flex flex-col items-center mb-16 relative">
+                  {/* Decorative Line */}
+                  <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+                  
+                  {/* Icon Badge */}
+                  <div className="relative z-20 flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-sunset-gold to-amber-500 shadow-2xl mb-6">
+                    <Zap className="w-7 h-7 text-white" />
                   </div>
-                ))}
-              </div>
-            </div>
+                  
+                  {/* Milestone Title */}
+                  <div className="relative z-20 bg-white px-8 py-2 text-center">
+                    <h3 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-2">{phase.milestone}</h3>
+                    <div className="text-xs font-bold text-slate-400 tracking-[0.3em] uppercase">{phase.period}</div>
+                  </div>
+                </div>
 
-            {/* Phase 2: 2015-2018 */}
-            <div className="mb-16">
-              <div className="flex items-center mb-8">
-                <div className="flex-1 md:text-right md:pr-12">
-                  <h3 className="text-2xl font-bold text-charcoal-black">2015 ~ 2018</h3>
-                  <p className="text-sunset-gold font-semibold">Global Startup CTO</p>
+                {/* Projects in Phase */}
+                <div className="space-y-10">
+                  {phase.projects.map((project, idx) => {
+                    const isEven = idx % 2 === 0;
+                    return (
+                      <div key={idx} className={`relative flex flex-col md:flex-row items-center ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+                        {/* Timeline Node on the line */}
+                        <div className="absolute left-4 md:left-1/2 top-10 w-3 h-3 bg-white border-2 border-slate-400 rounded-full transform md:-translate-x-1/2 z-20 hidden sm:block"></div>
+                        
+                        {/* Content Card */}
+                        <div className={`w-full md:w-[45%] group`}>
+                          <div className="bg-white p-4 md:p-5 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-sunset-gold/30 transition-all duration-500 relative overflow-hidden group">
+                            {/* Card Accent */}
+                            <div className="absolute top-0 left-0 w-1.5 h-full bg-slate-100 group-hover:bg-sunset-gold transition-colors duration-500"></div>
+                            
+                            <div className="flex gap-4 items-start">
+                              <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-sunset-gold/10 group-hover:text-sunset-gold transition-all duration-500 flex-shrink-0">
+                                {project.icon}
+                              </div>
+                              <div className="space-y-2 flex-1">
+                                <div className="space-y-0.5">
+                                  <span className="text-[9px] font-black text-sunset-gold uppercase tracking-[0.2em]">{project.client}</span>
+                                  <h4 className="text-lg font-bold text-slate-900 group-hover:text-sunset-gold transition-colors leading-tight">{project.title}</h4>
+                                  {project.period && (
+                                    <div className="text-[11px] text-slate-400 font-semibold">{project.period}</div>
+                                  )}
+                                </div>
+                                <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                                  {project.desc}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Spacer for the other side */}
+                        <div className="hidden md:block md:w-[45%]"></div>
+                      </div>
+                    );
+                  })}
                 </div>
-                <div className="hidden md:block w-4 h-4 bg-sunset-gold rounded-full border-4 border-white shadow-lg relative z-10"></div>
-                <div className="flex-1"></div>
               </div>
-              
-              <div className="space-y-6 ml-8 md:ml-0">
-                {[
-                  { title: "BAUBOX", client: "Applr", desc: "반려동물 용품 정기구독 서비스 개발" },
-                  { title: "72CAST", client: "BMW, Mediacorp", desc: "라이브 커머스 MVP 개발" },
-                  { title: "GUDAK", client: "스크루바(Screw Bar)", desc: "필름 카메라 시뮬레이션 애플리케이션 개발" },
-                  { title: "Love.ly", client: "Applr", desc: "글로벌 실시간 스트리밍 플랫폼 구축" },
-                  { title: "B9", client: "MBC PLUS", desc: "반려동물 전용 미디어 플랫폼 구축 및 MBC 제휴 운영 (2018.06~2018.12)" }
-                ].map((project, idx) => (
-                  <div key={idx} className="md:grid md:grid-cols-2 md:gap-8">
-                    <div className="md:text-right md:pr-12"></div>
-                    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-sunset-gold/50 transition-all">
-                      <div className="text-xs font-bold text-sunset-gold mb-1">{project.client}</div>
-                      <h4 className="font-bold text-slate-900 mb-2">{project.title}</h4>
-                      <p className="text-sm text-slate-600">{project.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Phase 3: 2019-2021 */}
-            <div className="mb-16">
-              <div className="flex items-center mb-8">
-                <div className="flex-1 md:text-right md:pr-12">
-                  <h3 className="text-2xl font-bold text-charcoal-black">2019 ~ 2021</h3>
-                  <p className="text-sunset-gold font-semibold">Consumer Product Full-Stack</p>
-                </div>
-                <div className="hidden md:block w-4 h-4 bg-sunset-gold rounded-full border-4 border-white shadow-lg relative z-10"></div>
-                <div className="flex-1"></div>
-              </div>
-              
-              <div className="space-y-6 ml-8 md:ml-0">
-                {[
-                  { title: "열전발전 시스템", client: "포스코, LG화학", desc: "고효율 친환경 열전발전 제어 시스템 개발" },
-                  { title: "Artalleys", client: "Artalleys", desc: "미술품 커머스 플랫폼 구축" },
-                  { title: "PrinShare", client: "스크루바(Screw Bar)", desc: "이미지 분석 및 입고 인화 서비스, Redis 기반 캐시 레이어 설계 (2019.01~2019.05)" },
-                  { title: "PrinShare 고도화", client: "스크루바(Screw Bar)", desc: "서비스 성능 최적화 및 정부 지원 과제 수행" },
-                  { title: "SIXCUT", client: "와캔(Waken)", desc: "랜덤 콜라주 카메라 서비스 개발" },
-                  { title: "Gudak 6", client: "스크루바, 와캔", desc: "인공지능 기반 필터 비활성 카메라 서비스 개발 (2021.03~2021.05)" }
-                ].map((project, idx) => (
-                  <div key={idx} className="md:grid md:grid-cols-2 md:gap-8">
-                    <div className="md:text-right md:pr-12"></div>
-                    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-sunset-gold/50 transition-all">
-                      <div className="text-xs font-bold text-sunset-gold mb-1">{project.client}</div>
-                      <h4 className="font-bold text-slate-900 mb-2">{project.title}</h4>
-                      <p className="text-sm text-slate-600">{project.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Phase 4: 2022-2025 */}
-            <div className="mb-16">
-              <div className="flex items-center mb-8">
-                <div className="flex-1 md:text-right md:pr-12">
-                  <h3 className="text-2xl font-bold text-charcoal-black">2022 ~ 2025</h3>
-                  <p className="text-sunset-gold font-semibold">Enterprise AI & Platform</p>
-                </div>
-                <div className="hidden md:block w-4 h-4 bg-sunset-gold rounded-full border-4 border-white shadow-lg relative z-10"></div>
-                <div className="flex-1"></div>
-              </div>
-              
-              <div className="space-y-6 ml-8 md:ml-0">
-                {[
-                  { title: "AI_SVR Module", client: "한국도로공사(TDC 코리아)", desc: "AI 기반 적재불량 판별 모듈 개발 (2022.03~2022.05)" },
-                  { title: "지역보건의료시스템", client: "한국사회보장원", desc: "공공 보건 및 건강관리 시스템 개발" },
-                  { title: "GreenCar iOS", client: "그린카", desc: "그린카 차세대 앱 개발 및 유지보수 (MAU 2.2M)" },
-                  { title: "설비지능화 Platform", client: "삼성SDI, InterX", desc: "TSDB 기반 대용량 데이터 설계 및 운영 플랫폼 구축 (2023.09~2023.12)" },
-                  { title: "NIR Data Gathering", client: "대상(Daesang)", desc: "바이오 공정 내 NIR 분석 데이터 자동화 측정 및 수집 시스템 (2024.04~2024.05)" },
-                  { title: "ISH Platform", client: "InterX", desc: "제조 현장 도메인 지식 기반 Semantic 메타데이터 관리 시스템 개발 (2024.11~2025.02)" }
-                ].map((project, idx) => (
-                  <div key={idx} className="md:grid md:grid-cols-2 md:gap-8">
-                    <div className="md:text-right md:pr-12"></div>
-                    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-sunset-gold/50 transition-all">
-                      <div className="text-xs font-bold text-sunset-gold mb-1">{project.client}</div>
-                      <h4 className="font-bold text-slate-900 mb-2">{project.title}</h4>
-                      <p className="text-sm text-slate-600">{project.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
+      )}
+      </div>
 
       {/* Expertise Section */}
-      <section className="py-20 bg-charcoal-black text-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <h2 className="text-3xl md:text-5xl font-bold leading-tight">
-                Full-Cycle Owner-Ship<br />통합 구현 역량
-              </h2>
+      <section className="py-24 bg-charcoal-black text-white relative overflow-hidden">
+        {/* Grid Pattern Pattern */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
+        
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div className="space-y-10">
+              <div className="space-y-4">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sunset-gold text-xs font-bold tracking-widest uppercase">
+                  <Zap className="w-3.5 h-3.5 fill-sunset-gold/20" /> Engineering Philosophy
+                </div>
+                <h2 className="text-4xl md:text-6xl font-black leading-[1.1] tracking-tight">
+                  Full-Cycle <span className="text-sunset-gold">Ownership</span><br />품질을 위한 집요함
+                </h2>
+              </div>
+              
               <div className="space-y-6">
                 {[
                   { title: "Scale & Reliability", desc: "24/7 무중단 시스템 설계 및 99.9% 가동률 달성" },
                   { title: "Delivery & Speed", desc: "3개월 내 고도화 플랫폼 구축 및 타이트한 일정 준수" },
                   { title: "Data & Monitoring", desc: "TSDB 기반 대용량 데이터 처리 및 응답속도 최적화" }
                 ].map((item, i) => (
-                  <div key={i} className="flex gap-4">
-                    <div className="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-sunset-gold/20 flex items-center justify-center">
-                      <CheckCircle2 className="w-4 h-4 text-blue-100" />
+                  <div key={i} className="flex gap-6 group">
+                    <div className="mt-1 flex-shrink-0 w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-sunset-gold group-hover:border-sunset-gold transition-all duration-300">
+                      <CheckCircle2 className="w-5 h-5 text-sunset-gold group-hover:text-charcoal-black" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-xl">{item.title}</h4>
-                      <p className="text-blue-100 opacity-80">{item.desc}</p>
+                      <h4 className="font-bold text-xl mb-1">{item.title}</h4>
+                      <p className="text-slate-400 leading-relaxed font-medium">{item.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
-               <div className="space-y-4">
-                  <div className="flex items-center gap-3 text-sm font-bold text-sunset-gold">
-                    <Zap className="w-4 h-4" /> EXPERIENCE FOCUS
+
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-sunset-gold to-tech-cyan rounded-[3rem] blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+              <div className="relative bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-10 md:p-14 border border-white/10 overflow-hidden">
+                <div className="absolute top-0 right-0 p-8 opacity-10">
+                  <Cpu className="w-32 h-32" />
+                </div>
+                
+                <div className="relative space-y-8">
+                  <div className="flex items-center gap-3 text-sm font-black text-sunset-gold tracking-widest uppercase">
+                    <span className="w-8 h-px bg-sunset-gold"></span> EXPERIENCE FOCUS
                   </div>
-                  <p className="text-lg leading-relaxed italic">
-                    "운영 현장의 난제를 해결하기 위해 데이터를 분석하고, 최적화된 아키텍처를 설계하여 신뢰할 수 있는 시스템을 만드는 것에 가치를 둡니다."
+                  <p className="text-2xl md:text-3xl leading-snug font-bold italic text-slate-100">
+                    "운영 현장의 난제를 해결하기 위해 데이터를 분석하고, 최적화된 아키텍처를 설계하여 <span className="text-sunset-gold">신뢰할 수 있는 시스템</span>을 만드는 것에 가치를 둡니다."
                   </p>
-                  <div className="pt-6 grid grid-cols-2 gap-4">
-                    <div className="p-4 bg-white/5 rounded-2xl">
-                      <div className="text-2xl font-bold">15+</div>
-                      <div className="text-xs text-blue-200">Years of Experience</div>
+                  <div className="pt-8 grid grid-cols-2 gap-6">
+                    <div className="p-6 bg-white/5 rounded-3xl border border-white/5 hover:bg-white/10 transition-colors">
+                      <div className="text-4xl font-black text-sunset-gold">15+</div>
+                      <div className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">Years Exp.</div>
                     </div>
-                    <div className="p-4 bg-white/5 rounded-2xl">
-                      <div className="text-2xl font-bold">30+</div>
-                      <div className="text-xs text-blue-200">Projects Delivered</div>
+                    <div className="p-6 bg-white/5 rounded-3xl border border-white/5 hover:bg-white/10 transition-colors">
+                      <div className="text-4xl font-black text-tech-cyan">30+</div>
+                      <div className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">Projects</div>
                     </div>
                   </div>
-               </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
+
       {/* Footer / Contact */}
-      <footer id="contact" className="bg-white pt-24 pb-12 border-t border-slate-200">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center space-y-8">
-            {/* Main CTA */}
-            <div className="space-y-4">
-              <h2 className="text-4xl md:text-5xl font-black text-slate-900">
-                Let's work together.
+      <footer id="contact" className="bg-white pt-32 pb-16 relative">
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
+          <div className="text-center space-y-12">
+            <div className="space-y-6">
+              <h2 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter">
+                Let's <span className="text-sunset-gold">build</span> something great.
               </h2>
-              <p className="text-lg text-slate-600 max-w-xl mx-auto">
+              <p className="text-xl text-slate-600 max-w-xl mx-auto font-medium">
                 프로젝트 제안이나 기술적 논의는 언제든 환영합니다.
               </p>
             </div>
 
-            {/* Large Social Icons */}
-            <div className="flex justify-center gap-6 pt-4">
+            <div className="flex justify-center gap-8 pt-4">
               <a 
-                href="#" 
-                className="w-16 h-16 rounded-full border-2 border-slate-200 flex items-center justify-center hover:border-sunset-gold hover:bg-sunset-gold/5 transition-all group"
+                href="https://github.com/rlarua" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-20 h-20 rounded-3xl bg-slate-50 border border-slate-100 flex items-center justify-center hover:border-sunset-gold/50 hover:bg-sunset-gold/5 transition-all duration-300 group shadow-sm hover:shadow-xl hover:-translate-y-1"
               >
-                <Github className="w-7 h-7 text-slate-600 group-hover:text-sunset-gold transition-colors" />
+                <Github className="w-8 h-8 text-slate-600 group-hover:text-sunset-gold transition-colors" />
               </a>
               <a 
-                href="#" 
-                className="w-16 h-16 rounded-full border-2 border-slate-200 flex items-center justify-center hover:border-sunset-gold hover:bg-sunset-gold/5 transition-all group"
+                href="mailto:rlarua@outlook.com" 
+                className="w-20 h-20 rounded-3xl bg-slate-50 border border-slate-100 flex items-center justify-center hover:border-sunset-gold/50 hover:bg-sunset-gold/5 transition-all duration-300 group shadow-sm hover:shadow-xl hover:-translate-y-1"
               >
-                <Mail className="w-7 h-7 text-slate-600 group-hover:text-sunset-gold transition-colors" />
+                <Mail className="w-8 h-8 text-slate-600 group-hover:text-sunset-gold transition-colors" />
               </a>
             </div>
 
-            {/* Divider */}
-            <div className="pt-12">
-              <div className="h-px bg-slate-200 w-full"></div>
-            </div>
-
-            {/* Copyright */}
-            <div className="text-slate-400 text-sm">
-              © 2026 {profile.name}. All rights reserved.
+            {/* Bottom Section */}
+            <div className="pt-20 space-y-8">
+              <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent w-full"></div>
+              <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-slate-400 text-sm font-bold uppercase tracking-widest">
+                <span>© 2026 {profile.name}</span>
+                <span className="text-sunset-gold">Crafted with Passion & AI</span>
+                <span>Seoul, South Korea</span>
+              </div>
             </div>
           </div>
         </div>

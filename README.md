@@ -1,16 +1,129 @@
-# React + Vite
+# 🚀 Next-Gen Portfolio: Built with AI Orchestration
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+본 프로젝트는 단순한 개인 이력을 넘어, **최신 AI 에이전트 워크플로우를 실제 개발 공정에 도입하여 효율성과 품질을 동시에 확보한 개발 사례**입니다. Google DeepMind의 **Antigravity IDE**를 활용하여 설계부터 배포까지의 과정을 에이전틱(Agentic)하게 관리했습니다.
 
-Currently, two official plugins are available:
+## 🛠 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| Category | Tech Stack |
+| :--- | :--- |
+| **Frontend** | React 19, Vite, Framer Motion |
+| **Styling** | Tailwind CSS |
+| **AI Tooling** | **Google Antigravity IDE** |
+| **Deployment** | Vercel / GitHub Pages |
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🧠 Development Methodology: Intent-Driven Coding
 
-## Expanding the ESLint configuration
+단순히 AI가 생성한 코드를 복사하는 것이 아니라, 개발자의 의도(Intent)를 중심으로 Antigravity의 에이전트들과 협업하는 '인텐트 중심 개발' 방식을 채택했습니다.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 1. Architecture Orchestration
+
+* Antigravity의 에이전트 기능을 활용해 시스템 아키텍처를 설계하고, 컴포넌트 간의 의존성을 사전에 시각화하여 최적의 구조를 도출했습니다.
+
+### 2. High-Fidelity Interaction
+
+* **Framer Motion**을 활용한 복잡한 인터랙션을 구현할 때, 자연어 기반의 미세 조정(Fine-tuning)과 실시간 브라우저 피드백 루프를 통해 UI/UX의 완성도를 극대화했습니다.
+
+### 3. Automated Validation & QA
+
+* Antigravity의 자율 에이전트를 활용해 다양한 뷰포트에서의 반응형 레이아웃 테스트 및 코드 정적 분석을 수행하여 런타임 에러를 최소화했습니다.
+
+> **"AI는 생산성의 증폭기이며, 핵심 가치는 개발자의 설계 역량에 있습니다."**
+> 본 포트폴리오는 AI와 인간 개발자가 어떻게 협력하여 짧은 시간 안에 고도화된 프로덕트를 빌드할 수 있는지 보여주는 실험적인 결과물입니다.
+
+---
+
+## ✨ Key Features
+
+* 📱 **완전 반응형 디자인** - 모바일부터 데스크톱까지 최적화된 UX
+* 🎨 **모션 기반 인터랙션** - Framer Motion을 활용한 부드러운 애니메이션
+* 🚀 **빠른 로딩 속도** - Vite 기반 최적화 빌드
+* 🎯 **도메인 중심 구조** - Cross-Platform, AI/Data, Enterprise 영역별 프로젝트 분류
+* 📊 **상세 프로젝트 Deep Dive** - 주요 프로젝트별 아키텍처 및 성과 시각화
+
+---
+
+## 🌐 Live Demo
+
+**🔗 <https://me-portfolio-topaz.vercel.app>**
+
+---
+
+## 📦 Getting Started
+
+### Prerequisites
+
+* Node.js (Latest LTS)
+* npm or yarn
+
+### Installation & Run
+
+```bash
+# 레포지토리 클론
+git clone https://github.com/rlarua/portfolio.git
+
+# 프로젝트 디렉토리 이동
+cd portfolio
+
+# 의존성 설치
+npm install
+
+# 로컬 개발 서버 실행 (http://localhost:5173)
+npm run dev
+
+# 프로덕션 빌드
+npm run build
+
+# 빌드 결과물 미리보기
+npm run preview
+```
+
+---
+
+## 📁 Project Structure
+
+```
+portfolio/
+├── src/
+│   ├── components/     # 재사용 가능한 UI 컴포넌트
+│   ├── pages/          # 페이지 컴포넌트
+│   ├── assets/         # 이미지, 폰트 등 정적 자원
+│   └── styles/         # 글로벌 스타일 및 Tailwind 설정
+├── public/             # 정적 파일
+└── dist/               # 프로덕션 빌드 결과물
+```
+
+---
+
+## 🤝 AI-Human Collaboration Workflow
+
+이 프로젝트는 다음과 같은 AI 협업 워크플로우로 개발되었습니다:
+
+1. **기획 & 설계** → Gemini로 컨텐츠 구조 기획
+2. **아키텍처 설계** → Antigravity로 컴포넌트 구조 및 라우팅 설계
+3. **UI/UX 구현** → Claude + Antigravity로 인터랙션 구현
+4. **문서화** → Perplexity로 기술 스택 조사 및 README 작성
+
+각 단계에서 AI 도구는 제안자 역할을, 개발자는 최종 의사결정자 역할을 수행했습니다.
+
+---
+
+## 📄 License
+
+MIT License - 자유롭게 참고하고 활용하실 수 있습니다.
+
+---
+
+## 📧 Contact
+
+**김명겸**
+
+* 💼 Full-Cycle Product Engineer
+* 📧 <rlarua@outlook.com>
+* 💻 GitHub: [@rlarua](https://github.com/rlarua)
+
+---
+
+> 💡 **Recruiter Note**: 이 포트폴리오는 단순 이력서가 아닌, 실제 프로덕션 레벨의 AI 협업 개발 사례입니다.
+> 18년 경력의 풀사이클 엔지니어가 최신 AI 도구를 어떻게 실무에 통합하는지 확인해보세요.
