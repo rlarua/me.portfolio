@@ -521,16 +521,34 @@ const App = () => {
                 </div>
               </motion.div>
               
-              {/* Right: Title Block */}
+              {/* Title Block */}
               <motion.div 
-                className="title-block text-center"
+                className="title-block text-center flex flex-col items-center gap-4"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <h1 className="text-xl md:text-2xl font-semibold leading-[1.3] tracking-wide text-slate-900 uppercase">
-                  FULL-CYCLE<br />PRODUCT ENGINEER
-                </h1>
+                <div className="flex flex-col items-center gap-3">
+                  <h1 className="text-xl md:text-2xl font-semibold leading-[1.3] tracking-wide text-slate-900 uppercase">
+                    FULL-CYCLE<br />PRODUCT ENGINEER
+                  </h1>
+                  
+                  {/* AI-Orchestrated Badge */}
+                  <motion.div 
+                    className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#00E5FF] text-[#1A1A1A] font-bold rounded-full shadow-lg shadow-[#00E5FF]/20 cursor-pointer group transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-[0_4px_15px_rgba(0,229,255,0.3)]"
+                    onClick={() => setIsReadmeOpen(true)}
+                  >
+                    <div className="relative">
+                      <Sparkles className="w-3.5 h-3.5 text-[#1A1A1A] fill-[#1A1A1A]" />
+                      <motion.div 
+                        className="absolute inset-0 bg-white rounded-full blur-sm -z-10 opacity-30"
+                        animate={{ opacity: [0.1, 0.4, 0.1], scale: [1, 1.4, 1] }}
+                        transition={{ repeat: Infinity, duration: 2 }}
+                      />
+                    </div>
+                    <span className="text-[10px] uppercase tracking-wider">AI-Orchestrated</span>
+                  </motion.div>
+                </div>
               </motion.div>
             </motion.div>
 
@@ -543,14 +561,14 @@ const App = () => {
             >
               {profile.motto}
             </motion.p>
-
+            
             <motion.p 
-              className="text-base md:text-lg text-slate-500 max-w-3xl leading-relaxed"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              {profile.description}
+                className="text-base md:text-lg text-slate-500 max-w-3xl leading-relaxed"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                {profile.description}
             </motion.p>
 
             {/* Stats Cards - 4 columns on desktop, 2 on mobile */}
@@ -747,15 +765,31 @@ const App = () => {
                 {[
                   { title: "Scale & Reliability", desc: "24/7 무중단 시스템 설계 및 99.9% 가동률 달성" },
                   { title: "Delivery & Speed", desc: "3개월 내 고도화 플랫폼 구축 및 타이트한 일정 준수" },
-                  { title: "Data & Monitoring", desc: "TSDB 기반 대용량 데이터 처리 및 응답속도 최적화" }
+                  { title: "Data & Monitoring", desc: "TSDB 기반 대용량 데이터 처리 및 응답속도 최적화" },
+                  // { 
+                  //   title: "AI & Human Synergy", 
+                  //   desc: "AI 에이전트를 활용한 초고속 아키텍처 설계 및 구현 (300%+ 생산성)",
+                  //   isSpecial: true 
+                  // }
                 ].map((item, i) => (
-                  <div key={i} className="flex gap-6 group">
-                    <div className="mt-1 flex-shrink-0 w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-sunset-gold group-hover:border-sunset-gold transition-all duration-300">
-                      <CheckCircle2 className="w-5 h-5 text-sunset-gold group-hover:text-charcoal-black" />
+                  <div 
+                    key={i} 
+                    className={`flex gap-6 group p-4 rounded-2xl transition-all duration-300 ${
+                      item.isSpecial ? 'border-none shadow-lg shadow-tech-cyan/20' : 'hover:bg-white/5'
+                    } cursor-pointer`}
+                    style={item.isSpecial ? { background: 'linear-gradient(135deg, #00E5FF 0%, #00C9FF 100%)' } : {}}
+                    onClick={item.isSpecial ? () => setIsReadmeOpen(true) : undefined}
+                  >
+                    <div className={`mt-1 flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                      item.isSpecial 
+                        ? 'bg-white/20 text-charcoal-black shadow-sm backdrop-blur-md' 
+                        : 'bg-white/5 border border-white/10 text-sunset-gold group-hover:bg-sunset-gold group-hover:border-sunset-gold group-hover:text-charcoal-black'
+                    }`}>
+                      {item.isSpecial ? <Sparkles className="w-5 h-5 fill-charcoal-black/40" /> : <CheckCircle2 className="w-5 h-5" />}
                     </div>
                     <div>
-                      <h4 className="font-bold text-xl mb-1">{item.title}</h4>
-                      <p className="text-slate-400 leading-relaxed font-medium">{item.desc}</p>
+                      <h4 className={`font-bold text-xl mb-1 ${item.isSpecial ? 'text-charcoal-black' : 'text-white'}`}>{item.title}</h4>
+                      <p className={`leading-relaxed font-medium ${item.isSpecial ? 'text-charcoal-black/80' : 'text-slate-400'}`}>{item.desc}</p>
                     </div>
                   </div>
                 ))}
