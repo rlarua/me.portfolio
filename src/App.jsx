@@ -143,38 +143,44 @@ const HistoryCard = ({ project }) => {
 
   return (
     <div 
-      className="w-full md:ml-20 h-[80px] md:h-[120px] perspective-1000"
+      className="w-full md:ml-20 perspective-1000 group"
       style={{ perspective: '1000px' }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
     >
       <div 
-        className={`relative w-full h-full transition-transform duration-700 preserve-3d ${isFlipped ? 'rotate-x-180' : ''}`}
-        style={{ transform: isFlipped ? 'rotateX(180deg)' : 'rotateX(0deg)' }}
+        className="relative w-full transition-transform duration-700 preserve-3d grid"
+        style={{ 
+          transform: isFlipped ? 'rotateX(180deg)' : 'rotateX(0deg)',
+          gridTemplateAreas: '"card"' 
+        }}
       >
         {/* Front of Card */}
-        <div className="absolute w-full h-full backface-hidden bg-white p-4 md:p-5 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-sunset-gold/30 transition-all duration-500 overflow-hidden">
+        <div 
+          className="backface-hidden bg-white p-5 md:p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-sunset-gold/30 transition-all duration-500 overflow-hidden"
+          style={{ gridArea: 'card' }}
+        >
           {/* Card Accent */}
-          <div className="absolute top-0 left-0 w-1.5 h-full bg-slate-100 transition-colors duration-500"></div>
+          <div className="absolute top-0 left-0 w-1.5 h-full bg-slate-100 transition-colors duration-500 group-hover:bg-sunset-gold"></div>
           
-          <div className="flex gap-4 items-start">
-            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-sunset-gold/10 group-hover:text-sunset-gold transition-all duration-500 flex-shrink-0">
+          <div className="flex gap-4 items-start h-full">
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-sunset-gold/10 group-hover:text-sunset-gold transition-all duration-500 flex-shrink-0">
               {project.icon}
             </div>
-            <div className="space-y-2 flex-1">
-              <div className="space-y-0.5">
+            <div className="space-y-3 flex-1">
+              <div className="space-y-1">
                 <div className="flex justify-between items-start gap-2">
-                  <div className="space-y-0.5">
-                    <span className="text-[9px] font-black text-sunset-gold uppercase tracking-[0.2em]">{project.client}</span>
-                    <h4 className="text-[13px] md:text-lg font-bold text-slate-900 group-hover:text-sunset-gold transition-colors leading-tight">{project.title}</h4>
+                  <div className="space-y-1">
+                    <span className="text-[10px] md:text-[11px] font-black text-sunset-gold uppercase tracking-[0.2em] block">{project.client}</span>
+                    <h4 className="text-base md:text-lg font-bold text-slate-900 group-hover:text-sunset-gold transition-colors leading-tight">{project.title}</h4>
                   </div>
                   {project.period && (
-                    <div className="text-[8px] md:text-[12px] text-slate-400 font-bold whitespace-nowrap bg-slate-50 px-2 py-1 rounded-lg border border-slate-100 mt-1">{project.period}</div>
+                    <div className="text-[10px] md:text-xs text-slate-400 font-bold whitespace-nowrap bg-slate-50 px-2 py-1 rounded-lg border border-slate-100">{project.period}</div>
                   )}
                 </div>
               </div>
-              <p className="text-xs text-slate-600 leading-relaxed font-medium line-clamp-2 hidden md:block">
+              <p className="text-sm text-slate-600 leading-relaxed font-medium">
                 {project.desc}
               </p>
             </div>
@@ -183,18 +189,21 @@ const HistoryCard = ({ project }) => {
 
         {/* Back of Card (Tech Details) */}
         <div 
-          className="absolute w-full h-full backface-hidden bg-gradient-to-br from-slate-900 to-charcoal-black p-4 md:p-5 rounded-2xl border border-sunset-gold/30 shadow-xl flex flex-col justify-center"
-          style={{ transform: 'rotateX(180deg)' }}
+          className="backface-hidden bg-gradient-to-br from-slate-900 to-charcoal-black p-5 md:p-6 rounded-2xl border border-sunset-gold/30 shadow-xl flex flex-col justify-center"
+          style={{ 
+            transform: 'rotateX(180deg)',
+            gridArea: 'card' 
+          }}
         >
-          <div className="flex items-center gap-2 mb-2">
-            <Code2 className="w-3 h-3 text-sunset-gold" />
-            <span className="text-[11px] font-bold text-sunset-gold uppercase tracking-wider">Tech Stack</span>
+          <div className="flex items-center gap-2 mb-3">
+            <Code2 className="w-4 h-4 text-sunset-gold" />
+            <span className="text-xs font-bold text-sunset-gold uppercase tracking-wider">Tech Stack</span>
           </div>
-          <p className="text-[11px] text-slate-300 font-medium leading-relaxed">
+          <p className="text-sm text-slate-300 font-medium leading-relaxed">
             {project.tech}
           </p>
-          <div className="mt-auto text-right">
-             <span className="text-[11px] text-slate-500 italic">
+          <div className="mt-4 pt-3 border-t border-white/10 text-right">
+             <span className="text-[10px] text-slate-500 italic">
                {window.innerWidth < 1024 ? 'Tap to return' : 'Hover out to close'}
              </span>
           </div>
@@ -390,9 +399,18 @@ const App = () => {
       <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-charcoal-black rounded-lg flex items-center justify-center text-white font-bold">M</div>
-              <span className="text-xl font-bold tracking-tight text-slate-800 uppercase">{profile.name}</span>
+            <div className="flex items-center gap-3 group cursor-default">
+              <div className="w-10 h-10 bg-charcoal-black rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:bg-sunset-gold group-hover:scale-105 transition-all duration-300">
+                M
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xl md:text-xl font-black tracking-tight text-slate-900 uppercase group-hover:text-sunset-gold transition-colors duration-300 leading-none mb-0.5">
+                  {profile.name}
+                </span>
+                <span className="text-xs md:text-sm font-semibold text-slate-500 tracking-wide group-hover:text-slate-800 transition-colors duration-300">
+                  {profile.title}
+                </span>
+              </div>
             </div>
             
             {/* Desktop Nav */}
