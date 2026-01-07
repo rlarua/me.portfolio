@@ -283,7 +283,10 @@ const App = () => {
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div className="space-y-4">
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900">Featured Projects</h2>
-              <p className="text-slate-600">실제 비즈니스 문제를 해결한 주요 프로젝트 사례들입니다.</p>
+              <p className="text-slate-600">
+                실제 비즈니스 문제를 해결한 주요 프로젝트 사례들입니다.<br />
+                <span className="text-sm text-slate-500">상세 내용을 확인하고 싶으시면 포트폴리오를 요청하세요.</span>
+              </p>
             </div>
             
             <div className="flex p-1 bg-slate-100 rounded-xl">
@@ -553,7 +556,7 @@ const App = () => {
               <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-slate-400 text-sm font-bold uppercase tracking-widest">
                 <span>© 2026 {profile.name}</span>
                 <span className="text-sunset-gold">Crafted with Passion & AI</span>
-                <span>Seoul, South Korea</span>
+                <span>South Korea</span>
               </div>
             </div>
           </div>
