@@ -136,7 +136,7 @@ const HistoryCard = ({ project }) => {
 
   return (
     <div 
-      className="w-full md:ml-20 h-[120px] perspective-1000"
+      className="w-full md:ml-20 h-[80px] md:h-[120px] perspective-1000"
       style={{ perspective: '1000px' }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -160,14 +160,14 @@ const HistoryCard = ({ project }) => {
                 <div className="flex justify-between items-start gap-2">
                   <div className="space-y-0.5">
                     <span className="text-[9px] font-black text-sunset-gold uppercase tracking-[0.2em]">{project.client}</span>
-                    <h4 className="text-lg font-bold text-slate-900 group-hover:text-sunset-gold transition-colors leading-tight">{project.title}</h4>
+                    <h4 className="text-[13px] md:text-lg font-bold text-slate-900 group-hover:text-sunset-gold transition-colors leading-tight">{project.title}</h4>
                   </div>
                   {project.period && (
-                    <div className="text-[11px] text-slate-400 font-bold whitespace-nowrap bg-slate-50 px-2 py-1 rounded-lg border border-slate-100 mt-1">{project.period}</div>
+                    <div className="text-[8px] md:text-[12px] text-slate-400 font-bold whitespace-nowrap bg-slate-50 px-2 py-1 rounded-lg border border-slate-100 mt-1">{project.period}</div>
                   )}
                 </div>
               </div>
-              <p className="text-xs text-slate-600 leading-relaxed font-medium line-clamp-2">
+              <p className="text-xs text-slate-600 leading-relaxed font-medium line-clamp-2 hidden md:block">
                 {project.desc}
               </p>
             </div>
@@ -181,9 +181,9 @@ const HistoryCard = ({ project }) => {
         >
           <div className="flex items-center gap-2 mb-2">
             <Code2 className="w-3 h-3 text-sunset-gold" />
-            <span className="text-[13px] font-bold text-sunset-gold uppercase tracking-wider">Tech Stack</span>
+            <span className="text-[11px] font-bold text-sunset-gold uppercase tracking-wider">Tech Stack</span>
           </div>
-          <p className="text-[14px] text-slate-300 font-medium leading-relaxed">
+          <p className="text-[11px] text-slate-300 font-medium leading-relaxed">
             {project.tech}
           </p>
           <div className="mt-auto text-right">
