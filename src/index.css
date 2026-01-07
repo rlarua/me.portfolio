@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --font-outfit: "Outfit", sans-serif;
+  --font-noto-sans: "Noto Sans KR", sans-serif;
+
+  --color-sunset-gold: #FF9F0A;
+  --color-tech-cyan: #00E5FF;
+  --color-charcoal-black: #1A1A1A;
+}
+
+body {
+  font-family: var(--font-noto-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-charcoal-black);
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-outfit {
+  font-family: var(--font-outfit);
+}
