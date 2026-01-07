@@ -29,12 +29,22 @@ import readmeContent from '../README.md?raw';
 const ProjectCard = ({ project }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  // Desktop hover handlers
-  const handleMouseEnter = () => setIsExpanded(true);
-  const handleMouseLeave = () => setIsExpanded(false);
+  // Desktop hover handlers - only work on desktop screens
+  const handleMouseEnter = () => {
+    if (window.innerWidth >= 768) {
+      setIsExpanded(true);
+    }
+  };
   
-  // Mobile tap handler
-  const handleClick = () => {
+  const handleMouseLeave = () => {
+    if (window.innerWidth >= 768) {
+      setIsExpanded(false);
+    }
+  };
+  
+  // Mobile tap handler - only for "show more" button
+  const handleShowMoreClick = (e) => {
+    e.stopPropagation(); // Prevent event bubbling
     if (window.innerWidth < 768) {
       setIsExpanded(!isExpanded);
     }
@@ -50,10 +60,9 @@ const ProjectCard = ({ project }) => {
 
   return (
     <div 
-      className="group cursor-pointer md:cursor-default w-full max-w-full"
+      className="group w-full max-w-full"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={handleClick}
     >
       <div className="bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden min-h-[320px] md:min-h-[350px]">
         <div className="p-6 md:p-8 flex flex-col h-full">
@@ -124,8 +133,11 @@ const ProjectCard = ({ project }) => {
             <div className="flex flex-wrap items-center justify-between gap-2">
               <span className="text-sm text-slate-700 font-bold">{project.period}</span>
               {(remainingResults.length > 0 || hiddenTagCount > 0) && (
-                <span className="text-[11px] text-sunset-gold font-bold whitespace-nowrap">
-                  {isExpanded ? '−' : '+'}{remainingResults.length + hiddenTagCount} more
+                <span 
+                  className="text-[11px] text-sunset-gold font-bold whitespace-nowrap cursor-pointer md:cursor-default"
+                  onClick={handleShowMoreClick}
+                >
+                  {isExpanded ? 'Collapse' : 'Expand'}
                 </span>
               )}
             </div>
