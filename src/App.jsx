@@ -454,6 +454,13 @@ const App = () => {
                   {item}
                 </a>
               ))}
+              <a 
+                href="/portfolio/portfolio_2026.pdf" 
+                download="portfolio_2026.pdf"
+                className="px-5 py-2 bg-sunset-gold text-white text-sm rounded-lg font-semibold hover:bg-orange-500 transition-all flex items-center gap-2 shadow-sm shadow-sunset-gold/20"
+              >
+                PDF <ExternalLink className="w-3.5 h-3.5" />
+              </a>
             </div>
 
             {/* Mobile Nav Toggle */}
@@ -476,99 +483,91 @@ const App = () => {
                 {item}
               </a>
             ))}
+            <a 
+              href="/portfolio/portfolio_2026.pdf" 
+              download="portfolio_2026.pdf"
+              className="flex items-center justify-center gap-2 w-full py-3 bg-sunset-gold text-white rounded-xl font-semibold shadow-lg shadow-sunset-gold/20"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              포트폴리오 PDF <ExternalLink className="w-4 h-4" />
+            </a>
           </div>
         )}
       </nav>
 
       {/* Hero Section */}
-      <section id="about" className="pt-32 pb-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="flex-1 space-y-6 text-center lg:text-left">
-              {/* Hero Header: 18+ YEARS + Title */}
-              <motion.div 
-                className="flex flex-col md:flex-row items-center md:items-center gap-8 md:gap-8 mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                {/* Left: Experience Highlight */}
-                <motion.div 
-                  className="experience-highlight flex-shrink-0 text-center md:text-left"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                >
-                  <div className="number text-[4rem] md:text-[5rem] font-bold leading-none bg-gradient-to-r from-orange-500 to-sunset-gold bg-clip-text text-transparent">
-                    18+
-                  </div>
-                  <div className="label text-sm font-semibold tracking-[0.1em] text-slate-600 -mt-2 uppercase">
-                    YEARS
-                  </div>
-                </motion.div>
-                
-                {/* Right: Title Block */}
-                <motion.div 
-                  className="title-block text-center md:text-left"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                >
-                  <h1 className="text-xl md:text-2xl font-semibold leading-[1.3] tracking-wide text-slate-900 uppercase">
-                    FULL-CYCLE<br />PRODUCT ENGINEER
-                  </h1>
-                </motion.div>
-              </motion.div>
-
-              {/* Hero Description */}
-              <motion.p 
-                className="hero-description text-lg md:text-xl font-medium text-slate-800 max-w-2xl"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                기술을 연결해 '제품의 완결성'을 만듭니다.
-              </motion.p>
-
-              <motion.p 
-                className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl leading-relaxed"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
-                {profile.description}
-              </motion.p>
-
-              {/* <motion.div 
-                className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-              >
-                <button className="px-8 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all flex items-center gap-2">
-                  <Mail className="w-4 h-4" /> 연락하기
-                </button>
-                <button className="px-8 py-3 bg-white text-slate-700 border border-slate-200 rounded-xl font-semibold hover:bg-slate-50 transition-all flex items-center gap-2">
-                   포트폴리오 PDF <ExternalLink className="w-4 h-4" />
-                </button>
-              </motion.div> */}
-            </div>
-
-            {/* Stats Cards */}
+      <section id="about" className="pt-32 pb-20 px-6 md:px-4">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="flex flex-col items-center text-center space-y-8 md:space-y-8">
+            {/* Hero Header: 18+ YEARS + Title */}
             <motion.div 
-              className="flex-1 relative"
+              className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              {/* Left: Experience Highlight */}
+              <motion.div 
+                className="experience-highlight flex-shrink-0 text-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <div className="number text-[4rem] md:text-[5rem] font-bold leading-none bg-gradient-to-r from-orange-500 to-sunset-gold bg-clip-text text-transparent">
+                  18+
+                </div>
+                <div className="label text-sm font-semibold tracking-[0.1em] text-slate-600 -mt-2 uppercase">
+                  YEARS
+                </div>
+              </motion.div>
+              
+              {/* Right: Title Block */}
+              <motion.div 
+                className="title-block text-center"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <h1 className="text-xl md:text-2xl font-semibold leading-[1.3] tracking-wide text-slate-900 uppercase">
+                  FULL-CYCLE<br />PRODUCT ENGINEER
+                </h1>
+              </motion.div>
+            </motion.div>
+
+            {/* Hero Description */}
+            <motion.p 
+              className="hero-description text-2xl md:text-3xl font-semibold text-slate-800 max-w-3xl leading-relaxed"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              {profile.motto}
+            </motion.p>
+
+            <motion.p 
+              className="text-base md:text-lg text-slate-500 max-w-3xl leading-relaxed"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              {profile.description}
+            </motion.p>
+
+            {/* Stats Cards - 4 columns on desktop, 2 on mobile */}
+            <motion.div 
+              className="w-full pt-4 md:pt-8"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
             >
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 {stats.map((stat, idx) => (
                   <motion.div 
                     key={idx} 
-                    className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow"
+                    className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.5 + idx * 0.1 }}
+                    transition={{ duration: 0.5, delay: 0.9 + idx * 0.1 }}
                   >
                     <div className="text-3xl font-bold text-sunset-gold mb-1">{stat.value}</div>
                     <div className="text-sm font-bold text-slate-800 mb-1">{stat.label}</div>
@@ -576,8 +575,6 @@ const App = () => {
                   </motion.div>
                 ))}
               </div>
-              {/* Decorative background element */}
-              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-sunset-gold/10 blur-3xl opacity-50 rounded-full"></div>
             </motion.div>
           </div>
         </div>
@@ -618,8 +615,8 @@ const App = () => {
             <div className="space-y-4">
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900">Featured Projects</h2>
               <p className="text-slate-600">
-                실제 비즈니스 문제를 해결한 주요 프로젝트 사례들입니다.<br />
-                <span className="text-sm text-slate-500">상세 내용을 확인하고 싶으시면 포트폴리오를 요청하세요.</span>
+                실제 비즈니스 문제를 해결한 주요 프로젝트 사례들입니다.
+                {/* <span className="text-sm text-slate-500">상세 내용을 확인하고 싶으시면 포트폴리오를 요청하세요.</span> */}
               </p>
             </div>
             
@@ -742,7 +739,7 @@ const App = () => {
                   <Zap className="w-3.5 h-3.5 fill-sunset-gold/20" /> Engineering Philosophy
                 </div>
                 <h2 className="text-4xl md:text-6xl font-black leading-[1.1] tracking-tight">
-                  Full-Cycle <span className="text-sunset-gold">Ownership</span><br />품질을 위한 집요함
+                  Full-Cycle <span className="text-sunset-gold">Ownership</span><br />타협 없는 제품 완성
                 </h2>
               </div>
               
@@ -785,7 +782,7 @@ const App = () => {
                       <div className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">Years Exp.</div>
                     </div>
                     <div className="p-6 bg-white/5 rounded-3xl border border-white/5 hover:bg-white/10 transition-colors">
-                      <div className="text-4xl font-black text-tech-cyan">30+</div>
+                      <div className="text-4xl font-black text-tech-cyan">{totalProjectCount}+</div>
                       <div className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">Projects</div>
                     </div>
                   </div>
