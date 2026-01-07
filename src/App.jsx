@@ -482,37 +482,100 @@ const App = () => {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="flex-1 space-y-6 text-center lg:text-left">
-              <div className="inline-block px-4 py-1.5 bg-sunset-gold/10 text-sunset-gold rounded-full text-sm font-semibold tracking-wide uppercase">
-                {profile.title}
-              </div>
-              <h1 className="text-2xl sm:text-3xl md:text-5xl font-black text-slate-900 leading-[1.3] sm:leading-[1.1] tracking-tight">
-                {profile.motto}
-              </h1>
-              <p className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl leading-relaxed">
+              {/* Hero Header: 18+ YEARS + Title */}
+              <motion.div 
+                className="flex flex-col md:flex-row items-center md:items-center gap-8 md:gap-8 mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                {/* Left: Experience Highlight */}
+                <motion.div 
+                  className="experience-highlight flex-shrink-0 text-center md:text-left"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                >
+                  <div className="number text-[4rem] md:text-[5rem] font-bold leading-none bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                    18+
+                  </div>
+                  <div className="label text-sm font-semibold tracking-[0.1em] text-slate-600 -mt-2 uppercase">
+                    YEARS
+                  </div>
+                </motion.div>
+                
+                {/* Right: Title Block */}
+                <motion.div 
+                  className="title-block text-center md:text-left"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  <h1 className="text-xl md:text-2xl font-semibold leading-[1.3] tracking-wide text-slate-900 uppercase">
+                    FULL-CYCLE<br />PRODUCT ENGINEER
+                  </h1>
+                </motion.div>
+              </motion.div>
+
+              {/* Hero Description */}
+              <motion.p 
+                className="hero-description text-lg md:text-xl font-medium text-slate-800 max-w-2xl"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                기술을 연결해 '제품의 완결성'을 만듭니다.
+              </motion.p>
+
+              <motion.p 
+                className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl leading-relaxed"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
                 {profile.description}
-              </p>
-              {/* <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
+              </motion.p>
+
+              {/* <motion.div 
+                className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+              >
                 <button className="px-8 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all flex items-center gap-2">
                   <Mail className="w-4 h-4" /> 연락하기
                 </button>
                 <button className="px-8 py-3 bg-white text-slate-700 border border-slate-200 rounded-xl font-semibold hover:bg-slate-50 transition-all flex items-center gap-2">
                    포트폴리오 PDF <ExternalLink className="w-4 h-4" />
                 </button>
-              </div> */}
+              </motion.div> */}
             </div>
-            <div className="flex-1 relative">
+
+            {/* Stats Cards */}
+            <motion.div 
+              className="flex-1 relative"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
               <div className="grid grid-cols-2 gap-4">
                 {stats.map((stat, idx) => (
-                  <div key={idx} className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                  <motion.div 
+                    key={idx} 
+                    className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.5 + idx * 0.1 }}
+                  >
                     <div className="text-3xl font-bold text-sunset-gold mb-1">{stat.value}</div>
                     <div className="text-sm font-bold text-slate-800 mb-1">{stat.label}</div>
                     <div className="text-xs text-slate-500">{stat.desc}</div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
               {/* Decorative background element */}
               <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-sunset-gold/10 blur-3xl opacity-50 rounded-full"></div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
