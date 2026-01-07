@@ -8,7 +8,7 @@
 ## 🔗 Quick Links
 
 * **Live Demo:** [justin-mk.me](https://justin-mk.me)
-* **GitHub Repository:** [rlarua/portfolio](https://github.com/rlarua/portfolio)
+* **GitHub Repository:** [rlarua/portfolio](https://github.com/rlarua/me.portfolio)
 * **Contact:** [rlarua@outlook.com](mailto:rlarua@outlook.com)
 
 ---
