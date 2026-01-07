@@ -499,7 +499,7 @@ const App = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.1 }}
                 >
-                  <div className="number text-[4rem] md:text-[5rem] font-bold leading-none bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                  <div className="number text-[4rem] md:text-[5rem] font-bold leading-none bg-gradient-to-r from-orange-500 to-sunset-gold bg-clip-text text-transparent">
                     18+
                   </div>
                   <div className="label text-sm font-semibold tracking-[0.1em] text-slate-600 -mt-2 uppercase">
