@@ -151,9 +151,18 @@ const ProjectCard = ({ project }) => {
 const HistoryCard = ({ project }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
-  // Desktop hover handlers
-  const handleMouseEnter = () => setIsFlipped(true);
-  const handleMouseLeave = () => setIsFlipped(false);
+  // Desktop hover handlers - only work on desktop screens
+  const handleMouseEnter = () => {
+    if (window.innerWidth >= 1024) {
+      setIsFlipped(true);
+    }
+  };
+  
+  const handleMouseLeave = () => {
+    if (window.innerWidth >= 1024) {
+      setIsFlipped(false);
+    }
+  };
   
   // Mobile tap handler
   const handleClick = () => {
