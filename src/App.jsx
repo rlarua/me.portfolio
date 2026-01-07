@@ -504,7 +504,7 @@ const App = () => {
                   </p>
                   <div className="pt-8 grid grid-cols-2 gap-6">
                     <div className="p-6 bg-white/5 rounded-3xl border border-white/5 hover:bg-white/10 transition-colors">
-                      <div className="text-4xl font-black text-sunset-gold">15+</div>
+                      <div className="text-4xl font-black text-sunset-gold">18+</div>
                       <div className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">Years Exp.</div>
                     </div>
                     <div className="p-6 bg-white/5 rounded-3xl border border-white/5 hover:bg-white/10 transition-colors">
