@@ -180,9 +180,6 @@ const App = () => {
                   {item}
                 </a>
               ))}
-              <button className="bg-charcoal-black text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-slate-800 transition-all">
-                Hire Me
-              </button>
             </div>
 
             {/* Mobile Nav Toggle */}
