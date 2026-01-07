@@ -1,0 +1,161 @@
+[
+    {
+        "id": 1,
+        "title": "ISH Platform",
+        "client": "InterX",
+        "period": "2024.10 - 2025.03",
+        "tags": [
+            "C#",
+            "ASP.NET Core",
+            "React.js",
+            "Docker",
+            "PostgreSQL"
+        ],
+        "description": "ISO/IEC 표준 기반 메타데이터 레지스트리 구축. CDD/ecl@ss 기반 Property-SMC-SM 계층 구조 설계 및 Semantic ID 매핑 자동화로 이기종 시스템 간 데이터 상호운용성 확보.",
+        "category": "enterprise",
+        "keyResults": [
+            "이기종 시스템 간 데이터 통합 기초 마련",
+            "ISO/IEC 표준 준수로 타 산업 부문 수평 확장 가능성 확보",
+            "Semantic ID 매핑 자동화로 기준 정보 관리 공수 단축"
+        ]
+    },
+    {
+        "id": 2,
+        "title": "NIR Data Gathering",
+        "client": "대상(주)",
+        "period": "2024.04 - 2024.05",
+        "tags": [
+            "C# WPF",
+            "Modbus RTU",
+            "PostgreSQL",
+            "Figma"
+        ],
+        "description": "바이오 공정 내 NIR 분석 데이터의 수동 수집·관리 프로세스 개선. Modbus 기반 표준화 및 실시간 수집·DB 이력 관리 체계 구축으로 수기 입력 오류 제거.",
+        "category": "enterprise",
+        "keyResults": [
+            "수기 대비 데이터 수집·관리 시간 대폭 단축",
+            "3초 Polling 기반 안정적 Modbus 통신 구현",
+            "AI 분석 연동 확장성 확보"
+        ]
+    },
+    {
+        "id": 3,
+        "title": "설비지능화 Platform",
+        "client": "삼성SDI, InterX",
+        "period": "2023.09 - 2023.12",
+        "tags": [
+            "C#",
+            "ASP.NET Core",
+            "MQTT",
+            "InfluxDB",
+            "MariaDB"
+        ],
+        "description": "설비 데이터 실시간·이력 통합 관리 플랫폼. Global-Local 분산 구조 + TSDB 기반 데이터 설계로 시간당 4만+ 이벤트 처리. 내부 연구소 반려 프로젝트를 단독 수임하여 3개월 내 완성.",
+        "category": "enterprise",
+        "keyResults": [
+            "3개월 내 설비 데이터 수집·분석·모니터링 포함 엔터프라이즈급 플랫폼 설계·구현",
+            "시간당 4만+ 이벤트를 고려한 MQTT 기반 데이터 처리 설계·구현",
+            "안정적인 Global/Local 분산 아키텍처 확립"
+        ]
+    },
+    {
+        "id": 4,
+        "title": "AI_SVR Module",
+        "client": "한국도로공사 (TDC 코리아)",
+        "period": "2022.03 - 2022.05",
+        "tags": [
+            "Python",
+            "TensorFlow",
+            "C#",
+            "Shared Memory"
+        ],
+        "description": "운영 중인 고정식 축중기 시스템에 AI 판별 기능 도입. 레거시 환경 제약으로 Shared Memory 기반 고속 연동 구조 설계. Xception 기반 CNN으로 차종 분류 정확도 99.52% 달성.",
+        "category": "ai",
+        "keyResults": [
+            "차종 분류 정확도 99.52% 달성",
+            "Shared Memory 기반 연동 구조로 레거시 환경 안정적 연계",
+            "학습 서버 분리 구축으로 모델 재학습 및 운영 확장성 확보"
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Gudak 6",
+        "client": "스크루바 & WACAN",
+        "period": "2021.03 - 2021.05",
+        "tags": [
+            "Swift",
+            "OpenGL",
+            "Firebase",
+            "Azure",
+            "MySQL"
+        ],
+        "description": "필름 카메라를 재해석한 AI 필터 카메라 앱. 신규 기능 아이디어를 직접 제안하고 UI/UX 설계부터 서버 구성, 앱 개발 전 과정 주도. OpenGL 기반 이미지 처리 파이프라인 구축.",
+        "category": "mobile",
+        "keyResults": [
+            "iOS 서비스 런칭 및 운영",
+            "출시 초기 MAU 1.2K 달성"
+        ]
+    },
+    {
+        "id": 7,
+        "title": "PrinShare (정부과제)",
+        "client": "스크루바",
+        "period": "2019.01 - 2019.05",
+        "tags": [
+            "Java",
+            "Swift",
+            "PHP",
+            "Node.js",
+            "Serverless (Azure Function)",
+            "MySQL"
+        ],
+        "description": "이미지 분석 기반 O2O 인화 서비스 고도화. 업로드 단계 병렬 분석 전환 + Redis 캐시 레이어로 성능 개선. 지오펜싱·이미지 키워드 기반 광고 매칭 알고리즘 구현.",
+        "category": "ai",
+        "keyResults": [
+            "병렬 처리 + Redis 캐시로 이미지 분석 병목 제거",
+            "지오펜싱(1차) → 조건/가중치(2차) → 기본 광고 매칭 체계 정립",
+            "검출 신뢰도 기반 키워드 필터링으로 광고 매칭 정교화"
+        ]
+    },
+    {
+        "id": 8,
+        "title": "B9",
+        "client": "MBC PLUS",
+        "period": "2017.04 - 2017.10",
+        "tags": [
+            "Java",
+            "Swift",
+            "OpenGL",
+            "PHP",
+            "Node.js",
+            "RTMP",
+            "HLS",
+            "Azure",
+            "MySQL"
+        ],
+        "description": "반려동물 콘텐츠 특화 라이브 스트리밍 플랫폼. Love.ly, 72CAST 등에서 축적된 기술을 통합하여 국내 시장용 완성형 플랫폼 구축. MBC PLUS 제휴.",
+        "category": "mobile",
+        "keyResults": [
+            "MBC PLUS 업무 제휴",
+            "iOS/Android 동시 서비스 런칭 및 운영",
+            "숏폼 기반 인터랙션 UI/UX 적용"
+        ]
+    },
+    {
+        "id": 9,
+        "title": "고정식 축중기 Platform",
+        "client": "한국도로공사",
+        "period": "2012.02 - 2013.06",
+        "tags": [
+            "C#",
+            "MS-SQL"
+        ],
+        "description": "고정식 축중기 현장 운영을 위한 계측·판정·관제 소프트웨어 구축. 24/365 무중단 운영을 전제로 설계된 공공 인프라 계측 시스템. 품질·성능 평가시험 기준 통과.",
+        "category": "enterprise",
+        "keyResults": [
+            "현장 운영 기준의 계측/판정/리포트 흐름 제품화",
+            "품질·성능 평가시험 기준 충족",
+            "24/365 무중단 운영 전제 설계"
+        ]
+    }
+]
