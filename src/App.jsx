@@ -70,47 +70,54 @@ const ProjectCard = ({ project }) => {
             {project.description}
           </p>
 
-          {/* Tags - Expandable inline with synchronized state */}
-          <div className="mb-4">
-            <div className={`flex flex-wrap gap-1.5 transition-all duration-300 ${
-              !isExpanded ? 'max-h-[28px] overflow-hidden' : 'max-h-[200px]'
-            }`}>
-              {project.tags.map(tag => (
-                <span key={tag} className="px-2.5 py-1.5 bg-slate-50 border border-slate-100 rounded text-[11px] font-bold text-slate-500 uppercase whitespace-nowrap">
+          {/* Unified Expandable Content - Single container for tags and key results */}
+          <div className={`mb-4 transition-all duration-300 ${
+            isExpanded ? 'max-h-[600px]' : 'max-h-[120px]'
+          } overflow-hidden`}>
+            {/* Tags Section */}
+            <div className="flex flex-wrap gap-1.5 mb-3">
+              {project.tags.map((tag, index) => (
+                <span 
+                  key={tag} 
+                  className={`px-2.5 py-1.5 bg-slate-50 border border-slate-100 rounded text-[11px] font-bold text-slate-500 uppercase whitespace-nowrap transition-opacity duration-300 ${
+                    !isExpanded && index >= visibleTagCount ? 'hidden' : 'opacity-100'
+                  }`}
+                >
                   {tag}
                 </span>
               ))}
-              
             </div>
-          </div>
 
-          {/* Top Key Result - line-clamp-2, expands when isExpanded */}
-          {topResult && (
-            <div className="pt-3 border-t border-slate-100 mb-3">
-              <div className="flex gap-2 items-start">
-                <CheckCircle2 className="w-4 h-4 text-sunset-gold flex-shrink-0 mt-0.5" />
-                <p className={`text-sm text-slate-700 font-medium leading-relaxed ${
-                  isExpanded ? '' : 'line-clamp-2'
-                }`}>
-                  {topResult}
-                </p>
-              </div>
-            </div>
-          )}
-
-          {/* Expanded Key Results */}
-          {isExpanded && remainingResults.length > 0 && (
-            <div className="space-y-2 mb-3 animate-in fade-in slide-in-from-top-2 duration-300">
-              {remainingResults.map((result, idx) => (
-                <div key={idx} className="flex gap-2 items-start">
+            {/* Key Results Section */}
+            {topResult && (
+              <div className="pt-3 border-t border-slate-100">
+                {/* Top Key Result */}
+                <div className="flex gap-2 items-start mb-2">
                   <CheckCircle2 className="w-4 h-4 text-sunset-gold flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-slate-700 font-medium leading-relaxed">
-                    {result}
+                  <p className={`text-sm text-slate-700 font-medium leading-relaxed ${
+                    isExpanded ? '' : 'line-clamp-2'
+                  }`}>
+                    {topResult}
                   </p>
                 </div>
-              ))}
-            </div>
-          )}
+
+                {/* Remaining Key Results */}
+                {remainingResults.length > 0 && remainingResults.map((result, idx) => (
+                  <div 
+                    key={idx} 
+                    className={`flex gap-2 items-start mb-2 transition-all duration-300 ${
+                      isExpanded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 hidden'
+                    }`}
+                  >
+                    <CheckCircle2 className="w-4 h-4 text-sunset-gold flex-shrink-0 mt-0.5" />
+                    <p className="text-sm text-slate-700 font-medium leading-relaxed">
+                      {result}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
 
           {/* Footer - Always at bottom */}
           <div className="pt-3 border-t border-slate-100 mt-auto">
