@@ -240,12 +240,19 @@ const ReadmeModal = ({ isOpen, onClose }) => {
             className="relative w-full max-w-[900px] max-h-[90vh] bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-slate-100 bg-white sticky top-0 z-10">
+            <div className="flex items-center justify-between p-6 border-b border-slate-100 bg-white">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-charcoal-black rounded-xl flex items-center justify-center text-white font-black">R</div>
+                <div className="w-10 h-10 bg-charcoal-black rounded-xl flex items-center justify-center text-white">
+                  <motion.div
+                    animate={{ rotate: [0, 15, -15, 0], opacity: [1, 0.8, 1] }}
+                    transition={{ repeat: Infinity, duration: 2 }}
+                  >
+                    <Sparkles size={20} fill="currentColor" className="text-amber-400" />
+                  </motion.div>
+                </div>
                 <div>
-                  <h3 className="text-xl font-bold text-slate-900 tracking-tight">Project Strategy</h3>
-                  <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em]">Documentation</p>
+                  <h3 className="text-xl font-bold text-slate-900 tracking-tight">Development Story</h3>
+                  <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em]">AI Orchestration</p>
                 </div>
               </div>
               <button 
