@@ -424,6 +424,9 @@ const App = () => {
     }))
   }));
 
+  // Calculate total project count from projectHistory
+  const totalProjectCount = projectHistory.reduce((total, phase) => total + phase.projects.length, 0);
+
   return (
     <div className="min-h-screen bg-slate-50 text-charcoal-black font-sans selection:bg-sunset-gold/20">
       {/* Navigation */}
@@ -656,7 +659,7 @@ const App = () => {
           className="group flex items-center gap-3 px-8 py-4 bg-charcoal-black hover:bg-sunset-gold border-2 border-charcoal-black hover:border-sunset-gold rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
         >
           <span className="text-lg font-bold text-white">
-            {isHistoryVisible ? '전체 이력 숨기기' : '전체 프로젝트 보기 (30+)'}
+            {isHistoryVisible ? '전체 이력 숨기기' : `전체 프로젝트 보기 (${totalProjectCount}+)`}
           </span>
           <ChevronRight className={`w-5 h-5 text-white transition-transform duration-300 ${
             isHistoryVisible ? 'rotate-90' : 'rotate-0'
