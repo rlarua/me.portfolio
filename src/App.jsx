@@ -27,100 +27,103 @@ import projectHistoryData from './data/projectHistory.json';
 import readmeContent from '../README.md?raw';
 
 const ProjectCard = ({ project }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   // Desktop hover handlers
-  const handleMouseEnter = () => setIsFlipped(true);
-  const handleMouseLeave = () => setIsFlipped(false);
+  const handleMouseEnter = () => setIsExpanded(true);
+  const handleMouseLeave = () => setIsExpanded(false);
   
   // Mobile tap handler
   const handleClick = () => {
-    // Check if it's a touch device or small screen
     if (window.innerWidth < 768) {
-      setIsFlipped(!isFlipped);
+      setIsExpanded(!isExpanded);
     }
   };
 
+  // Get top key result to display
+  const topResult = project.keyResults && project.keyResults.length > 0 ? project.keyResults[0] : null;
+  const remainingResults = project.keyResults && project.keyResults.length > 1 ? project.keyResults.slice(1) : [];
+
+  // Calculate hidden tags count for inline display
+  const visibleTagCount = 3;
+  const hiddenTagCount = project.tags.length > visibleTagCount ? project.tags.length - visibleTagCount : 0;
+
   return (
     <div 
-      className="h-[350px] perspective-1000"
-      style={{ perspective: '1000px' }}
+      className="group cursor-pointer md:cursor-default w-full max-w-full"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
     >
-      <div 
-        className={`relative w-full h-full transition-transform duration-700 preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}
-        style={{ transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
-      >
-        {/* Front of Card */}
-        <div className="absolute w-full h-full backface-hidden bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition-shadow cursor-pointer md:cursor-default">
-          <div className="p-8 space-y-5 h-full flex flex-col">
-            <div className="flex justify-between items-start">
-              <div className="space-y-1">
-                <span className="text-xs font-bold text-sunset-gold uppercase tracking-wider">{project.client}</span>
-                <h3 className="text-xl font-bold text-slate-900">{project.title}</h3>
-              </div>
+      <div className="bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden min-h-[320px] md:min-h-[350px]">
+        <div className="p-6 md:p-8 flex flex-col h-full">
+          {/* Header */}
+          <div className="flex justify-between items-start mb-3">
+            <div className="space-y-1">
+              <span className="text-xs font-bold text-sunset-gold uppercase tracking-wider">{project.client}</span>
+              <h3 className="text-lg md:text-xl font-bold text-slate-900">{project.title}</h3>
             </div>
-            
-            <p className="text-slate-600 text-sm leading-relaxed flex-1">
-              {project.description}
-            </p>
+          </div>
+          
+          {/* Description - Flexible growth */}
+          <p className="text-slate-600 text-sm leading-relaxed line-clamp-3 mb-4">
+            {project.description}
+          </p>
 
-            <div className="flex flex-wrap gap-1.5">
+          {/* Tags - Expandable inline with synchronized state */}
+          <div className="mb-4">
+            <div className={`flex flex-wrap gap-1.5 transition-all duration-300 ${
+              !isExpanded ? 'max-h-[28px] overflow-hidden' : 'max-h-[200px]'
+            }`}>
               {project.tags.map(tag => (
-                <span key={tag} className="px-2 py-1 bg-slate-50 border border-slate-100 rounded text-[10px] font-bold text-slate-500 uppercase">
+                <span key={tag} className="px-2.5 py-1.5 bg-slate-50 border border-slate-100 rounded text-[11px] font-bold text-slate-500 uppercase whitespace-nowrap">
                   {tag}
                 </span>
               ))}
+              
             </div>
+          </div>
 
-            <div className="pt-4 border-t border-slate-100 mt-auto">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-slate-700 font-bold">{project.period}</span>
-                {project.keyResults && project.keyResults.length > 0 && (
-                  <div className="flex items-center gap-1">
-                    <span className="text-[11px] text-sunset-gold font-bold italic md:block hidden animate-pulse">
-                      Hover for results →
-                    </span>
-                    <span className="text-[11px] text-sunset-gold font-bold italic md:hidden block animate-pulse">
-                      Tap for results →
-                    </span>
-                  </div>
-                )}
+          {/* Top Key Result - line-clamp-2, expands when isExpanded */}
+          {topResult && (
+            <div className="pt-3 border-t border-slate-100 mb-3">
+              <div className="flex gap-2 items-start">
+                <CheckCircle2 className="w-4 h-4 text-sunset-gold flex-shrink-0 mt-0.5" />
+                <p className={`text-sm text-slate-700 font-medium leading-relaxed ${
+                  isExpanded ? '' : 'line-clamp-2'
+                }`}>
+                  {topResult}
+                </p>
               </div>
+            </div>
+          )}
+
+          {/* Expanded Key Results */}
+          {isExpanded && remainingResults.length > 0 && (
+            <div className="space-y-2 mb-3 animate-in fade-in slide-in-from-top-2 duration-300">
+              {remainingResults.map((result, idx) => (
+                <div key={idx} className="flex gap-2 items-start">
+                  <CheckCircle2 className="w-4 h-4 text-sunset-gold flex-shrink-0 mt-0.5" />
+                  <p className="text-sm text-slate-700 font-medium leading-relaxed">
+                    {result}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Footer - Always at bottom */}
+          <div className="pt-3 border-t border-slate-100 mt-auto">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className="text-sm text-slate-700 font-bold">{project.period}</span>
+              {(remainingResults.length > 0 || hiddenTagCount > 0) && (
+                <span className="text-[11px] text-sunset-gold font-bold whitespace-nowrap">
+                  {isExpanded ? '−' : '+'}{remainingResults.length + hiddenTagCount} more
+                </span>
+              )}
             </div>
           </div>
         </div>
-
-        {/* Back of Card */}
-        {project.keyResults && project.keyResults.length > 0 && (
-          <div 
-            className="absolute w-full h-full backface-hidden bg-gradient-to-br from-charcoal-black to-slate-900 rounded-3xl border border-sunset-gold/30 shadow-xl"
-            style={{ transform: 'rotateY(180deg)' }}
-          >
-            <div className="p-8 h-full flex flex-col">
-              <div className="flex items-center gap-2 mb-6 pb-4 border-b border-white/10">
-                <CheckCircle2 className="w-5 h-5 text-sunset-gold" />
-                <h4 className="text-lg font-bold text-white uppercase tracking-wider">Key Results</h4>
-              </div>
-              
-              <ul className="space-y-4 flex-1 overflow-y-auto">
-                {project.keyResults.map((result, idx) => (
-                  <li key={idx} className="flex gap-3">
-                    <span className="text-sunset-gold font-bold flex-shrink-0">✓</span>
-                    <span className="text-white text-sm leading-relaxed">{result}</span>
-                  </li>
-                ))}
-              </ul>
-              
-              <div className="text-center pt-4 border-t border-white/10 mt-auto">
-                <span className="text-xs text-slate-400 italic md:block hidden">Hover out to see details</span>
-                <span className="text-xs text-sunset-gold font-bold italic md:hidden block">Tap to return</span>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
@@ -454,10 +457,10 @@ const App = () => {
               <div className="inline-block px-4 py-1.5 bg-sunset-gold/10 text-sunset-gold rounded-full text-sm font-semibold tracking-wide uppercase">
                 {profile.title}
               </div>
-              <h1 className="text-3xl md:text-5xl font-black text-slate-900 leading-[1.1] tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl font-black text-slate-900 leading-[1.3] sm:leading-[1.1] tracking-tight">
                 {profile.motto}
               </h1>
-              <p className="text-base md:text-lg text-slate-600 max-w-2xl leading-relaxed">
+              <p className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl leading-relaxed">
                 {profile.description}
               </p>
               {/* <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
@@ -487,14 +490,14 @@ const App = () => {
       </section>
 
       {/* Tech Stack Section */}
-      <section id="skills" className="py-20 bg-charcoal-black text-white overflow-hidden">
+      <section id="skills" className="py-16 md:py-20 bg-charcoal-black text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-3xl md:text-4xl font-bold">Technology Stack</h2>
             <p className="text-slate-400">하드웨어 제어부터 분산 서버, AI 파이프라인까지의 통합 역량</p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {techStacks.map((stack, idx) => (
               <div key={idx} className="p-8 bg-slate-800/50 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all group">
                 <div className="w-12 h-12 bg-tech-cyan/10 rounded-2xl flex items-center justify-center text-tech-cyan mb-6 group-hover:bg-tech-cyan group-hover:text-charcoal-black transition-all">
@@ -515,9 +518,9 @@ const App = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-24 px-4">
+      <section id="projects" className="py-16 md:py-24 px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-6">
             <div className="space-y-4">
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900">Featured Projects</h2>
               <p className="text-slate-600">
@@ -543,7 +546,7 @@ const App = () => {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {filteredProjects.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
@@ -633,7 +636,7 @@ const App = () => {
       </div>
 
       {/* Expertise Section */}
-      <section className="py-24 bg-charcoal-black text-white relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-charcoal-black text-white relative overflow-hidden">
         {/* Grid Pattern Pattern */}
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
         
