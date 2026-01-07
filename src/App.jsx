@@ -315,6 +315,149 @@ const App = () => {
         </div>
       )}
 
+      {/* Complete Project History Timeline */}
+      <section className="py-24 px-4 bg-white" hidden>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Complete Project History</h2>
+            <p className="text-slate-600">2007년부터 현재까지의 전체 프로젝트 이력을 연대순으로 정리했습니다.</p>
+          </div>
+
+          {/* Timeline Container */}
+          <div className="relative">
+            {/* Vertical Line */}
+            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 transform md:-translate-x-1/2"></div>
+
+            {/* Phase 1: 2007-2014 */}
+            <div className="mb-16">
+              <div className="flex items-center mb-8">
+                <div className="flex-1 md:text-right md:pr-12">
+                  <h3 className="text-2xl font-bold text-charcoal-black">2007 ~ 2014</h3>
+                  <p className="text-sunset-gold font-semibold">Public Infrastructure Engineering</p>
+                </div>
+                <div className="hidden md:block w-4 h-4 bg-sunset-gold rounded-full border-4 border-white shadow-lg relative z-10"></div>
+                <div className="flex-1"></div>
+              </div>
+              
+              <div className="space-y-6 ml-8 md:ml-0">
+                {[
+                  { title: "이동식 축중기 인디게이터", client: "한국도로공사", desc: "과적 단속을 위한 이동식 축중기 중량 표시기 개발" },
+                  { title: "서울대 주차관제 시스템", client: "서울대학교", desc: "주차 차단기 제어 및 관제 시스템 구축" },
+                  { title: "대방 건설 ERP", client: "대방건설", desc: "사내 자원 관리 시스템(ERP) 개발" },
+                  { title: "SI Automation", client: "CyberLogitec", desc: "해양 물류 자동화 시스템 구축" },
+                  { title: "고정식 축중기 Platform", client: "한국도로공사", desc: "축중기 현장 운영을 위한 계측·판정·관제 소프트웨어 구축 (2012.02~2013.06)" },
+                  { title: "SK One Pos", client: "SK M&S", desc: "주유소 결제 및 운영 시스템 개발" }
+                ].map((project, idx) => (
+                  <div key={idx} className="md:grid md:grid-cols-2 md:gap-8">
+                    <div className="md:text-right md:pr-12"></div>
+                    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-sunset-gold/50 transition-all">
+                      <div className="text-xs font-bold text-sunset-gold mb-1">{project.client}</div>
+                      <h4 className="font-bold text-slate-900 mb-2">{project.title}</h4>
+                      <p className="text-sm text-slate-600">{project.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Phase 2: 2015-2018 */}
+            <div className="mb-16">
+              <div className="flex items-center mb-8">
+                <div className="flex-1 md:text-right md:pr-12">
+                  <h3 className="text-2xl font-bold text-charcoal-black">2015 ~ 2018</h3>
+                  <p className="text-sunset-gold font-semibold">Global Startup CTO</p>
+                </div>
+                <div className="hidden md:block w-4 h-4 bg-sunset-gold rounded-full border-4 border-white shadow-lg relative z-10"></div>
+                <div className="flex-1"></div>
+              </div>
+              
+              <div className="space-y-6 ml-8 md:ml-0">
+                {[
+                  { title: "BAUBOX", client: "Applr", desc: "반려동물 용품 정기구독 서비스 개발" },
+                  { title: "72CAST", client: "BMW, Mediacorp", desc: "라이브 커머스 MVP 개발" },
+                  { title: "GUDAK", client: "스크루바(Screw Bar)", desc: "필름 카메라 시뮬레이션 애플리케이션 개발" },
+                  { title: "Love.ly", client: "Applr", desc: "글로벌 실시간 스트리밍 플랫폼 구축" },
+                  { title: "B9", client: "MBC PLUS", desc: "반려동물 전용 미디어 플랫폼 구축 및 MBC 제휴 운영 (2018.06~2018.12)" }
+                ].map((project, idx) => (
+                  <div key={idx} className="md:grid md:grid-cols-2 md:gap-8">
+                    <div className="md:text-right md:pr-12"></div>
+                    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-sunset-gold/50 transition-all">
+                      <div className="text-xs font-bold text-sunset-gold mb-1">{project.client}</div>
+                      <h4 className="font-bold text-slate-900 mb-2">{project.title}</h4>
+                      <p className="text-sm text-slate-600">{project.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Phase 3: 2019-2021 */}
+            <div className="mb-16">
+              <div className="flex items-center mb-8">
+                <div className="flex-1 md:text-right md:pr-12">
+                  <h3 className="text-2xl font-bold text-charcoal-black">2019 ~ 2021</h3>
+                  <p className="text-sunset-gold font-semibold">Consumer Product Full-Stack</p>
+                </div>
+                <div className="hidden md:block w-4 h-4 bg-sunset-gold rounded-full border-4 border-white shadow-lg relative z-10"></div>
+                <div className="flex-1"></div>
+              </div>
+              
+              <div className="space-y-6 ml-8 md:ml-0">
+                {[
+                  { title: "열전발전 시스템", client: "포스코, LG화학", desc: "고효율 친환경 열전발전 제어 시스템 개발" },
+                  { title: "Artalleys", client: "Artalleys", desc: "미술품 커머스 플랫폼 구축" },
+                  { title: "PrinShare", client: "스크루바(Screw Bar)", desc: "이미지 분석 및 입고 인화 서비스, Redis 기반 캐시 레이어 설계 (2019.01~2019.05)" },
+                  { title: "PrinShare 고도화", client: "스크루바(Screw Bar)", desc: "서비스 성능 최적화 및 정부 지원 과제 수행" },
+                  { title: "SIXCUT", client: "와캔(Waken)", desc: "랜덤 콜라주 카메라 서비스 개발" },
+                  { title: "Gudak 6", client: "스크루바, 와캔", desc: "인공지능 기반 필터 비활성 카메라 서비스 개발 (2021.03~2021.05)" }
+                ].map((project, idx) => (
+                  <div key={idx} className="md:grid md:grid-cols-2 md:gap-8">
+                    <div className="md:text-right md:pr-12"></div>
+                    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-sunset-gold/50 transition-all">
+                      <div className="text-xs font-bold text-sunset-gold mb-1">{project.client}</div>
+                      <h4 className="font-bold text-slate-900 mb-2">{project.title}</h4>
+                      <p className="text-sm text-slate-600">{project.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Phase 4: 2022-2025 */}
+            <div className="mb-16">
+              <div className="flex items-center mb-8">
+                <div className="flex-1 md:text-right md:pr-12">
+                  <h3 className="text-2xl font-bold text-charcoal-black">2022 ~ 2025</h3>
+                  <p className="text-sunset-gold font-semibold">Enterprise AI & Platform</p>
+                </div>
+                <div className="hidden md:block w-4 h-4 bg-sunset-gold rounded-full border-4 border-white shadow-lg relative z-10"></div>
+                <div className="flex-1"></div>
+              </div>
+              
+              <div className="space-y-6 ml-8 md:ml-0">
+                {[
+                  { title: "AI_SVR Module", client: "한국도로공사(TDC 코리아)", desc: "AI 기반 적재불량 판별 모듈 개발 (2022.03~2022.05)" },
+                  { title: "지역보건의료시스템", client: "한국사회보장원", desc: "공공 보건 및 건강관리 시스템 개발" },
+                  { title: "GreenCar iOS", client: "그린카", desc: "그린카 차세대 앱 개발 및 유지보수 (MAU 2.2M)" },
+                  { title: "설비지능화 Platform", client: "삼성SDI, InterX", desc: "TSDB 기반 대용량 데이터 설계 및 운영 플랫폼 구축 (2023.09~2023.12)" },
+                  { title: "NIR Data Gathering", client: "대상(Daesang)", desc: "바이오 공정 내 NIR 분석 데이터 자동화 측정 및 수집 시스템 (2024.04~2024.05)" },
+                  { title: "ISH Platform", client: "InterX", desc: "제조 현장 도메인 지식 기반 Semantic 메타데이터 관리 시스템 개발 (2024.11~2025.02)" }
+                ].map((project, idx) => (
+                  <div key={idx} className="md:grid md:grid-cols-2 md:gap-8">
+                    <div className="md:text-right md:pr-12"></div>
+                    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:border-sunset-gold/50 transition-all">
+                      <div className="text-xs font-bold text-sunset-gold mb-1">{project.client}</div>
+                      <h4 className="font-bold text-slate-900 mb-2">{project.title}</h4>
+                      <p className="text-sm text-slate-600">{project.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Expertise Section */}
       <section className="py-20 bg-charcoal-black text-white">
         <div className="max-w-7xl mx-auto px-4">
