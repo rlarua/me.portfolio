@@ -16,6 +16,186 @@ import {
   Menu,
   X
 } from 'lucide-react';
+import projectsData from './data/projects.json';
+import projectHistoryData from './data/projectHistory.json';
+
+const ProjectCard = ({ project }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  // Desktop hover handlers
+  const handleMouseEnter = () => setIsFlipped(true);
+  const handleMouseLeave = () => setIsFlipped(false);
+  
+  // Mobile tap handler
+  const handleClick = () => {
+    // Check if it's a touch device or small screen
+    if (window.innerWidth < 768) {
+      setIsFlipped(!isFlipped);
+    }
+  };
+
+  return (
+    <div 
+      className="h-[350px] perspective-1000"
+      style={{ perspective: '1000px' }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
+    >
+      <div 
+        className={`relative w-full h-full transition-transform duration-700 preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}
+        style={{ transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
+      >
+        {/* Front of Card */}
+        <div className="absolute w-full h-full backface-hidden bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition-shadow cursor-pointer md:cursor-default">
+          <div className="p-8 space-y-5 h-full flex flex-col">
+            <div className="flex justify-between items-start">
+              <div className="space-y-1">
+                <span className="text-xs font-bold text-sunset-gold uppercase tracking-wider">{project.client}</span>
+                <h3 className="text-xl font-bold text-slate-900">{project.title}</h3>
+              </div>
+            </div>
+            
+            <p className="text-slate-600 text-sm leading-relaxed flex-1">
+              {project.description}
+            </p>
+
+            <div className="flex flex-wrap gap-1.5">
+              {project.tags.map(tag => (
+                <span key={tag} className="px-2 py-1 bg-slate-50 border border-slate-100 rounded text-[10px] font-bold text-slate-500 uppercase">
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <div className="pt-4 border-t border-slate-100 mt-auto">
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-slate-700 font-bold">{project.period}</span>
+                {project.keyResults && project.keyResults.length > 0 && (
+                  <div className="flex items-center gap-1">
+                    <span className="text-[11px] text-sunset-gold font-bold italic md:block hidden animate-pulse">
+                      Hover for results →
+                    </span>
+                    <span className="text-[11px] text-sunset-gold font-bold italic md:hidden block animate-pulse">
+                      Tap for results →
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Back of Card */}
+        {project.keyResults && project.keyResults.length > 0 && (
+          <div 
+            className="absolute w-full h-full backface-hidden bg-gradient-to-br from-charcoal-black to-slate-900 rounded-3xl border border-sunset-gold/30 shadow-xl"
+            style={{ transform: 'rotateY(180deg)' }}
+          >
+            <div className="p-8 h-full flex flex-col">
+              <div className="flex items-center gap-2 mb-6 pb-4 border-b border-white/10">
+                <CheckCircle2 className="w-5 h-5 text-sunset-gold" />
+                <h4 className="text-lg font-bold text-white uppercase tracking-wider">Key Results</h4>
+              </div>
+              
+              <ul className="space-y-4 flex-1 overflow-y-auto">
+                {project.keyResults.map((result, idx) => (
+                  <li key={idx} className="flex gap-3">
+                    <span className="text-sunset-gold font-bold flex-shrink-0">✓</span>
+                    <span className="text-white text-sm leading-relaxed">{result}</span>
+                  </li>
+                ))}
+              </ul>
+              
+              <div className="text-center pt-4 border-t border-white/10 mt-auto">
+                <span className="text-xs text-slate-400 italic md:block hidden">Hover out to see details</span>
+                <span className="text-xs text-sunset-gold font-bold italic md:hidden block">Tap to return</span>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const HistoryCard = ({ project }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  // Desktop hover handlers
+  const handleMouseEnter = () => setIsFlipped(true);
+  const handleMouseLeave = () => setIsFlipped(false);
+  
+  // Mobile tap handler
+  const handleClick = () => {
+    // Check if it's a touch device or small screen
+    if (window.innerWidth < 1024) {
+      setIsFlipped(!isFlipped);
+    }
+  };
+
+  return (
+    <div 
+      className="w-full md:ml-20 h-[120px] perspective-1000"
+      style={{ perspective: '1000px' }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
+    >
+      <div 
+        className={`relative w-full h-full transition-transform duration-700 preserve-3d ${isFlipped ? 'rotate-x-180' : ''}`}
+        style={{ transform: isFlipped ? 'rotateX(180deg)' : 'rotateX(0deg)' }}
+      >
+        {/* Front of Card */}
+        <div className="absolute w-full h-full backface-hidden bg-white p-4 md:p-5 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-sunset-gold/30 transition-all duration-500 overflow-hidden">
+          {/* Card Accent */}
+          <div className="absolute top-0 left-0 w-1.5 h-full bg-slate-100 transition-colors duration-500"></div>
+          
+          <div className="flex gap-4 items-start">
+            <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-sunset-gold/10 group-hover:text-sunset-gold transition-all duration-500 flex-shrink-0">
+              {project.icon}
+            </div>
+            <div className="space-y-2 flex-1">
+              <div className="space-y-0.5">
+                <div className="flex justify-between items-start gap-2">
+                  <div className="space-y-0.5">
+                    <span className="text-[9px] font-black text-sunset-gold uppercase tracking-[0.2em]">{project.client}</span>
+                    <h4 className="text-lg font-bold text-slate-900 group-hover:text-sunset-gold transition-colors leading-tight">{project.title}</h4>
+                  </div>
+                  {project.period && (
+                    <div className="text-[11px] text-slate-400 font-bold whitespace-nowrap bg-slate-50 px-2 py-1 rounded-lg border border-slate-100 mt-1">{project.period}</div>
+                  )}
+                </div>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed font-medium line-clamp-2">
+                {project.desc}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Back of Card (Tech Details) */}
+        <div 
+          className="absolute w-full h-full backface-hidden bg-gradient-to-br from-slate-900 to-charcoal-black p-4 md:p-5 rounded-2xl border border-sunset-gold/30 shadow-xl flex flex-col justify-center"
+          style={{ transform: 'rotateX(180deg)' }}
+        >
+          <div className="flex items-center gap-2 mb-2">
+            <Code2 className="w-3 h-3 text-sunset-gold" />
+            <span className="text-[13px] font-bold text-sunset-gold uppercase tracking-wider">Tech Stack</span>
+          </div>
+          <p className="text-[14px] text-slate-300 font-medium leading-relaxed">
+            {project.tech}
+          </p>
+          <div className="mt-auto text-right">
+             <span className="text-[11px] text-slate-500 italic">
+               {window.innerWidth < 1024 ? 'Tap to return' : 'Hover out to close'}
+             </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,116 +231,34 @@ const App = () => {
     { category: "Infrastructure", skills: ["Azure", "AWS", "Docker", "MQTT"], icon: <Globe className="w-5 h-5" /> },
   ];
 
-  const projects = [
-    {
-      id: 1,
-      title: "설비지능화 Platform",
-      client: "삼성SDI / InterX",
-      period: "2023.09 - 2023.12",
-      tags: ["C#", "ASP.NET Core", "MQTT", "InfluxDB"],
-      description: "TSDB 기반의 실시간 설비 데이터 수집 및 분석 플랫폼. 시간당 4만건 이상의 이벤트를 처리하는 Global-Local 분산 아키텍처 설계.",
-      category: "enterprise"
-    },
-    {
-      id: 2,
-      title: "ISH Platform",
-      client: "InterX",
-      period: "2024.10 - 2025.03",
-      tags: ["React.js", ".NET Core", "Docker", "PostgreSQL"],
-      description: "ISO/IEC 표준 기반 메타데이터 레지스트리 구축. 이기종 시스템 간 데이터 상호운용성을 위한 시맨틱 정보 관리 인프라 확립.",
-      category: "enterprise"
-    },
-    {
-      id: 3,
-      title: "Gudak 6",
-      client: "스크루바",
-      period: "2021.03 - 2021.05",
-      tags: ["Swift", "OpenGL", "Firebase"],
-      description: "글로벌 히트 필름 카메라 앱 리빌딩. AI 필터 카메라 기능 제안 및 iOS 클라이언트 전체 개발 주도.",
-      category: "mobile"
-    },
-    {
-      id: 4,
-      title: "AI_SVR Module",
-      client: "한국도로공사",
-      period: "2022.03 - 2022.05",
-      tags: ["Python", "TensorFlow", "Shared Memory"],
-      description: "고정식 축중기 시스템용 적재불량 판별 AI 모듈. 레거시 환경과의 고속 연동을 위해 Shared Memory 구조 설계.",
-      category: "ai"
-    },
-    {
-      id: 5,
-      title: "B9 반려동물 플랫폼",
-      client: "MBC PLUS",
-      period: "2017.04 - 2017.10",
-      tags: ["Java", "Swift", "RTMP", "HLS"],
-      description: "숏폼 및 실시간 스트리밍 기반 반려동물 특화 플랫폼. 아키텍처 설계 및 iOS/Android 앱 개발 총괄.",
-      category: "mobile"
-    },
-    {
-      id: 6,
-      title: "NIR Data Gathering",
-      client: "대상(주)",
-      period: "2024.04 - 2024.05",
-      tags: ["C# WPF", "Modbus RTU", "PostgreSQL"],
-      description: "바이오 공정 NIR 분석 데이터 자동화 수집 시스템. 수기 관리 프로세스를 자동화하여 데이터 신뢰도 확보.",
-      category: "enterprise"
-    }
-  ];
+  // Icon mapping utility
+  const getIcon = (iconType) => {
+    const iconMap = {
+      Layout: <Layout className="w-4 h-4" />,
+      Server: <Server className="w-4 h-4" />,
+      Database: <Database className="w-4 h-4" />,
+      Smartphone: <Smartphone className="w-4 h-4" />,
+      Cpu: <Cpu className="w-4 h-4" />,
+      Zap: <Zap className="w-4 h-4" />,
+      Globe: <Globe className="w-4 h-4" />
+    };
+    return iconMap[iconType] || <Code2 className="w-4 h-4" />;
+  };
+
+  const projects = projectsData;
 
   const filteredProjects = activeTab === 'all' 
     ? projects 
     : projects.filter(p => p.category === activeTab);
 
-  const projectHistory = [
-    {
-      period: "2022 ~ 2025",
-      milestone: "Enterprise AI & Platform",
-      projects: [
-        { title: "ISH Platform", client: "InterX", period: "2024.11~2025.02", desc: "제조 현장 도메인 지식 기반 Semantic 메타데이터 관리 시스템 개발", icon: <Layout className="w-4 h-4" /> },
-        { title: "NIR Data Gathering", client: "대상(Daesang)", period: "2024.04~2024.05", desc: "바이오 공정 내 NIR 분석 데이터 자동화 측정 및 수집 시스템", icon: <Server className="w-4 h-4" /> },
-        { title: "설비지능화 Platform", client: "삼성SDI, InterX", period: "2023.09~2023.12", desc: "TSDB 기반 대용량 데이터 설계 및 운영 플랫폼 구축", icon: <Database className="w-4 h-4" /> },
-        { title: "GreenCar iOS", client: "그린카", desc: "그린카 차세대 앱 개발 및 유지보수 (MAU 2.2M)", icon: <Smartphone className="w-4 h-4" /> },
-        { title: "지역보건의료시스템", client: "한국사회보장원", desc: "공공 보건 및 건강관리 시스템 개발", icon: <Server className="w-4 h-4" /> },
-        { title: "AI_SVR Module", client: "한국도로공사(TDC 코리아)", period: "2022.03~2022.05", desc: "AI 기반 적재불량 판별 모듈 개발", icon: <Cpu className="w-4 h-4" /> }
-      ]
-    },
-    {
-      period: "2019 ~ 2021",
-      milestone: "Consumer Product Full-Stack",
-      projects: [
-        { title: "Gudak 6", client: "스크루바, 와캔", period: "2021.03~2021.05", desc: "인공지능 기반 필터 비활성 카메라 서비스 개발", icon: <Cpu className="w-4 h-4" /> },
-        { title: "SIXCUT", client: "와캔(Waken)", desc: "랜덤 콜라주 카메라 서비스 개발", icon: <Smartphone className="w-4 h-4" /> },
-        { title: "PrinShare 고도화", client: "스크루바(Screw Bar)", desc: "서비스 성능 최적화 및 정부 지원 과제 수행", icon: <Zap className="w-4 h-4" /> },
-        { title: "PrinShare", client: "스크루바(Screw Bar)", period: "2019.01~2019.05", desc: "이미지 분석 및 입고 인화 서비스, Redis 기반 캐시 레이어 설계", icon: <Database className="w-4 h-4" /> },
-        { title: "Artalleys", client: "Artalleys", desc: "미술품 커머스 플랫폼 구축", icon: <Globe className="w-4 h-4" /> },
-        { title: "열전발전 시스템", client: "포스코, LG화학", desc: "고효율 친환경 열전발전 제어 시스템 개발", icon: <Cpu className="w-4 h-4" /> }
-      ]
-    },
-    {
-      period: "2015 ~ 2018",
-      milestone: "Global Startup CTO",
-      projects: [
-        { title: "B9", client: "MBC PLUS", period: "2018.06~2018.12", desc: "반려동물 전용 미디어 플랫폼 구축 및 MBC 제휴 운영", icon: <Layout className="w-4 h-4" /> },
-        { title: "Love.ly", client: "Applr", desc: "글로벌 실시간 스트리밍 플랫폼 구축", icon: <Server className="w-4 h-4" /> },
-        { title: "GUDAK", client: "스크루바(Screw Bar)", desc: "필름 카메라 시뮬레이션 애플리케이션 개발", icon: <Smartphone className="w-4 h-4" /> },
-        { title: "72CAST", client: "BMW, Mediacorp", desc: "라이브 커머스 MVP 개발", icon: <Zap className="w-4 h-4" /> },
-        { title: "BAUBOX", client: "Applr", desc: "반려동물 용품 정기구독 서비스 개발", icon: <Globe className="w-4 h-4" /> }
-      ]
-    },
-    {
-      period: "2007 ~ 2014",
-      milestone: "Public Infrastructure Engineering",
-      projects: [
-        { title: "SK One Pos", client: "SK M&S", desc: "주유소 결제 및 운영 시스템 개발", icon: <Smartphone className="w-4 h-4" /> },
-        { title: "고정식 축중기 Platform", client: "한국도로공사", period: "2012.02~2013.06", desc: "축중기 현장 운영을 위한 계측·판정·관제 소프트웨어 구축", icon: <Server className="w-4 h-4" /> },
-        { title: "SI Automation", client: "CyberLogitec", desc: "해양 물류 자동화 시스템 구축", icon: <Zap className="w-4 h-4" /> },
-        { title: "대방 건설 ERP", client: "대방건설", desc: "사내 자원 관리 시스템(ERP) 개발", icon: <Database className="w-4 h-4" /> },
-        { title: "서울대 주차관제 시스템", client: "서울대학교", desc: "주차 차단기 제어 및 관제 시스템 구축", icon: <Layout className="w-4 h-4" /> },
-        { title: "이동식 축중기 인디게이터", client: "한국도로공사", desc: "과적 단속을 위한 이동식 축중기 중량 표시기 개발", icon: <Cpu className="w-4 h-4" /> }
-      ]
-    }
-  ];
+  // Map icon types from JSON to JSX components
+  const projectHistory = projectHistoryData.map(phase => ({
+    ...phase,
+    projects: phase.projects.map(project => ({
+      ...project,
+      icon: getIcon(project.iconType)
+    }))
+  }));
 
   return (
     <div className="min-h-screen bg-slate-50 text-charcoal-black font-sans selection:bg-sunset-gold/20">
@@ -297,7 +395,7 @@ const App = () => {
                       : 'text-slate-500 hover:text-slate-700'
                   }`}
                 >
-                  {tab === 'all' ? '전체' : tab === 'enterprise' ? '엔터프라이즈' : tab === 'mobile' ? '모바일' : 'AI'}
+                  {tab === 'all' ? 'ALL' : tab === 'enterprise' ? 'Enterprise' : tab === 'mobile' ? 'Cross Platform' : 'AI & Data'}
                 </button>
               ))}
             </div>
@@ -305,35 +403,7 @@ const App = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project) => (
-              <div key={project.id} className="group bg-white rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all">
-                <div className="p-8 space-y-5">
-                  <div className="flex justify-between items-start">
-                    <div className="space-y-1">
-                      <span className="text-xs font-bold text-sunset-gold uppercase tracking-wider">{project.client}</span>
-                      <h3 className="text-xl font-bold text-slate-900">{project.title}</h3>
-                    </div>
-                  </div>
-                  
-                  <p className="text-slate-600 text-sm leading-relaxed min-h-[4rem]">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tags.map(tag => (
-                      <span key={tag} className="px-2 py-1 bg-slate-50 border border-slate-100 rounded text-[10px] font-bold text-slate-500 uppercase">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="pt-4 border-t border-slate-100">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Duration</span>
-                      <span className="text-sm text-slate-700 font-bold">{project.period}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <ProjectCard key={project.id} project={project} />
             ))}
           </div>
         </div>
@@ -379,67 +449,38 @@ const App = () => {
 
           <div className="relative">
             {/* Main Vertical Timeline Line */}
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-sunset-gold/50 via-slate-200 to-tech-cyan/50 transform md:-translate-x-1/2 hidden sm:block"></div>
+            <div className="absolute left-4 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-sunset-gold/50 via-slate-200 to-tech-cyan/50 hidden sm:block"></div>
 
             {projectHistory.map((phase, phaseIdx) => (
               <div key={phaseIdx} className="mb-24 last:mb-0">
                 {/* Phase Header */}
-                <div className="flex flex-col items-center mb-16 relative">
-                  {/* Decorative Line */}
-                  <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+                <div className="flex flex-col md:flex-row items-center md:items-center mb-16 relative gap-6">
+                  {/* Decorative Line (Mobile Only) */}
+                  <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent md:hidden"></div>
                   
-                  {/* Icon Badge */}
-                  <div className="relative z-20 flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-sunset-gold to-amber-500 shadow-2xl mb-6">
+                  {/* Icon Badge - Centered on line md:left-8 */}
+                  <div className="relative md:absolute md:left-8 md:-translate-x-1/2 z-20 flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-sunset-gold to-amber-500 shadow-2xl flex-shrink-0">
                     <Zap className="w-7 h-7 text-white" />
                   </div>
                   
-                  {/* Milestone Title */}
-                  <div className="relative z-20 bg-white px-8 py-2 text-center">
-                    <h3 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-2">{phase.milestone}</h3>
-                    <div className="text-xs font-bold text-slate-400 tracking-[0.3em] uppercase">{phase.period}</div>
+                  {/* Milestone Title & Period */}
+                  <div className="relative z-20 bg-white md:bg-transparent px-8 md:pl-24 md:px-0 py-2 text-center md:text-left">
+                    <div className="text-[10px] font-black text-sunset-gold tracking-[0.3em] uppercase mb-1">{phase.period}</div>
+                    <h3 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">{phase.milestone}</h3>
                   </div>
                 </div>
 
                 {/* Projects in Phase */}
-                <div className="space-y-10">
-                  {phase.projects.map((project, idx) => {
-                    const isEven = idx % 2 === 0;
-                    return (
-                      <div key={idx} className={`relative flex flex-col md:flex-row items-center ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                        {/* Timeline Node on the line */}
-                        <div className="absolute left-4 md:left-1/2 top-10 w-3 h-3 bg-white border-2 border-slate-400 rounded-full transform md:-translate-x-1/2 z-20 hidden sm:block"></div>
-                        
-                        {/* Content Card */}
-                        <div className={`w-full md:w-[45%] group`}>
-                          <div className="bg-white p-4 md:p-5 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-sunset-gold/30 transition-all duration-500 relative overflow-hidden group">
-                            {/* Card Accent */}
-                            <div className="absolute top-0 left-0 w-1.5 h-full bg-slate-100 group-hover:bg-sunset-gold transition-colors duration-500"></div>
-                            
-                            <div className="flex gap-4 items-start">
-                              <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-sunset-gold/10 group-hover:text-sunset-gold transition-all duration-500 flex-shrink-0">
-                                {project.icon}
-                              </div>
-                              <div className="space-y-2 flex-1">
-                                <div className="space-y-0.5">
-                                  <span className="text-[9px] font-black text-sunset-gold uppercase tracking-[0.2em]">{project.client}</span>
-                                  <h4 className="text-lg font-bold text-slate-900 group-hover:text-sunset-gold transition-colors leading-tight">{project.title}</h4>
-                                  {project.period && (
-                                    <div className="text-[11px] text-slate-400 font-semibold">{project.period}</div>
-                                  )}
-                                </div>
-                                <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                                  {project.desc}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Spacer for the other side */}
-                        <div className="hidden md:block md:w-[45%]"></div>
-                      </div>
-                    );
-                  })}
+                <div className="space-y-8">
+                  {phase.projects.map((project, idx) => (
+                    <div key={idx} className="relative flex flex-col md:flex-row items-center">
+                      {/* Timeline Node on the line */}
+                      <div className="absolute left-4 md:left-8 top-10 w-3 h-3 bg-white border-2 border-slate-400 rounded-full transform -translate-x-1/2 z-20 hidden sm:block"></div>
+                      
+                      {/* Content Card */}
+                      <HistoryCard project={project} />
+                    </div>
+                  ))}
                 </div>
               </div>
             ))}
