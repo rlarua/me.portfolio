@@ -1,7 +1,7 @@
 [
     {
-        "period": "2024 ~ 2025",
-        "milestone": "Enterprise Metadata & Automation",
+        "period": "2022 ~ 2025",
+        "milestone": "Enterprise AI & Platform",
         "projects": [
             {
                 "title": "제조부문 메타데이터 관리시스템 (ISH Platform)",
@@ -12,21 +12,15 @@
                 "iconType": "Layout"
             },
             {
-                "title": "대상 데이터수집자동화",
+                "title": "NIR Data Gathering",
                 "client": "대상(Daesang)",
                 "period": "2024.03~2024.05",
                 "desc": "바이오 공정 내 NIR 분석 데이터 자동화 측정 및 수집 시스템 - Modbus 통신 기반 자동화 측정 소프트웨어 개발",
                 "tech": "C# 7.0, PostgreSQL, Modbus, VS 2022",
                 "iconType": "Server"
-            }
-        ]
-    },
-    {
-        "period": "2023",
-        "milestone": "Enterprise Platform & Mobile",
-        "projects": [
+            },
             {
-                "title": "삼성 SDI 설비지능화 플랫폼",
+                "title": "설비지능화 Platform",
                 "client": "삼성SDI",
                 "period": "2023.07~2023.12",
                 "desc": "TSDB 기반 대용량 데이터 설계 및 운영 플랫폼 구축 - Data Gathering 개발, 통합 관제 서버, 모니터링 사이트 개발",
@@ -40,15 +34,9 @@
                 "desc": "그린카 차세대 앱 개발 (MAU 2.2M) - RIBs 아키텍처 기반 iOS 개발",
                 "tech": "Swift, iOS, RIBs, XCode",
                 "iconType": "Smartphone"
-            }
-        ]
-    },
-    {
-        "period": "2022 ~ 2023",
-        "milestone": "Public Health & AI System",
-        "projects": [
+            },
             {
-                "title": "지역보건의료시스템 어르신 건강관리",
+                "title": "지역보건의료시스템 - 건강관리",
                 "client": "한국사회보장원",
                 "period": "2022.10~2023.03",
                 "desc": "공공 보건 및 건강관리 시스템 개발 - 디바이스/소모품 재고 관리, 담당자 업무/서비스 일정 관리, 대상자 미션 푸시 알림",
@@ -66,8 +54,8 @@
         ]
     },
     {
-        "period": "2020 ~ 2021",
-        "milestone": "AI Camera & Image Platform",
+        "period": "2019 ~ 2021",
+        "milestone": "소비자 제품 Full-Stack",
         "projects": [
             {
                 "title": "Gudak 6",
@@ -84,13 +72,7 @@
                 "desc": "이미지 분석 및 입고 인화 서비스 고도화 - Azure 머신러닝 기반 유명인사 검출, 지오펜싱 광고 매칭, Windows 테스트 앱 개발",
                 "tech": "Java, Swift, PHP, Node.js, C#, MySQL, Azure 머신러닝, VS Code/XCode/Android Studio",
                 "iconType": "Cpu"
-            }
-        ]
-    },
-    {
-        "period": "2019",
-        "milestone": "Platform Optimization",
-        "projects": [
+            },
             {
                 "title": "PrinShare",
                 "client": "스크루바",
@@ -102,8 +84,8 @@
         ]
     },
     {
-        "period": "2017 ~ 2018",
-        "milestone": "Live Commerce Platform",
+        "period": "2015 ~ 2018",
+        "milestone": "글로벌 스타트업 CTO",
         "projects": [
             {
                 "title": "B9 – 당신의 펫 비디오 스토리 커뮤니티",
@@ -112,13 +94,7 @@
                 "desc": "반려동물 전용 미디어 플랫폼 구축 - Azure 글로벌 클라우드, OpenGL 동영상 편집, 실시간 라이브 커머스, C2C 오픈마켓",
                 "tech": "Node.js, C#, Java, Swift, MySQL/MariaDB/NoSQL, OpenGL, MS Azure, RTMP/HLS/WebSocket, VS Code/VS 2017/Android Studio/XCode",
                 "iconType": "Layout"
-            }
-        ]
-    },
-    {
-        "period": "2016 ~ 2017",
-        "milestone": "Global Live Social Platform",
-        "projects": [
+            },
             {
                 "title": "Love.ly – Live Social Community",
                 "client": "Applr",
@@ -126,13 +102,7 @@
                 "desc": "글로벌 실시간 스트리밍 플랫폼 구축 - Azure 기반 SNS, OpenGL 동영상 편집, 실시간 라이브 방송, C2C 마켓플레이스",
                 "tech": "Node.js, C#, Java, Swift, MySQL/MariaDB/NoSQL, OpenGL, MS Azure, RTMP/HLS/WebSocket, VS Code/VS 2017/Android Studio/XCode",
                 "iconType": "Server"
-            }
-        ]
-    },
-    {
-        "period": "2014 ~ 2016",
-        "milestone": "Video Commerce & Pet Platform",
-        "projects": [
+            },
             {
                 "title": "72CAST video commerce platform",
                 "client": "BMW, Mediacorp",
@@ -152,8 +122,8 @@
         ]
     },
     {
-        "period": "2013 ~ 2014",
-        "milestone": "Payment & Retail System",
+        "period": "2007 ~ 2014",
+        "milestone": "공공 인프라 엔지니어링",
         "projects": [
             {
                 "title": "SK One Pos",
@@ -162,13 +132,7 @@
                 "desc": "주유소 결제 및 운영 시스템 개발 - 무/유선 결제 단말기 통신, 펌웨어 업데이트",
                 "tech": "C# 4.0, MS-SQL, TCP/IP/RS232, Thread Pool, VS 2013",
                 "iconType": "Smartphone"
-            }
-        ]
-    },
-    {
-        "period": "2012 ~ 2013",
-        "milestone": "Highway Weighing System",
-        "projects": [
+            },
             {
                 "title": "고정식 축중기 신제품개발",
                 "client": "한국도로공사",
@@ -176,13 +140,7 @@
                 "desc": "고속도로 톨게이트 화물차 과적 단속 시스템 - 이동 차량 무게 검출, 차량번호 인식/VMS 연계",
                 "tech": "C# 4.0, PostgreSQL, TCP/IP/RS232c, VS 2010",
                 "iconType": "Server"
-            }
-        ]
-    },
-    {
-        "period": "2011 ~ 2012",
-        "milestone": "Logistics Automation",
-        "projects": [
+            },
             {
                 "title": "SI Automation",
                 "client": "CyberLogitec",
@@ -198,13 +156,7 @@
                 "desc": "대학교 입시 관련 솔루션 - Android/iOS 모바일 개발",
                 "tech": "Java, Obj-C, Eclipse/XCode",
                 "iconType": "Smartphone"
-            }
-        ]
-    },
-    {
-        "period": "2009 ~ 2010",
-        "milestone": "Enterprise & E-commerce",
-        "projects": [
+            },
             {
                 "title": "대방 건설 ERP",
                 "client": "대방건설",
@@ -228,13 +180,7 @@
                 "desc": "오픈마켓 상품 자동 업로드 및 구매 현황 크롤링 시스템",
                 "tech": "C# 3.5, MySQL, VS 2008",
                 "iconType": "Globe"
-            }
-        ]
-    },
-    {
-        "period": "2008 ~ 2009",
-        "milestone": "Gaming & Marketing Solutions",
-        "projects": [
+            },
             {
                 "title": "Itemseller",
                 "client": "마루웹",
@@ -250,13 +196,7 @@
                 "desc": "네이버 키워드 광고 최적 입찰 로직 개발",
                 "tech": "C# 3.5, VS 2008",
                 "iconType": "Cpu"
-            }
-        ]
-    },
-    {
-        "period": "2007 ~ 2008",
-        "milestone": "Public Infrastructure Engineering",
-        "projects": [
+            },
             {
                 "title": "서울대 주차관제 시스템",
                 "client": "서울대학교",
