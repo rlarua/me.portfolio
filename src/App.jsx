@@ -43,10 +43,18 @@ const ProjectCard = ({ project }) => {
     }
   };
   
-  // Mobile tap handler - only for "show more" button
+  // Mobile tap handler - card-wide click
+  const handleCardClick = () => {
+    if (window.innerWidth < 768) {
+      setIsExpanded(!isExpanded);
+    }
+  };
+  
+  // Desktop-only handler for "show more" button
   const handleShowMoreClick = (e) => {
     e.stopPropagation(); // Prevent event bubbling
-    if (window.innerWidth < 768) {
+    // Only works on desktop
+    if (window.innerWidth >= 768) {
       setIsExpanded(!isExpanded);
     }
   };
@@ -65,7 +73,10 @@ const ProjectCard = ({ project }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden min-h-[320px] md:min-h-[350px]">
+      <div 
+        className="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden min-h-[320px] md:min-h-[350px] cursor-pointer md:cursor-default"
+        onClick={handleCardClick}
+      >
         <div className="p-7 md:p-9 flex flex-col h-full">
           {/* Header */}
           <div className="flex justify-between items-start mb-3">
@@ -135,7 +146,7 @@ const ProjectCard = ({ project }) => {
               <span className="text-sm text-slate-700 font-bold">{project.period}</span>
               {(remainingResults.length > 0 || hiddenTagCount > 0) && (
                 <span 
-                  className="text-[11px] text-sunset-gold font-bold whitespace-nowrap cursor-pointer md:cursor-default"
+                  className="text-[11px] text-sunset-gold font-bold whitespace-nowrap md:cursor-pointer"
                   onClick={handleShowMoreClick}
                 >
                   {isExpanded ? 'Collapse' : 'Expand'}
