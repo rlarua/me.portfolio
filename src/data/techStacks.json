@@ -1,0 +1,244 @@
+[
+  {
+    "category": "Native & App",
+    "icon": "Smartphone",
+    "stack": [
+      {
+        "name": "Mobile",
+        "skills": [
+          "Swift",
+          "Kotlin",
+          "Java",
+          "Objective-C"
+        ],
+        "projects": [
+          "그린카 iOS",
+          "Gudak 6",
+          "PrinShare",
+          "B9",
+          "Love.ly",
+          "72CAST",
+          "BAUBOX",
+          "Lodu"
+        ]
+      },
+      {
+        "name": "Desktop",
+        "skills": [
+          "WPF",
+          "WinForms",
+          "WinService"
+        ],
+        "projects": [
+          "NIR Data Gathering",
+          "설비지능화 Platform",
+          "대방 건설 ERP",
+          "SK One Pos",
+          "고정식 축중기",
+          "SI Automation",
+          "OpenMarket",
+          "Overture"
+        ]
+      },
+      {
+        "name": "Frontend",
+        "skills": [
+          "React.js",
+          "PHP"
+        ],
+        "projects": [
+          "ISH Platform",
+          "PrinShare",
+          "B9",
+          "Love.ly",
+          "72CAST"
+        ]
+      },
+      {
+        "name": "Graphics",
+        "skills": [
+          "OpenGL ES"
+        ],
+        "projects": [
+          "Gudak 6",
+          "B9",
+          "Love.ly",
+          "72CAST"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Distributed Server",
+    "icon": "Server",
+    "stack": [
+      {
+        "name": "Backend",
+        "skills": [
+          "C#",
+          "Java",
+          "Node.js",
+          "Python",
+          "PHP"
+        ],
+        "projects": [
+          "ISH Platform",
+          "NIR Data Gathering",
+          "설비지능화 Platform",
+          "지역보건의료시스템",
+          "적재불량 단속 시스템",
+          "PrinShare",
+          "B9",
+          "Love.ly",
+          "72CAST",
+          "BAUBOX"
+        ]
+      },
+      {
+        "name": "API",
+        "skills": [
+          "ASP.NET Core",
+          "WebAPI",
+          "WCF"
+        ],
+        "projects": [
+          "ISH Platform",
+          "설비지능화 Platform",
+          "BAUBOX",
+          "SI Automation"
+        ]
+      },
+      {
+        "name": "Streaming",
+        "skills": [
+          "RTMP",
+          "HLS",
+          "WebRTC"
+        ],
+        "projects": [
+          "B9",
+          "Love.ly",
+          "72CAST"
+        ]
+      },
+      {
+        "name": "IoT",
+        "skills": [
+          "MQTT",
+          "Modbus RTU",
+          "TCP/IP",
+          "RS232"
+        ],
+        "projects": [
+          "NIR Data Gathering",
+          "설비지능화 Platform",
+          "SK One Pos",
+          "고정식 축중기",
+          "이동식 축중기",
+          "서울대 주차관제 시스템"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Data & AI",
+    "icon": "Database",
+    "stack": [
+      {
+        "name": "DB",
+        "skills": [
+          "PostgreSQL",
+          "MySQL",
+          "MariaDB",
+          "Oracle",
+          "MongoDB",
+          "Redis",
+          "InfluxDB"
+        ],
+        "projects": [
+          "ISH Platform",
+          "NIR Data Gathering",
+          "설비지능화 Platform",
+          "지역보건의료시스템",
+          "PrinShare",
+          "B9",
+          "Love.ly",
+          "72CAST",
+          "고정식 축중기",
+          "SI Automation",
+          "OpenMarket",
+          "Itemseller"
+        ]
+      },
+      {
+        "name": "TensorFlow",
+        "skills": [
+          "VGG16",
+          "ResNet",
+          "Xception"
+        ],
+        "projects": [
+          "적재불량 단속 시스템"
+        ]
+      },
+      {
+        "name": "ML Services",
+        "skills": [
+          "Azure ML",
+          "Firebase ML",
+          "AWS Rekognition"
+        ],
+        "projects": [
+          "Gudak 6",
+          "PrinShare"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Infrastructure",
+    "icon": "Globe",
+    "stack": [
+      {
+        "name": "Cloud",
+        "skills": [
+          "Azure",
+          "AWS",
+          "Firebase"
+        ],
+        "projects": [
+          "Gudak 6",
+          "PrinShare",
+          "B9",
+          "Love.ly",
+          "72CAST"
+        ]
+      },
+      {
+        "name": "Container",
+        "skills": [
+          "Docker"
+        ],
+        "projects": [
+          "ISH Platform"
+        ]
+      },
+      {
+        "name": "Analytics",
+        "skills": [
+          "Amplitude",
+          "Google Analytics",
+          "Firebase Performance"
+        ],
+        "projects": [
+          "그린카 iOS",
+          "Gudak 6",
+          "PrinShare",
+          "B9",
+          "Love.ly",
+          "72CAST"
+        ]
+      }
+    ]
+  }
+]

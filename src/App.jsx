@@ -24,6 +24,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import projectsData from './data/projects.json';
 import projectHistoryData from './data/projectHistory.json';
+import techStacksData from './data/techStacks.json';
 import readmeContent from '../README.md?raw';
 
 const ProjectCard = ({ project }) => {
@@ -244,6 +245,98 @@ const HistoryCard = ({ project }) => {
   );
 };
 
+const TechStackItem = ({ subStack, onClick }) => {
+  return (
+    <div onClick={onClick} className="cursor-pointer">
+      <span className="px-3 py-1 bg-slate-700 rounded-lg text-sm hover:bg-slate-600 transition-colors">
+        <span className="text-slate-300">{subStack.name}</span>
+        <span className="text-tech-cyan font-bold"> +{subStack.count}</span>
+      </span>
+    </div>
+  );
+};
+
+const TechStackModal = ({ isOpen, onClose, stackName, skills, projects }) => {
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    if (isOpen) {
+      window.addEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen, onClose]);
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          {/* Backdrop */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+          />
+          
+          {/* Modal Container */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            className="relative w-full max-w-md min-w-[320px] min-h-[200px] bg-white rounded-[2rem] shadow-2xl overflow-hidden"
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-slate-100 h-[72px]">
+              <h3 className="text-xl font-bold text-slate-900">{stackName}</h3>
+              <button 
+                onClick={onClose}
+                className="p-2 hover:bg-slate-50 rounded-full transition-colors group"
+                aria-label="Close modal"
+              >
+                <X className="w-6 h-6 text-slate-400 group-hover:text-slate-900" />
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="p-6 min-h-[100px]">
+              {/* Skills Section */}
+              <div className="flex flex-wrap gap-2">
+                {skills.map((skill, idx) => (
+                  <span key={idx} className="px-3 py-1.5 bg-slate-50 text-slate-700 text-sm font-medium rounded-lg border border-slate-200">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+
+              {/* Projects Section - Conditional */}
+              {projects && projects.length > 0 && (
+                <div className="pt-6">
+                  <h4 className="text-sm font-bold text-slate-500 tracking-wider mb-3">
+                    Used Projects
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {projects.map((project, idx) => (
+                      <span key={idx} className="px-3 py-1.5 bg-slate-50 text-slate-700 text-sm font-medium rounded-lg border border-slate-200">
+                        {project}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+};
+
 const ReadmeModal = ({ isOpen, onClose }) => {
   useEffect(() => {
     const handleEsc = (e) => {
@@ -363,6 +456,7 @@ const ReadmeModal = ({ isOpen, onClose }) => {
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('all');
+  const [selectedStack, setSelectedStack] = useState(null);
   const [isHistoryVisible, setIsHistoryVisible] = useState(false);
   const [isReadmeOpen, setIsReadmeOpen] = useState(false);
 
@@ -388,13 +482,6 @@ const App = () => {
     { label: "AI 정확도", value: "99.2%", desc: "Xception 기반 차종 분류" },
   ];
 
-  const techStacks = [
-    { category: "Native & App", skills: ["Swift", "Kotlin", "C# WPF"], icon: <Smartphone className="w-5 h-5" /> },
-    { category: "Distributed Server", skills: ["ASP.NET Core", "Java", "Node.js"], icon: <Server className="w-5 h-5" /> },
-    { category: "Data & AI", skills: ["Python", "TensorFlow", "InfluxDB"], icon: <Database className="w-5 h-5" /> },
-    { category: "Infrastructure", skills: ["Azure", "AWS", "Docker", "MQTT"], icon: <Globe className="w-5 h-5" /> },
-  ];
-
   // Icon mapping utility
   const getIcon = (iconType) => {
     const iconMap = {
@@ -408,6 +495,18 @@ const App = () => {
     };
     return iconMap[iconType] || <Code2 className="w-4 h-4" />;
   };
+
+  // Transform techStacks.json data to include icons and counts
+  const techStacks = techStacksData.map(category => ({
+    category: category.category,
+    icon: getIcon(category.icon),
+    stacks: category.stack.map(stack => ({
+      name: stack.name,
+      skills: stack.skills,
+      projects: stack.projects,
+      count: stack.skills.length
+    }))
+  }));
 
   const projects = projectsData;
 
@@ -614,10 +713,16 @@ const App = () => {
                 </div>
                 <h3 className="text-xl font-bold mb-4">{stack.category}</h3>
                 <div className="flex flex-wrap gap-2">
-                  {stack.skills.map(skill => (
-                    <span key={skill} className="px-3 py-1 bg-slate-700 rounded-lg text-sm text-slate-300">
-                      {skill}
-                    </span>
+                  {stack.stacks.map((subStack, subIdx) => (
+                    <TechStackItem 
+                      key={subIdx} 
+                      subStack={subStack} 
+                      onClick={() => setSelectedStack({ 
+                        name: subStack.name, 
+                        skills: subStack.skills,
+                        projects: subStack.projects 
+                      })}
+                    />
                   ))}
                 </div>
               </div>
@@ -910,6 +1015,13 @@ const App = () => {
       </footer>
 
       <ReadmeModal isOpen={isReadmeOpen} onClose={() => setIsReadmeOpen(false)} />
+      <TechStackModal 
+        isOpen={!!selectedStack} 
+        onClose={() => setSelectedStack(null)} 
+        stackName={selectedStack?.name || ''} 
+        skills={selectedStack?.skills || []} 
+        projects={selectedStack?.projects || []}
+      />
     </div>
   );
 };
