@@ -66,17 +66,17 @@ const ProjectCard = ({ project }) => {
       onMouseLeave={handleMouseLeave}
     >
       <div className="bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden min-h-[320px] md:min-h-[350px]">
-        <div className="p-6 md:p-8 flex flex-col h-full">
+        <div className="p-7 md:p-9 flex flex-col h-full">
           {/* Header */}
           <div className="flex justify-between items-start mb-3">
             <div className="space-y-1">
-              <span className="text-xs font-bold text-sunset-gold uppercase tracking-wider">{project.client}</span>
-              <h3 className="text-lg md:text-xl font-bold text-slate-900">{project.title}</h3>
+              <span className="text-sm font-medium text-sunset-gold uppercase tracking-wider">{project.client}</span>
+              <h3 className="text-xl md:text-2xl font-semibold text-slate-900 leading-[1.4]">{project.title}</h3>
             </div>
           </div>
           
           {/* Description - Flexible growth */}
-          <p className="text-slate-600 text-sm leading-relaxed line-clamp-3 mb-4">
+          <p className="text-slate-600 text-base leading-[1.6] line-clamp-3 mb-4">
             {project.description}
           </p>
 
@@ -204,15 +204,15 @@ const HistoryCard = ({ project }) => {
               <div className="space-y-1">
                 <div className="flex justify-between items-start gap-2">
                   <div className="space-y-1">
-                    <span className="text-[10px] md:text-[11px] font-black text-sunset-gold uppercase tracking-[0.2em] block">{project.client}</span>
-                    <h4 className="text-base md:text-lg font-bold text-slate-900 group-hover:text-sunset-gold transition-colors leading-tight">{project.title}</h4>
+                    <span className="text-sm md:text-sm font-bold text-sunset-gold uppercase tracking-[0.2em] block">{project.client}</span>
+                    <h4 className="text-base md:text-lg font-semibold text-slate-900 group-hover:text-sunset-gold transition-colors leading-tight">{project.title}</h4>
                   </div>
                   {project.period && (
                     <div className="text-[10px] md:text-xs text-slate-400 font-bold whitespace-nowrap bg-slate-50 px-2 py-1 rounded-lg border border-slate-100">{project.period}</div>
                   )}
                 </div>
               </div>
-              <p className="text-sm text-slate-600 leading-relaxed font-medium">
+              <p className="text-base text-slate-600 leading-[1.6] font-normal">
                 {project.desc}
               </p>
             </div>
@@ -613,7 +613,7 @@ const App = () => {
       {/* Hero Section */}
       <section id="about" className="pt-32 pb-20 px-6 md:px-4">
         <div className="max-w-[1200px] mx-auto">
-          <div className="flex flex-col items-center text-center space-y-8 md:space-y-8">
+          <div className="flex flex-col items-center text-center space-y-6 md:space-y-10">
             {/* Hero Header: 18+ YEARS + Title */}
             <motion.div 
               className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8"
@@ -631,7 +631,7 @@ const App = () => {
                 <div className="number text-[4rem] md:text-[5rem] font-bold leading-none bg-gradient-to-r from-orange-500 to-sunset-gold bg-clip-text text-transparent">
                   18+
                 </div>
-                <div className="label text-sm font-semibold tracking-[0.1em] text-slate-600 -mt-2 uppercase">
+                <div className="label text-sm font-medium tracking-[0.1em] text-slate-600 -mt-2 uppercase">
                   YEARS
                 </div>
               </motion.div>
@@ -644,7 +644,7 @@ const App = () => {
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
                 <div className="flex flex-col items-center gap-3">
-                  <h1 className="text-xl md:text-2xl font-semibold leading-[1.3] tracking-wide text-slate-900 uppercase">
+                  <h1 className="text-4xl md:text-5xl font-extrabold leading-[1.2] tracking-tight text-slate-900 uppercase">
                     FULL-CYCLE<br />PRODUCT ENGINEER
                   </h1>
                   
@@ -669,7 +669,7 @@ const App = () => {
 
             {/* Hero Description */}
             <motion.p 
-              className="hero-description text-2xl md:text-3xl font-semibold text-slate-800 max-w-3xl leading-relaxed"
+              className="hero-description text-3xl md:text-4xl font-bold text-slate-800 max-w-3xl leading-[1.3]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.5 }}
@@ -678,7 +678,7 @@ const App = () => {
             </motion.p>
             
             <motion.p 
-                className="text-base md:text-lg text-slate-500 max-w-3xl leading-relaxed"
+                className="text-lg md:text-xl text-slate-500 max-w-3xl leading-[1.7]"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
@@ -717,7 +717,7 @@ const App = () => {
       <section id="skills" className="py-16 md:py-20 bg-charcoal-black text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold">Technology Stack</h2>
+            <h2 className="text-4xl md:text-5xl font-bold leading-[1.3]">Technology Stack</h2>
             <p className="text-slate-400">하드웨어 제어부터 분산 서버, AI 파이프라인까지의 통합 역량</p>
           </div>
           
@@ -727,7 +727,7 @@ const App = () => {
                 <div className="w-12 h-12 bg-tech-cyan/10 rounded-2xl flex items-center justify-center text-tech-cyan mb-6 group-hover:bg-tech-cyan group-hover:text-charcoal-black transition-all">
                   {stack.icon}
                 </div>
-                <h3 className="text-xl font-bold mb-4">{stack.category}</h3>
+                <h3 className="text-2xl font-semibold mb-4 leading-[1.4]">{stack.category}</h3>
                 <div className="flex flex-wrap gap-2.5 md:gap-2">
                   {stack.stacks.map((subStack, subIdx) => (
                     <TechStackItem 
@@ -752,7 +752,7 @@ const App = () => {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-6">
             <div className="space-y-4">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900">Featured Projects</h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-[1.3]">Featured Projects</h2>
               <p className="text-slate-600">
                 실제 비즈니스 문제를 해결한 주요 프로젝트 사례들입니다.
                 {/* <span className="text-sm text-slate-500">상세 내용을 확인하고 싶으시면 포트폴리오를 요청하세요.</span> */}
@@ -817,7 +817,7 @@ const App = () => {
 
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="text-center mb-20 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">Complete Project History</h2>
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.3]">Complete Project History</h2>
             <div className="w-20 h-1.5 bg-sunset-gold mx-auto rounded-full"></div>
             <p className="text-slate-600 text-lg max-w-2xl mx-auto">2007년부터 현재까지의 전체 프로젝트 이력을 연대순으로 정리했습니다.</p>
           </div>
@@ -954,7 +954,7 @@ const App = () => {
         <div className="max-w-4xl mx-auto px-4 relative z-10">
           <div className="text-center space-y-12">
             <div className="space-y-6">
-              <h2 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter">
+              <h2 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter leading-[1.2]">
                 Let's <span className="text-sunset-gold">build</span> something great.
               </h2>
               <p className="text-xl text-slate-600 max-w-xl mx-auto font-medium">

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-outfit: "Outfit", sans-serif;
-  --font-noto-sans: "Noto Sans KR", sans-serif;
+  --font-inter: "Inter", -apple-system, system-ui, sans-serif;
+  --font-pretendard: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
 
   --color-sunset-gold: #FF9F0A;
   --color-tech-cyan: #00E5FF;
@@ -10,7 +10,7 @@
 }
 
 body {
-  font-family: var(--font-noto-sans);
+  font-family: var(--font-pretendard);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--color-charcoal-black);
@@ -20,8 +20,8 @@ h1,
 h2,
 h3,
 h4,
-.font-outfit {
-  font-family: var(--font-outfit);
+.font-inter {
+  font-family: var(--font-inter);
 }
 
 /* 3D Flip Card Utilities */
