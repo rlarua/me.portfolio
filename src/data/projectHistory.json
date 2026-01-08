@@ -7,8 +7,8 @@
                 "title": "ISH Platform(제조부문 메타데이터 관리시스템)",
                 "client": "제조 데이터 지능화 솔루션 기업",
                 "period": "2024.10~2025.03",
-                "desc": "제조 현장 도메인 지식 기반 Semantic 메타데이터 관리 시스템 - ISH API/WEB 서버 설계 및 개발, Docker 컨테이너 개발",
-                "tech": "C# 8.0, React.js, PostgreSQL, Docker, VS Code, VS 2022",
+                "desc": "제조 현장 도메인 지식 기반 Semantic 메타데이터 관리 시스템 - ISH API/WEB 서버 설계 및 개발",
+                "tech": "C# 8.0, React.js, PostgreSQL, Docker",
                 "iconType": "Layout"
             },
             {
@@ -16,7 +16,7 @@
                 "client": "글로벌 종합 식품/바이오 기업",
                 "period": "2024.03~2024.05",
                 "desc": "바이오 공정 내 NIR 분석 데이터 자동화 측정 및 수집 시스템 - Modbus 통신 기반 자동화 측정 소프트웨어 개발",
-                "tech": "C# 7.0, PostgreSQL, Modbus, VS 2022",
+                "tech": "C# 7.0, PostgreSQL, Modbus RPU",
                 "iconType": "Server"
             },
             {
@@ -24,7 +24,7 @@
                 "client": "국내 최대 에너지/전자재료 대기업",
                 "period": "2023.07~2023.12",
                 "desc": "TSDB 기반 대용량 데이터 설계 및 운영 플랫폼 구축 - Data Gathering 개발, 통합 관제 서버, 모니터링 사이트 개발",
-                "tech": "C# 7.0, MariaDB, InfluxDB, VS 2022",
+                "tech": "C# 7.0, MariaDB, InfluxDB",
                 "iconType": "Database"
             },
             {
@@ -48,7 +48,7 @@
                 "client": "국가 교통 인프라 공기업",
                 "period": "2022.01~2022.06",
                 "desc": "AI 기반 적재불량 판별 모듈 개발 - VGG16, ResNet, Xception 기반 화물차량 적재불량 단속 시스템 (정확도 99.52%)",
-                "tech": "C#, Python, TensorFlow, VGG16/ResNet/Xception, VS Code, VS Community",
+                "tech": "C#, Python, TensorFlow, VGG16/ResNet/Xception",
                 "iconType": "Cpu"
             }
         ]
@@ -62,7 +62,7 @@
                 "client": "AI 기반 이미지/카메라 서비스 스타트업",
                 "period": "2021.01~2021.06",
                 "desc": "인공지능 기반 필터 비활성 카메라 서비스 개발 - 이미지 분석 키워드 추출, AI 기반 필터 생성 로직, Firebase/Amplitude 연동",
-                "tech": "Swift, iOS, OpenGL, Firebase, 딥러닝, XCode",
+                "tech": "Swift, iOS, OpenGL, Firebase, 딥러닝",
                 "iconType": "Smartphone"
             },
             {
@@ -70,7 +70,7 @@
                 "client": "AI 기반 이미지/카메라 서비스 스타트업",
                 "period": "2020.01~2020.12",
                 "desc": "이미지 분석 및 입고 인화 서비스 고도화 - Azure 머신러닝 기반 유명인사 검출, 지오펜싱 광고 매칭, Windows 테스트 앱 개발",
-                "tech": "Java, Swift, PHP, Node.js, C#, MySQL, Azure 머신러닝, VS Code, XCode, Android Studio",
+                "tech": "Java, Swift, PHP, Node.js, C#, MySQL, Azure 머신러닝",
                 "iconType": "Cpu"
             },
             {
@@ -78,7 +78,7 @@
                 "client": "AI 기반 이미지/카메라 서비스 스타트업",
                 "period": "2019.01~2019.05",
                 "desc": "이미지 분석 및 입고 인화 서비스 안정화 - SQL 최적화, AWS에서 Azure로 클라우드 이관, 서버리스 아키텍처 전환",
-                "tech": "Java, Swift, PHP, Node.js, C#, MySQL, AWS/Azure 머신러닝, Serverless, VS Code, XCode, Android Studio",
+                "tech": "Java, Swift, PHP, Node.js, C#, MySQL, AWS/Azure 머신러닝, Serverless",
                 "iconType": "Database"
             }
         ]
@@ -92,7 +92,7 @@
                 "client": "국내 대형 미디어/방송사",
                 "period": "2017.06~2018.05",
                 "desc": "반려동물 전용 미디어 플랫폼 구축 - Azure 글로벌 클라우드, OpenGL 동영상 편집, 실시간 라이브 커머스, C2C 오픈마켓",
-                "tech": "Node.js, C#, Java, Swift, MySQL, MariaDB, NoSQL, OpenGL, MS Azure, RTMP, HLS, WebSocket, VS Code, VS 2017, Android Studio, XCode",
+                "tech": "Node.js, C#, Java, Swift, MySQL, MariaDB, NoSQL, OpenGL, MS Azure, RTMP, HLS, WebSocket",
                 "iconType": "Layout"
             },
             {
@@ -100,15 +100,15 @@
                 "client": "글로벌 스타트업",
                 "period": "2016.08~2017.06",
                 "desc": "글로벌 실시간 스트리밍 플랫폼 구축 - Azure 기반 SNS, OpenGL 동영상 편집, 실시간 라이브 방송, C2C 마켓플레이스",
-                "tech": "Node.js, C#, Java, Swift, MySQL, MariaDB, NoSQL, OpenGL, MS Azure, RTMP, HLS, WebSocket, VS Code, VS 2017, Android Studio, XCode",
+                "tech": "Node.js, C#, Java, Swift, MySQL, MariaDB, NoSQL, OpenGL, MS Azure, RTMP, HLS, WebSocket",
                 "iconType": "Server"
             },
             {
                 "title": "72CAST video commerce platform",
                 "client": "글로벌 자동차 브랜드/해외 미디어 그룹",
                 "period": "2014.07~2016.08",
-                "desc": "라이브 커머스 MVP 개발 - C2C 오픈마켓, 실시간 라이브 커머스 방송, Azure 기반 플랫폼",
-                "tech": "Node.js, C#, Java, Swift, MySQL, MariaDB, NoSQL, OpenGL, MS Azure, RTMP, HLS, WebSocket, VS Code, VS 2017, Android Studio, XCode",
+                "desc": "라이브 커머스 MVP 개발 - C2C 오픈마켓, 실시간 라이브 커머스 방송",
+                "tech": "Node.js, C#, Java, Swift, MySQL, MariaDB, NoSQL, OpenGL, MS Azure, RTMP, HLS, WebSocket",
                 "iconType": "Zap"
             },
             {
@@ -116,7 +116,7 @@
                 "client": "글로벌 스타트업",
                 "period": "2015.07~2015.12",
                 "desc": "반려동물 용품 정기구독 서비스 개발 - Facebook Paper 스타일 UI/UX, 정기 구독 플랫폼",
-                "tech": "Java, C#, MS-SQL, WebAPI, VS Community, Android Studio",
+                "tech": "Java, C#, MS-SQL, WebAPI",
                 "iconType": "Globe"
             }
         ]
@@ -130,7 +130,7 @@
                 "client": "대기업 계열 마케팅/유통 전문사",
                 "period": "2013.07~2014.07",
                 "desc": "주유소 결제 및 운영 시스템 개발 - 무/유선 결제 단말기 통신, 펌웨어 업데이트",
-                "tech": "C# 4.0, MS-SQL, TCP/IP/RS232, Thread Pool, VS 2013",
+                "tech": "C# 4.0, MS-SQL, TCP/IP/RS232, Thread Pool",
                 "iconType": "Smartphone"
             },
             {
@@ -138,7 +138,7 @@
                 "client": "국가 교통 인프라 공기업",
                 "period": "2012.02~2013.06",
                 "desc": "고속도로 톨게이트 화물차 과적 단속 시스템 - 이동 차량 무게 검출, 차량번호 인식/VMS 연계",
-                "tech": "C# 4.0, PostgreSQL, TCP/IP/RS232c, VS 2010",
+                "tech": "C# 4.0, PostgreSQL, TCP/IP, RS232",
                 "iconType": "Server"
             },
             {
@@ -146,7 +146,7 @@
                 "client": "글로벌 해운/물류 IT 솔루션 전문 기업",
                 "period": "2011.06~2012.02",
                 "desc": "해양 물류 자동화 시스템 구축 - OCR 기반 자동 물류 처리, WCF 서버 개발, 공통 프레임워크",
-                "tech": "C# 4.0, PostgreSQL, WCF, Named Pipe, Office programming, VS 2010",
+                "tech": "C# 4.0, PostgreSQL, WCF, Named Pipe, Office programming",
                 "iconType": "Zap"
             },
             {
@@ -154,7 +154,7 @@
                 "client": "스타트업",
                 "period": "2011.01~2011.05",
                 "desc": "대학교 입시 관련 솔루션 - Android/iOS 모바일 개발",
-                "tech": "Java, Obj-C, Eclipse, XCode",
+                "tech": "Java, Objective-C",
                 "iconType": "Smartphone"
             },
             {
@@ -162,7 +162,7 @@
                 "client": "국내 상위권 대형 건설사",
                 "period": "2010.01~2010.06",
                 "desc": "사내 자원 관리 시스템(ERP) 개발 - WPF 기반 건설 ERP",
-                "tech": "C# 3.5, MS-SQL, WPF, VS 2008",
+                "tech": "C# 3.5, MS-SQL, WPF",
                 "iconType": "Database"
             },
             {
@@ -170,7 +170,7 @@
                 "client": "캄보디아",
                 "period": "2009.08~2009.11",
                 "desc": "캄보디아 환경 축중기 안정화 작업",
-                "tech": "C++, MS-SQL, RS232, VS 2008",
+                "tech": "C++, MS-SQL, RS232",
                 "iconType": "Server"
             },
             {
@@ -178,23 +178,23 @@
                 "client": "스타트업",
                 "period": "2009.01~2009.05",
                 "desc": "오픈마켓 상품 자동 업로드 및 구매 현황 크롤링 시스템",
-                "tech": "C# 3.5, MySQL, VS 2008",
+                "tech": "C# 3.5, MySQL",
                 "iconType": "Globe"
             },
             {
                 "title": "Itemseller",
                 "client": "스타트업",
                 "period": "2008.12~2009.06",
-                "desc": "게임 아이템 판매 중계 프로그램 개발 (아이템베이, 아이템매니아)",
-                "tech": "VB6.0, MySQL, Socket, VS 2008",
+                "desc": "게임 아이템 판매 중계 프로그램 개발",
+                "tech": "VB6.0, MySQL, Socket",
                 "iconType": "Zap"
             },
             {
                 "title": "Overture 입찰 프로그램",
                 "client": "스타트업",
                 "period": "2008.12~2009.06",
-                "desc": "네이버 키워드 광고 최적 입찰 로직 개발",
-                "tech": "C# 3.5, VS 2008",
+                "desc": "N사 키워드 광고 최적 입찰 로직 개발",
+                "tech": "C# 3.5",
                 "iconType": "Cpu"
             },
             {
@@ -202,7 +202,7 @@
                 "client": "국내 최상위 국립 대학교",
                 "period": "2007.10~2008.12",
                 "desc": "주차 차단기 제어 및 관제 시스템 구축 - RF-Reader 연동, 나들목 주차관제",
-                "tech": "CuBasic, VB6.0, RS232, Socket, RF-Reader, VS 6.0, CuBasic",
+                "tech": "CuBasic, VB6.0, RS232, Socket, RF-Reader",
                 "iconType": "Layout"
             },
             {
