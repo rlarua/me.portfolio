@@ -501,10 +501,10 @@ const App = () => {
   };
 
   const stats = [
-    { label: "가동률 달성", value: "99.9%", desc: "24/7 무중단 시스템 설계" },
-    { label: "구축 기간", value: "3개월", desc: "타이트한 일정 내 플랫폼 완성" },
-    { label: "이벤트 처리", value: "4만+", desc: "TSDB 기반 실시간 처리/시간" },
-    { label: "AI 정확도", value: "99.2%", desc: "Xception 기반 차종 분류" },
+    { label: "서비스 가용성", value: "99.9%", desc: "고가용성(HA) 아키텍처 설계" },
+    { label: "플랫폼 구축", value: "3개월+", desc: "기술 스택 선정부터 MVP 런칭" },
+    { label: "데이터 처리 최적화", value: "400만+", desc: "대규모 실시간 데이터 스트리밍 설계" },
+    { label: "AI 정확도", value: "99.2%", desc: "딥러닝 기반 이미지 분석 및 패턴 인식" },
   ];
 
   // Icon mapping utility
