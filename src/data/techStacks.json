@@ -12,8 +12,8 @@
           "Objective-C"
         ],
         "projects": [
-          "그린카 iOS",
-          "Gudak 6",
+          "카셰어링 서비스 iOS",
+          "레트로 카메라 서비스",
           "PrinShare",
           "B9",
           "Love.ly",
@@ -32,8 +32,8 @@
         "projects": [
           "NIR Data Gathering",
           "설비지능화 Platform",
-          "대방 건설 ERP",
-          "SK One Pos",
+          "건설사 ERP",
+          "주유소 Pos",
           "고정식 축중기",
           "SI Automation",
           "OpenMarket",
@@ -60,7 +60,7 @@
           "OpenGL ES"
         ],
         "projects": [
-          "Gudak 6",
+          "레트로 카메라 서비스",
           "B9",
           "Love.ly",
           "72CAST"
@@ -132,10 +132,10 @@
         "projects": [
           "NIR Data Gathering",
           "설비지능화 Platform",
-          "SK One Pos",
+          "주유소 Pos",
           "고정식 축중기",
           "이동식 축중기",
-          "서울대 주차관제 시스템"
+          "주차관제 시스템"
         ]
       }
     ]
@@ -189,7 +189,7 @@
           "AWS Rekognition"
         ],
         "projects": [
-          "Gudak 6",
+          "레트로 카메라 서비스",
           "PrinShare"
         ]
       }
@@ -207,7 +207,7 @@
           "Firebase"
         ],
         "projects": [
-          "Gudak 6",
+          "레트로 카메라 서비스",
           "PrinShare",
           "B9",
           "Love.ly",
@@ -231,8 +231,8 @@
           "Firebase Performance"
         ],
         "projects": [
-          "그린카 iOS",
-          "Gudak 6",
+          "카셰어링 서비스 iOS",
+          "레트로 카메라 서비스",
           "PrinShare",
           "B9",
           "Love.ly",

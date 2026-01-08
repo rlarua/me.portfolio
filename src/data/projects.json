@@ -2,7 +2,7 @@
     {
         "id": 1,
         "title": "ISH Platform",
-        "client": "InterX",
+        "client": "제조 데이터 지능화 솔루션 기업",
         "period": "2024.10 - 2025.03",
         "tags": [
             "C#",
@@ -22,7 +22,7 @@
     {
         "id": 2,
         "title": "NIR Data Gathering",
-        "client": "대상(주)",
+        "client": "글로벌 종합 식품/바이오 기업",
         "period": "2024.04 - 2024.05",
         "tags": [
             "C# WPF",
@@ -41,7 +41,7 @@
     {
         "id": 3,
         "title": "설비지능화 Platform",
-        "client": "삼성SDI, InterX",
+        "client": "국내 최대 에너지/전자재료 대기업",
         "period": "2023.09 - 2023.12",
         "tags": [
             "C#",
@@ -61,7 +61,7 @@
     {
         "id": 4,
         "title": "AI_SVR Module",
-        "client": "한국도로공사 (TDC 코리아)",
+        "client": "국가 교통 인프라 공기업",
         "period": "2022.03 - 2022.05",
         "tags": [
             "Python",
@@ -79,8 +79,8 @@
     },
     {
         "id": 6,
-        "title": "Gudak 6",
-        "client": "스크루바 & WACAN",
+        "title": "글로벌 레트로 카메라 서비스",
+        "client": "AI 기반 이미지/카메라 서비스 스타트업",
         "period": "2021.03 - 2021.05",
         "tags": [
             "Swift",
@@ -99,7 +99,7 @@
     {
         "id": 7,
         "title": "PrinShare (정부과제)",
-        "client": "스크루바",
+        "client": "AI 기반 이미지/카메라 서비스 스타트업",
         "period": "2019.01 - 2019.05",
         "tags": [
             "Java",
@@ -120,7 +120,7 @@
     {
         "id": 8,
         "title": "B9",
-        "client": "MBC PLUS",
+        "client": "국내 대형 미디어/방송사",
         "period": "2017.04 - 2017.10",
         "tags": [
             "Java",
@@ -144,7 +144,7 @@
     {
         "id": 9,
         "title": "고정식 축중기 Platform",
-        "client": "한국도로공사",
+        "client": "국가 교통 인프라 공기업",
         "period": "2012.02 - 2013.06",
         "tags": [
             "C#",
