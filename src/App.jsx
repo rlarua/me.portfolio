@@ -254,11 +254,11 @@ const TechStackItem = ({ subStack, onClick }) => {
                        active:bg-slate-500 active:scale-95
                        transition-all duration-200">
         {/* Text Area - Mobile optimized padding */}
-        <span className="pl-2.5 pr-1 py-1 text-slate-200 text-sm font-normal">
+        <span className="pl-2.5 pr-1 py-1 text-slate-200 text-base md:text-sm font-normal">
           {subStack.name}
         </span>
         {/* Badge Area - Semi-transparent brand color */}
-        <span className="px-1.5 py-0.5 bg-tech-cyan/20 text-slate-200 text-xs font-semibold 
+        <span className="px-1.5 py-0.5 bg-tech-cyan/20 text-slate-200 text-sm md:text-xs font-semibold 
                          rounded-xl min-w-[20px] text-center mr-0.5 transition-all">
           +{subStack.count}
         </span>
