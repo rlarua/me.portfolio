@@ -1,12 +1,19 @@
+// React 및 Hooks
 import React, { useEffect } from 'react';
+// 아이콘 컴포넌트
 import { X, Sparkles } from 'lucide-react';
+// 애니메이션 라이브러리
 import { motion, AnimatePresence } from 'framer-motion';
+// 마크다운 렌더링 라이브러리 및 플러그인
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+// README 파일 내용 (raw 텍스트)
 import readmeContent from '../../README.md?raw';
 
+// ReadmeModal: 개발 스토리(README.md)를 보여주는 모달 컴포넌트
 const ReadmeModal = ({ isOpen, onClose }) => {
+  // 모달이 열리면 스크롤을 막고, ESC 키로 닫을 수 있게 이벤트 리스너 등록
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === 'Escape') onClose();
@@ -25,7 +32,7 @@ const ReadmeModal = ({ isOpen, onClose }) => {
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
-          {/* Backdrop */}
+          {/* 배경 (Backdrop): 클릭 시 닫힘 */}
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -34,14 +41,14 @@ const ReadmeModal = ({ isOpen, onClose }) => {
             className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
           />
           
-          {/* Modal Container */}
+          {/* 모달 컨테이너 (Modal Container) */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             className="relative w-full max-w-[900px] max-h-[90vh] bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col"
           >
-            {/* Header */}
+            {/* 헤더 (Header) */}
             <div className="flex items-center justify-between p-6 border-b border-slate-100 bg-white">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-charcoal-black rounded-xl flex items-center justify-center text-white">
@@ -66,13 +73,14 @@ const ReadmeModal = ({ isOpen, onClose }) => {
               </button>
             </div>
 
-            {/* Content Area */}
+            {/* 콘텐츠 영역 (Content Area) */}
             <div className="flex-1 overflow-y-auto p-8 md:p-12 custom-scrollbar">
               <div className="markdown-content">
                 <ReactMarkdown 
                   remarkPlugins={[remarkGfm]} 
                   rehypePlugins={[rehypeRaw]}
                   components={{
+                    // 각종 마크다운 요소를 커스텀 스타일로 렌더링
                     h1: ({node, ...props}) => <h1 className="text-3xl font-black text-slate-900 mb-8 tracking-tight" {...props} />,
                     h2: ({node, ...props}) => <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6 pb-3 border-b border-slate-100 tracking-tight" {...props} />,
                     h3: ({node, ...props}) => <h3 className="text-xl font-bold text-slate-900 mt-8 mb-4 tracking-tight" {...props} />,
@@ -105,7 +113,7 @@ const ReadmeModal = ({ isOpen, onClose }) => {
               </div>
             </div>
 
-            {/* Footer */}
+            {/* 푸터 (Footer): 필요 시 사용 */}
             {/* <div className="p-6 border-t border-slate-100 bg-slate-50/50 flex justify-end">
               <button 
                 onClick={onClose}

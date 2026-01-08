@@ -1,4 +1,6 @@
+// React 및 Hooks
 import React, { useState, useEffect } from 'react';
+// 아이콘 라이브러리 (lucide-react) - UI에 사용되는 다양한 아이콘들
 import { 
   Github, 
   Mail, 
@@ -18,277 +20,30 @@ import {
   Heart,
   Sparkles
 } from 'lucide-react';
+// 애니메이션 라이브러리 (Framer Motion)
 import { motion, AnimatePresence } from 'framer-motion';
+// 데이터 파일 임포트
 import projectsData from './data/projects.json';
 import projectHistoryData from './data/projectHistory.json';
 import techStacksData from './data/techStacks.json';
+// 모달 및 UI 컴포넌트
 import TechStackModal from './components/TechStackModal';
 import ReadmeModal from './components/ReadmeModal';
+import HistoryCard from './components/HistoryCard';
+import ProjectCard from './components/ProjectCard';
+import TechStackItem from './components/TechStackItem';
 
-const ProjectCard = ({ project }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  // Desktop hover handlers - only work on desktop screens
-  const handleMouseEnter = () => {
-    if (window.innerWidth >= 768) {
-      setIsExpanded(true);
-    }
-  };
-  
-  const handleMouseLeave = () => {
-    if (window.innerWidth >= 768) {
-      setIsExpanded(false);
-    }
-  };
-  
-  // Mobile tap handler - card-wide click
-  const handleCardClick = () => {
-    if (window.innerWidth < 768) {
-      setIsExpanded(!isExpanded);
-    }
-  };
-  
-  // Desktop-only handler for "show more" button
-  const handleShowMoreClick = (e) => {
-    e.stopPropagation(); // Prevent event bubbling
-    // Only works on desktop
-    if (window.innerWidth >= 768) {
-      setIsExpanded(!isExpanded);
-    }
-  };
-
-  // Get top key result to display
-  const topResult = project.keyResults && project.keyResults.length > 0 ? project.keyResults[0] : null;
-  const remainingResults = project.keyResults && project.keyResults.length > 1 ? project.keyResults.slice(1) : [];
-
-  // Calculate hidden tags count for inline display
-  const visibleTagCount = 3;
-  const hiddenTagCount = project.tags.length > visibleTagCount ? project.tags.length - visibleTagCount : 0;
-
-  return (
-    <div 
-      className="group w-full max-w-full"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <div 
-        className="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden min-h-[320px] md:min-h-[350px] cursor-pointer md:cursor-default"
-        onClick={handleCardClick}
-      >
-        <div className="p-7 md:p-9 flex flex-col h-full">
-          {/* Header */}
-          <div className="flex justify-between items-start mb-3">
-            <div className="space-y-1">
-              <span className="text-sm font-medium text-sunset-gold uppercase tracking-wider">{project.client}</span>
-              <h3 className="text-xl md:text-2xl font-semibold text-slate-900 leading-[1.4]">{project.title}</h3>
-            </div>
-          </div>
-          
-          {/* Description - Flexible growth */}
-          <p className="text-slate-600 text-base leading-[1.6] line-clamp-3 mb-4">
-            {project.description}
-          </p>
-
-          {/* Unified Expandable Content - Single container for tags and key results */}
-          <div className={`mb-4 transition-all duration-300 ${
-            isExpanded ? 'max-h-[600px]' : 'max-h-[120px]'
-          } overflow-hidden`}>
-            {/* Tags Section */}
-            <div className="flex flex-wrap gap-1.5 mb-3">
-              {project.tags.map((tag, index) => (
-                <span 
-                  key={tag} 
-                  className={`px-2.5 py-1.5 bg-slate-50 border border-slate-100 rounded-full text-[11px] font-bold text-slate-500 uppercase whitespace-nowrap transition-opacity duration-300 ${
-                    !isExpanded && index >= visibleTagCount ? 'hidden' : 'opacity-100'
-                  }`}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            {/* Key Results Section */}
-            {topResult && (
-              <div className="pt-3 border-t border-slate-100">
-                {/* Top Key Result */}
-                <div className="flex gap-2 items-start mb-2">
-                  <CheckCircle2 className="w-4 h-4 text-sunset-gold flex-shrink-0 mt-0.5" />
-                  <p className={`text-sm text-slate-700 font-medium leading-relaxed ${
-                    isExpanded ? '' : 'line-clamp-2'
-                  }`}>
-                    {topResult}
-                  </p>
-                </div>
-
-                {/* Remaining Key Results */}
-                {remainingResults.length > 0 && remainingResults.map((result, idx) => (
-                  <div 
-                    key={idx} 
-                    className={`flex gap-2 items-start mb-2 transition-all duration-300 ${
-                      isExpanded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 hidden'
-                    }`}
-                  >
-                    <CheckCircle2 className="w-4 h-4 text-sunset-gold flex-shrink-0 mt-0.5" />
-                    <p className="text-sm text-slate-700 font-medium leading-relaxed">
-                      {result}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Footer - Always at bottom */}
-          <div className="pt-3 border-t border-slate-100 mt-auto">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <span className="text-sm text-slate-700 font-bold">{project.period}</span>
-              {(remainingResults.length > 0 || hiddenTagCount > 0) && (
-                <span 
-                  className="text-[11px] text-sunset-gold font-bold whitespace-nowrap md:cursor-pointer"
-                  onClick={handleShowMoreClick}
-                >
-                  {isExpanded ? 'Collapse' : 'Expand'}
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const HistoryCard = ({ project }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-
-  // Desktop hover handlers - only work on desktop screens
-  const handleMouseEnter = () => {
-    if (window.innerWidth >= 1024) {
-      setIsFlipped(true);
-    }
-  };
-  
-  const handleMouseLeave = () => {
-    if (window.innerWidth >= 1024) {
-      setIsFlipped(false);
-    }
-  };
-  
-  // Mobile tap handler
-  const handleClick = () => {
-    // Check if it's a touch device or small screen
-    if (window.innerWidth < 1024) {
-      setIsFlipped(!isFlipped);
-    }
-  };
-
-  return (
-    <div 
-      className="w-full md:ml-20 perspective-1000 group"
-      style={{ perspective: '1000px' }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={handleClick}
-    >
-      <div 
-        className="relative w-full transition-transform duration-700 preserve-3d grid"
-        style={{ 
-          transform: isFlipped ? 'rotateX(180deg)' : 'rotateX(0deg)',
-          gridTemplateAreas: '"card"' 
-        }}
-      >
-        {/* Front of Card */}
-        <div 
-          className="backface-hidden bg-white p-5 md:p-6 rounded-xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-sunset-gold/30 transition-all duration-500 overflow-hidden"
-          style={{ gridArea: 'card' }}
-        >
-          {/* Card Accent */}
-          <div className="absolute top-0 left-0 w-1.5 h-full bg-slate-100 transition-colors duration-500 group-hover:bg-sunset-gold"></div>
-          
-          <div className="flex gap-4 items-start h-full">
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-sunset-gold/10 group-hover:text-sunset-gold transition-all duration-500 flex-shrink-0">
-              {project.icon}
-            </div>
-            <div className="space-y-3 flex-1">
-              <div className="space-y-1">
-                <div className="flex justify-between items-start gap-2">
-                  <div className="space-y-1">
-                    <span className="text-sm md:text-sm font-bold text-sunset-gold uppercase tracking-[0.2em] block">{project.client}</span>
-                    <h4 className="text-base md:text-lg font-semibold text-slate-900 group-hover:text-sunset-gold transition-colors leading-tight">{project.title}</h4>
-                  </div>
-                  {project.period && (
-                    <div className="text-[10px] md:text-xs text-slate-400 font-bold whitespace-nowrap bg-slate-50 px-2 py-1 rounded-lg border border-slate-100">{project.period}</div>
-                  )}
-                </div>
-              </div>
-              <p className="text-base text-slate-600 leading-[1.6] font-normal">
-                {project.desc}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Back of Card (Tech Details) */}
-        <div 
-          className="backface-hidden bg-gradient-to-br from-slate-900 to-charcoal-black p-5 md:p-6 rounded-xl border border-sunset-gold/30 shadow-xl flex flex-col justify-center"
-          style={{ 
-            transform: 'rotateX(180deg)',
-            gridArea: 'card' 
-          }}
-        >
-          <div className="flex items-center gap-2 mb-3">
-            <Code2 className="w-4 h-4 text-sunset-gold" />
-            <span className="text-xs font-bold text-sunset-gold uppercase tracking-wider">Tech Stack</span>
-          </div>
-          <p className="text-sm text-slate-300 font-medium leading-relaxed">
-            {project.tech}
-          </p>
-          <div className="mt-4 pt-3 border-t border-white/10 text-right">
-             <span className="text-[10px] text-slate-500 italic">
-               {window.innerWidth < 1024 ? 'Tap to return' : 'Hover out to close'}
-             </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-
-const TechStackItem = ({ subStack, onClick }) => {
-  return (
-    <button onClick={onClick} className="cursor-pointer group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tech-cyan rounded-full" type="button">
-      <span className="inline-flex items-center gap-0.5 bg-slate-700 rounded-full 
-                       hover:bg-slate-600 hover:-translate-y-0.5 hover:shadow-lg 
-                       active:bg-slate-500 active:scale-95
-                       transition-all duration-200">
-        {/* Text Area - Mobile optimized padding */}
-        <span className="pl-2.5 pr-1 py-1 text-slate-200 text-base md:text-sm font-normal">
-          {subStack.name}
-        </span>
-        {/* Badge Area - Semi-transparent brand color */}
-        <span className="px-1.5 py-0.5 bg-tech-cyan/20 text-slate-200 text-sm md:text-xs font-semibold 
-                         rounded-xl min-w-[20px] text-center mr-0.5 transition-all">
-          +{subStack.count}
-        </span>
-      </span>
-    </button>
-  );
-};
-
-
-
-
-
-
-
+// App: 메인 애플리케이션 컴포넌트
 const App = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('all');
-  const [selectedStack, setSelectedStack] = useState(null);
-  const [isHistoryVisible, setIsHistoryVisible] = useState(false);
-  const [isReadmeOpen, setIsReadmeOpen] = useState(false);
+  // --- 상태 관리 (State Management) ---
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // 모바일 메뉴 열림/닫힘 상태
+  const [activeTab, setActiveTab] = useState('all'); // 프로젝트 필터링 탭 상태 (all, enterprise, mobile, ai)
+  const [selectedStack, setSelectedStack] = useState(null); // 선택된 기술 스택 (모달 표시용)
+  const [isHistoryVisible, setIsHistoryVisible] = useState(false); // 전체 프로젝트 이력 표시 여부
+  const [isReadmeOpen, setIsReadmeOpen] = useState(false); // 개발 스토리(README) 모달 열림/닫힘
 
+  // --- 이펙트 (Effects) ---
+  // ESC 키로 모바일 메뉴 닫기 기능
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === 'Escape') setIsMenuOpen(false);
@@ -297,6 +52,8 @@ const App = () => {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
+  // --- 데이터 정의 (Data Definitions) ---
+  // 기본 프로필 정보
   const profile = {
     name: "김명겸",
     title: "Full-Cycle Product Engineer",
@@ -304,6 +61,7 @@ const App = () => {
     description: "Hardware 엔지니어로 시작해 Mobile, Platform, AI로 영역을 확장하며, '어떤 기술이든 배워서 문제를 해결한다'는 신념으로 일해왔습니다.",
   };
 
+  // 주요 성과 통계 데이터
   const stats = [
     { label: "서비스 가용성", value: "99.9%", desc: "고가용성(HA) 아키텍처 설계" },
     { label: "플랫폼 구축", value: "3개월+", desc: "기술 스택 선정부터 MVP 런칭" },
@@ -311,7 +69,8 @@ const App = () => {
     { label: "AI 정확도", value: "99.2%", desc: "딥러닝 기반 이미지 분석 및 패턴 인식" },
   ];
 
-  // Icon mapping utility
+  // 아이콘 매핑 유틸리티 함수
+  // 문자열로 된 아이콘 타입을 실제 컴포넌트로 변환
   const getIcon = (iconType) => {
     const iconMap = {
       Layout: <Layout className="w-4 h-4" />,
@@ -322,10 +81,10 @@ const App = () => {
       Zap: <Zap className="w-4 h-4" />,
       Globe: <Globe className="w-4 h-4" />
     };
-    return iconMap[iconType] || <Code2 className="w-4 h-4" />;
+    return iconMap[iconType] || <Code2 className="w-4 h-4" />; // 기본값: Code2 아이콘
   };
 
-  // Transform techStacks.json data to include icons and counts
+  // techStacks.json 데이터를 처리하여 아이콘과 카운트 정보를 포함한 객체 배열로 변환
   const techStacks = techStacksData.map(category => ({
     category: category.category,
     icon: getIcon(category.icon),
@@ -339,11 +98,12 @@ const App = () => {
 
   const projects = projectsData;
 
+  // 활성 탭에 따른 프로젝트 필터링 로직
   const filteredProjects = activeTab === 'all' 
     ? projects 
     : projects.filter(p => p.category === activeTab);
 
-  // Map icon types from JSON to JSX components
+  // 프로젝트 이력 데이터 처리 (아이콘 매핑 적용)
   const projectHistory = projectHistoryData.map(phase => ({
     ...phase,
     projects: phase.projects.map(project => ({
@@ -352,19 +112,22 @@ const App = () => {
     }))
   }));
 
-  // Calculate total project count from projectHistory
+  // 전체 프로젝트 총 개수 계산 (이력 섹션 표시용)
   const totalProjectCount = projectHistory.reduce((total, phase) => total + phase.projects.length, 0);
 
   return (
     <div className="min-h-screen bg-slate-50 text-charcoal-black font-sans selection:bg-sunset-gold/20">
-      {/* Navigation */}
+      {/* --- 네비게이션 (Navigation) --- */}
       <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
+            {/* 로고 및 이름 영역 */}
             <div className="flex items-center gap-3 group cursor-default">
+              {/* 로고 아바타 */}
               <div className="w-10 h-10 bg-charcoal-black rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:bg-sunset-gold group-hover:scale-105 transition-all duration-300">
                 M
               </div>
+              {/* 이름 및 직함 */}
               <div className="flex flex-col">
                 <span className="text-xl md:text-xl font-black tracking-tight text-slate-900 uppercase group-hover:text-sunset-gold transition-colors duration-300 leading-none mb-0.5">
                   {profile.name}
@@ -375,7 +138,7 @@ const App = () => {
               </div>
             </div>
             
-            {/* Desktop Nav */}
+            {/* 데스크톱 네비게이션 메뉴 (모바일에서는 숨김) */}
             <div className="hidden md:flex items-center gap-8">
               {['About', 'Skills', 'Projects', 'Contact'].map((item) => (
                 <a key={item} href={`#${item.toLowerCase()}`} className="text-sm font-medium text-slate-600 hover:text-sunset-gold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tech-cyan rounded">
@@ -384,14 +147,14 @@ const App = () => {
               ))}
             </div>
 
-            {/* Mobile Nav Toggle */}
+            {/* 모바일 네비게이션 토글 버튼 (데스크톱에서는 숨김) */}
             <button className="md:hidden p-2 rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tech-cyan" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
               {isMenuOpen ? <X /> : <Menu />}
             </button>
           </div>
         </div>
         
-        {/* Mobile Menu */}
+        {/* 모바일 드롭다운 메뉴 */}
         {isMenuOpen && (
           <div className="md:hidden bg-white border-b border-slate-200 p-4 space-y-4">
             {['About', 'Skills', 'Projects', 'Contact'].map((item) => (
@@ -399,7 +162,7 @@ const App = () => {
                 key={item} 
                 href={`#${item.toLowerCase()}`} 
                 className="block text-base font-medium text-slate-600"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => setIsMenuOpen(false)} // 메뉴 클릭 시 닫기
               >
                 {item}
               </a>
@@ -408,18 +171,18 @@ const App = () => {
         )}
       </nav>
 
-      {/* Hero Section */}
+      {/* --- 히어로 섹션 (Hero Section) --- */}
       <section id="about" className="pt-32 pb-20 px-6 md:px-4">
         <div className="max-w-[1200px] mx-auto">
           <div className="flex flex-col items-center text-center space-y-6 md:space-y-10">
-            {/* Hero Header: 18+ YEARS + Title */}
+            {/* 히어로 헤더 컨테이너: 경력 년수 + 메인 타이틀 */}
             <motion.div 
               className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              {/* Left: Experience Highlight */}
+              {/* 왼쪽: 경력 년수 강조 (Left: Experience Highlight) */}
               <motion.div 
                 className="experience-highlight flex-shrink-0 text-center"
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -434,7 +197,7 @@ const App = () => {
                 </div>
               </motion.div>
               
-              {/* Title Block */}
+              {/* 오른쪽: 메인 타이틀 블록 (Title Block) */}
               <motion.div 
                 className="title-block text-center flex flex-col items-center gap-4"
                 initial={{ opacity: 0, x: -20 }}
@@ -446,13 +209,14 @@ const App = () => {
                     FULL-CYCLE<br />PRODUCT ENGINEER
                   </h1>
                   
-                  {/* AI-Orchestrated Badge */}
+                  {/* AI-Orchestrated 배지: 클릭 시 README 모달 오픈 */}
                   <motion.div 
                     className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#00E5FF] text-[#1A1A1A] font-bold rounded-full shadow-lg shadow-[#00E5FF]/20 cursor-pointer group transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-[0_4px_15px_rgba(0,229,255,0.3)]"
                     onClick={() => setIsReadmeOpen(true)}
                   >
                     <div className="relative">
                       <Sparkles className="w-3.5 h-3.5 text-[#1A1A1A] fill-[#1A1A1A]" />
+                      {/* 배경 애니메이션 효과 */}
                       <motion.div 
                         className="absolute inset-0 bg-white rounded-full blur-sm -z-10 opacity-30"
                         animate={{ opacity: [0.1, 0.4, 0.1], scale: [1, 1.4, 1] }}
@@ -465,7 +229,7 @@ const App = () => {
               </motion.div>
             </motion.div>
 
-            {/* Hero Description */}
+            {/* 히어로 설명 (Hero Description) - 모토 */}
             <motion.p 
               className="hero-description text-3xl md:text-4xl font-bold text-slate-800 max-w-3xl leading-[1.3]"
               initial={{ opacity: 0 }}
@@ -475,6 +239,7 @@ const App = () => {
               {profile.motto}
             </motion.p>
             
+            {/* 세부 설명 */}
             <motion.p 
                 className="text-lg md:text-xl text-slate-500 max-w-3xl leading-[1.7]"
                 initial={{ opacity: 0 }}
@@ -484,7 +249,7 @@ const App = () => {
                 {profile.description}
             </motion.p>
 
-            {/* Stats Cards - 4 columns on desktop, 2 on mobile */}
+            {/* 통계 카드 그리드 - 데스크톱 4열, 모바일 2열 */}
             <motion.div 
               className="w-full pt-4 md:pt-8"
               initial={{ opacity: 0, scale: 0.95 }}
@@ -498,7 +263,7 @@ const App = () => {
                     className="bg-white p-6 rounded-xl border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.9 + idx * 0.1 }}
+                    transition={{ duration: 0.5, delay: 0.9 + idx * 0.1 }} // 순차적 등장 애니메이션
                   >
                     <div className="text-3xl font-bold text-sunset-gold mb-1">{stat.value}</div>
                     <div className="text-sm font-bold text-slate-800 mb-1">{stat.label}</div>
@@ -511,7 +276,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* Tech Stack Section */}
+      {/* --- 기술 스택 섹션 (Tech Stack Section) --- */}
       <section id="skills" className="py-16 md:py-20 bg-charcoal-black text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16 space-y-4">
@@ -528,6 +293,7 @@ const App = () => {
                 <h3 className="text-2xl font-semibold mb-4 leading-[1.4]">{stack.category}</h3>
                 <div className="flex flex-wrap gap-2.5 md:gap-2">
                   {stack.stacks.map((subStack, subIdx) => (
+                    // 각 기술 항목 (TechStackItem)
                     <TechStackItem 
                       key={subIdx} 
                       subStack={subStack} 
@@ -545,9 +311,10 @@ const App = () => {
         </div>
       </section>
 
-      {/* Projects Section */}
+      {/* --- 주요 프로젝트 섹션 (Featured Projects Section) --- */}
       <section id="projects" className="py-16 md:py-24 px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
+          {/* 섹션 헤더 및 필터 탭 */}
           <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-6">
             <div className="space-y-4">
               <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-[1.3]">Featured Projects</h2>
@@ -557,6 +324,7 @@ const App = () => {
               </p>
             </div>
             
+            {/* 프로젝트 카테고리 필터 버튼 */}
             <div className="flex p-1 bg-slate-100 rounded-xl">
               {['all', 'enterprise', 'mobile', 'ai'].map(tab => (
                 <button
@@ -574,6 +342,7 @@ const App = () => {
             </div>
           </div>
 
+          {/* 프로젝트 카드 그리드 */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {filteredProjects.map((project) => (
               <ProjectCard key={project.id} project={project} />
@@ -582,12 +351,13 @@ const App = () => {
         </div>
       </section>
 
-
-      {/* Toggle Button for Project History */}
+      {/* --- 프로젝트 이력 토글 버튼 (History Toggle Button) --- */}
       <div className="py-16 px-4 bg-gradient-to-b from-slate-50 to-white flex flex-col items-center gap-4">
         <div className="text-center space-y-2 mb-2">
           <p className="text-sm text-slate-500 font-medium">더 많은 프로젝트가 궁금하신가요?</p>
         </div>
+        
+        {/* 토글 버튼: 전체 이력 표시/숨김 */}
         <button
           onClick={() => setIsHistoryVisible(!isHistoryVisible)}
           className="group flex items-center gap-3 px-8 py-4 bg-charcoal-black hover:bg-sunset-gold border-2 border-charcoal-black hover:border-sunset-gold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sunset-gold"
@@ -602,7 +372,7 @@ const App = () => {
         </button>
       </div>
 
-      {/* Complete Project History Timeline */}
+      {/* --- 전체 프로젝트 이력 타임라인 (Complete Project History Timeline) --- */}
       <div className={`transition-all duration-700 ease-in-out transform ${
         isHistoryVisible 
           ? 'opacity-100 translate-y-0 max-h-[10000px]' 
@@ -610,7 +380,7 @@ const App = () => {
       }`}>
       {isHistoryVisible && (
       <section className="py-24 px-4 bg-white relative overflow-hidden animate-in fade-in slide-in-from-top-4 duration-700">
-        {/* Abstract Background Element */}
+        {/* 추상적 배경 장식 (Abstract Background) */}
         <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-sunset-gold/5 blur-[120px] rounded-full"></div>
         <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-tech-cyan/5 blur-[120px] rounded-full"></div>
 
@@ -622,36 +392,36 @@ const App = () => {
           </div>
 
           <div className="relative">
-            {/* Main Vertical Timeline Line */}
+            {/* 중앙 수직 타임라인 (Vertical Line) */}
             <div className="absolute left-4 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-sunset-gold/50 via-slate-200 to-tech-cyan/50 hidden sm:block"></div>
 
             {projectHistory.map((phase, phaseIdx) => (
               <div key={phaseIdx} className="mb-24 last:mb-0">
-                {/* Phase Header */}
+                {/* 단계 헤더 (마일스톤) */}
                 <div className="flex flex-col md:flex-row items-center md:items-center mb-16 relative gap-6">
-                  {/* Decorative Line (Mobile Only) */}
+                  {/* 모바일용 구분선 */}
                   <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent md:hidden"></div>
                   
-                  {/* Icon Badge - Centered on line md:left-8 */}
+                  {/* 중앙 아이콘 배지 */}
                   <div className="relative md:absolute md:left-8 md:-translate-x-1/2 z-20 flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br from-sunset-gold to-amber-500 shadow-2xl flex-shrink-0">
                     <Zap className="w-7 h-7 text-white" />
                   </div>
                   
-                  {/* Milestone Title & Period */}
+                  {/* 마일스톤 날짜 및 제목 */}
                   <div className="relative z-20 bg-white md:bg-transparent px-8 md:pl-24 md:px-0 py-2 text-center md:text-left">
                     <div className="text-[10px] font-black text-sunset-gold tracking-[0.3em] uppercase mb-1">{phase.period}</div>
                     <h3 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">{phase.milestone}</h3>
                   </div>
                 </div>
 
-                {/* Projects in Phase */}
+                {/* 해당 단계의 프로젝트 목록 */}
                 <div className="space-y-8">
                   {phase.projects.map((project, idx) => (
                     <div key={idx} className="relative flex flex-col md:flex-row items-center">
-                      {/* Timeline Node on the line */}
+                      {/* 타임라인 노드 점 */}
                       <div className="absolute left-4 md:left-8 top-10 w-3 h-3 bg-white border-2 border-slate-400 rounded-full transform -translate-x-1/2 z-20 hidden sm:block"></div>
                       
-                      {/* Content Card */}
+                      {/* 히스토리 카드 컴포넌트 */}
                       <HistoryCard project={project} />
                     </div>
                   ))}
@@ -664,13 +434,14 @@ const App = () => {
       )}
       </div>
 
-      {/* Expertise Section */}
+      {/* --- 전문성 섹션 (Expertise Section) --- */}
       <section className="py-16 md:py-24 bg-charcoal-black text-white relative overflow-hidden">
-        {/* Grid Pattern Pattern */}
+        {/* 미세 패턴 배경 (Grid Pattern) */}
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
         
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
+            {/* 왼쪽: 설명 텍스트 */}
             <div className="space-y-10">
               <div className="space-y-4">
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sunset-gold text-xs font-bold tracking-widest uppercase">
@@ -716,6 +487,7 @@ const App = () => {
               </div>
             </div>
 
+            {/* 오른쪽: 하이라이트 박스 */}
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-sunset-gold to-tech-cyan rounded-[3rem] blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
               <div className="relative bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-10 md:p-14 border border-white/10 overflow-hidden">
@@ -747,8 +519,7 @@ const App = () => {
         </div>
       </section>
 
-
-      {/* Footer / Contact */}
+      {/* --- 푸터 및 연락처 (Footer / Contact) --- */}
       <footer id="contact" className="bg-white pt-32 pb-16 relative">
         <div className="max-w-4xl mx-auto px-4 relative z-10">
           <div className="text-center space-y-12">
@@ -761,6 +532,7 @@ const App = () => {
               </p>
             </div>
 
+            {/* 소셜 링크 및 이메일 */}
             <div className="flex justify-center gap-8 pt-4">
               <a 
                 href="https://github.com/rlarua" 
@@ -780,7 +552,7 @@ const App = () => {
               </a>
             </div>
 
-            {/* Bottom Section */}
+            {/* 하단 카피라이트 및 AI Orchestration 배지 */}
             <div className="pt-20 space-y-8">
               <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent w-full"></div>
               <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-slate-400 text-sm font-bold uppercase tracking-widest">
@@ -831,6 +603,7 @@ const App = () => {
         </div>
       </footer>
 
+      {/* 모달 컴포넌트 렌더링 */}
       <ReadmeModal isOpen={isReadmeOpen} onClose={() => setIsReadmeOpen(false)} />
       <TechStackModal 
         isOpen={!!selectedStack} 
