@@ -65,7 +65,7 @@ const ProjectCard = ({ project }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden min-h-[320px] md:min-h-[350px]">
+      <div className="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden min-h-[320px] md:min-h-[350px]">
         <div className="p-7 md:p-9 flex flex-col h-full">
           {/* Header */}
           <div className="flex justify-between items-start mb-3">
@@ -89,7 +89,7 @@ const ProjectCard = ({ project }) => {
               {project.tags.map((tag, index) => (
                 <span 
                   key={tag} 
-                  className={`px-2.5 py-1.5 bg-slate-50 border border-slate-100 rounded text-[11px] font-bold text-slate-500 uppercase whitespace-nowrap transition-opacity duration-300 ${
+                  className={`px-2.5 py-1.5 bg-slate-50 border border-slate-100 rounded-full text-[11px] font-bold text-slate-500 uppercase whitespace-nowrap transition-opacity duration-300 ${
                     !isExpanded && index >= visibleTagCount ? 'hidden' : 'opacity-100'
                   }`}
                 >
@@ -190,7 +190,7 @@ const HistoryCard = ({ project }) => {
       >
         {/* Front of Card */}
         <div 
-          className="backface-hidden bg-white p-5 md:p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-sunset-gold/30 transition-all duration-500 overflow-hidden"
+          className="backface-hidden bg-white p-5 md:p-6 rounded-xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-sunset-gold/30 transition-all duration-500 overflow-hidden"
           style={{ gridArea: 'card' }}
         >
           {/* Card Accent */}
@@ -221,7 +221,7 @@ const HistoryCard = ({ project }) => {
 
         {/* Back of Card (Tech Details) */}
         <div 
-          className="backface-hidden bg-gradient-to-br from-slate-900 to-charcoal-black p-5 md:p-6 rounded-2xl border border-sunset-gold/30 shadow-xl flex flex-col justify-center"
+          className="backface-hidden bg-gradient-to-br from-slate-900 to-charcoal-black p-5 md:p-6 rounded-xl border border-sunset-gold/30 shadow-xl flex flex-col justify-center"
           style={{ 
             transform: 'rotateX(180deg)',
             gridArea: 'card' 
@@ -248,24 +248,22 @@ const HistoryCard = ({ project }) => {
 
 const TechStackItem = ({ subStack, onClick }) => {
   return (
-    <div onClick={onClick} className="cursor-pointer group">
-      <span className="inline-flex items-center gap-1 bg-slate-700 rounded-lg 
+    <button onClick={onClick} className="cursor-pointer group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tech-cyan rounded-full" type="button">
+      <span className="inline-flex items-center gap-0.5 bg-slate-700 rounded-full 
                        hover:bg-slate-600 hover:-translate-y-0.5 hover:shadow-lg 
                        active:bg-slate-500 active:scale-95
                        transition-all duration-200">
         {/* Text Area - Mobile optimized padding */}
-        <span className="pl-2.5 pr-1.5 py-1 text-slate-400 text-sm font-normal">
+        <span className="pl-2.5 pr-1 py-1 text-slate-200 text-sm font-normal">
           {subStack.name}
         </span>
         {/* Badge Area - Semi-transparent brand color */}
         <span className="px-1.5 py-0.5 bg-tech-cyan/20 text-slate-200 text-xs font-semibold 
-                         rounded-lg min-w-[20px] text-center mr-0.5
-                         group-hover:bg-tech-cyan/30 group-active:bg-tech-cyan
-                         transition-all">
+                         rounded-xl min-w-[20px] text-center mr-0.5 transition-all">
           +{subStack.count}
         </span>
       </span>
-    </div>
+    </button>
   );
 };
 
@@ -312,7 +310,7 @@ const TechStackModal = ({ isOpen, onClose, stackName, skills, projects }) => {
               <h3 className="text-xl font-bold text-slate-900">{stackName}</h3>
               <button 
                 onClick={onClose}
-                className="p-2 hover:bg-slate-50 rounded-full transition-colors group"
+                className="p-2 hover:bg-slate-50 rounded-full transition-colors group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tech-cyan"
                 aria-label="Close modal"
               >
                 <X className="w-6 h-6 text-slate-400 group-hover:text-slate-900" />
@@ -324,7 +322,7 @@ const TechStackModal = ({ isOpen, onClose, stackName, skills, projects }) => {
               {/* Skills Section */}
               <div className="flex flex-wrap gap-2">
                 {skills.map((skill, idx) => (
-                  <span key={idx} className="px-3 py-1.5 bg-slate-800 text-white text-sm font-medium rounded-lg">
+                  <span key={idx} className="px-3 py-1.5 bg-slate-800 text-white text-sm font-medium rounded-full">
                     {skill}
                   </span>
                 ))}
@@ -406,7 +404,7 @@ const ReadmeModal = ({ isOpen, onClose }) => {
               </div>
               <button 
                 onClick={onClose}
-                className="p-2 hover:bg-slate-50 rounded-full transition-colors group"
+                className="p-2 hover:bg-slate-50 rounded-full transition-colors group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tech-cyan"
                 aria-label="Close modal"
               >
                 <X className="w-6 h-6 text-slate-400 group-hover:text-slate-900" />
@@ -565,21 +563,21 @@ const App = () => {
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-8">
               {['About', 'Skills', 'Projects', 'Contact'].map((item) => (
-                <a key={item} href={`#${item.toLowerCase()}`} className="text-sm font-medium text-slate-600 hover:text-sunset-gold transition-colors">
+                <a key={item} href={`#${item.toLowerCase()}`} className="text-sm font-medium text-slate-600 hover:text-sunset-gold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tech-cyan rounded">
                   {item}
                 </a>
               ))}
               <a 
                 href="/portfolio/portfolio_2026.pdf" 
                 download="portfolio_2026.pdf"
-                className="px-5 py-2 bg-sunset-gold text-white text-sm rounded-lg font-semibold hover:bg-orange-500 transition-all flex items-center gap-2 shadow-sm shadow-sunset-gold/20"
+                className="px-6 py-3 bg-sunset-gold text-white text-sm rounded-lg font-semibold hover:bg-orange-500 transition-all flex items-center gap-2 shadow-sm shadow-sunset-gold/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 PDF <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>
 
             {/* Mobile Nav Toggle */}
-            <button className="md:hidden p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <button className="md:hidden p-2 rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tech-cyan" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
               {isMenuOpen ? <X /> : <Menu />}
             </button>
           </div>
@@ -697,7 +695,7 @@ const App = () => {
                 {stats.map((stat, idx) => (
                   <motion.div 
                     key={idx} 
-                    className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col"
+                    className="bg-white p-6 rounded-xl border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.9 + idx * 0.1 }}
@@ -723,8 +721,8 @@ const App = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {techStacks.map((stack, idx) => (
-              <div key={idx} className="p-8 bg-slate-800/50 rounded-3xl border border-slate-700 hover:border-blue-500/50 transition-all group">
-                <div className="w-12 h-12 bg-tech-cyan/10 rounded-2xl flex items-center justify-center text-tech-cyan mb-6 group-hover:bg-tech-cyan group-hover:text-charcoal-black transition-all">
+              <div key={idx} className="p-8 bg-slate-800/50 rounded-xl border border-slate-700 hover:border-blue-500/50 transition-all group">
+                <div className="w-12 h-12 bg-tech-cyan/10 rounded-xl flex items-center justify-center text-tech-cyan mb-6 group-hover:bg-tech-cyan group-hover:text-charcoal-black transition-all">
                   {stack.icon}
                 </div>
                 <h3 className="text-2xl font-semibold mb-4 leading-[1.4]">{stack.category}</h3>
@@ -764,7 +762,7 @@ const App = () => {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-4 py-2 text-sm font-semibold rounded-lg capitalize transition-all ${
+                  className={`px-4 py-2 text-sm font-semibold rounded-lg capitalize transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tech-cyan ${
                     activeTab === tab 
                       ? 'bg-white text-sunset-gold shadow-sm' 
                       : 'text-slate-500 hover:text-slate-700'
@@ -792,7 +790,8 @@ const App = () => {
         </div>
         <button
           onClick={() => setIsHistoryVisible(!isHistoryVisible)}
-          className="group flex items-center gap-3 px-8 py-4 bg-charcoal-black hover:bg-sunset-gold border-2 border-charcoal-black hover:border-sunset-gold rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+          className="group flex items-center gap-3 px-8 py-4 bg-charcoal-black hover:bg-sunset-gold border-2 border-charcoal-black hover:border-sunset-gold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sunset-gold"
+          aria-expanded={isHistoryVisible}
         >
           <span className="text-lg font-bold text-white">
             {isHistoryVisible ? '전체 이력 숨기기' : `전체 프로젝트 보기 (${totalProjectCount}+)`}
@@ -834,7 +833,7 @@ const App = () => {
                   <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent md:hidden"></div>
                   
                   {/* Icon Badge - Centered on line md:left-8 */}
-                  <div className="relative md:absolute md:left-8 md:-translate-x-1/2 z-20 flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-sunset-gold to-amber-500 shadow-2xl flex-shrink-0">
+                  <div className="relative md:absolute md:left-8 md:-translate-x-1/2 z-20 flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br from-sunset-gold to-amber-500 shadow-2xl flex-shrink-0">
                     <Zap className="w-7 h-7 text-white" />
                   </div>
                   
@@ -895,7 +894,7 @@ const App = () => {
                 ].map((item, i) => (
                   <div 
                     key={i} 
-                    className={`flex gap-6 group p-4 rounded-2xl transition-all duration-300 ${
+                    className={`flex gap-6 group p-4 rounded-xl transition-all duration-300 ${
                       item.isSpecial ? 'border-none shadow-lg shadow-tech-cyan/20' : 'hover:bg-white/5'
                     } cursor-pointer`}
                     style={item.isSpecial ? { background: 'linear-gradient(135deg, #00E5FF 0%, #00C9FF 100%)' } : {}}
@@ -932,11 +931,11 @@ const App = () => {
                     "운영 현장의 난제를 해결하기 위해 데이터를 분석하고, 최적화된 아키텍처를 설계하여 <span className="text-sunset-gold">신뢰할 수 있는 시스템</span>을 만드는 것에 가치를 둡니다."
                   </p>
                   <div className="pt-8 grid grid-cols-2 gap-6">
-                    <div className="p-6 bg-white/5 rounded-3xl border border-white/5 hover:bg-white/10 transition-colors">
+                    <div className="p-6 bg-white/5 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
                       <div className="text-4xl font-black text-sunset-gold">18+</div>
                       <div className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">Years Exp.</div>
                     </div>
-                    <div className="p-6 bg-white/5 rounded-3xl border border-white/5 hover:bg-white/10 transition-colors">
+                    <div className="p-6 bg-white/5 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
                       <div className="text-4xl font-black text-tech-cyan">{totalProjectCount}+</div>
                       <div className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">Projects</div>
                     </div>
@@ -967,13 +966,15 @@ const App = () => {
                 href="https://github.com/rlarua" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-20 h-20 rounded-3xl bg-slate-50 border border-slate-100 flex items-center justify-center hover:border-sunset-gold/50 hover:bg-sunset-gold/5 transition-all duration-300 group shadow-sm hover:shadow-xl hover:-translate-y-1"
+                className="w-20 h-20 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center hover:border-sunset-gold/50 hover:bg-sunset-gold/5 transition-all duration-300 group shadow-sm hover:shadow-xl hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sunset-gold"
+                aria-label="GitHub Profile"
               >
                 <Github className="w-8 h-8 text-slate-600 group-hover:text-sunset-gold transition-colors" />
               </a>
               <a 
                 href="mailto:rlarua@outlook.com" 
-                className="w-20 h-20 rounded-3xl bg-slate-50 border border-slate-100 flex items-center justify-center hover:border-sunset-gold/50 hover:bg-sunset-gold/5 transition-all duration-300 group shadow-sm hover:shadow-xl hover:-translate-y-1"
+                className="w-20 h-20 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center hover:border-sunset-gold/50 hover:bg-sunset-gold/5 transition-all duration-300 group shadow-sm hover:shadow-xl hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sunset-gold"
+                aria-label="Email Contact"
               >
                 <Mail className="w-8 h-8 text-slate-600 group-hover:text-sunset-gold transition-colors" />
               </a>
