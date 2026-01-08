@@ -31,13 +31,10 @@ const ProjectCard = ({ project }) => {
     }
   };
   
-  // 데스크톱 전용 "더 보기" 버튼 핸들러
+  // "더 보기" 버튼 핸들러 - 모바일과 데스크톱 모두 동작
   const handleShowMoreClick = (e) => {
-    e.stopPropagation(); // 이벤트 버블링 방지
-    // 데스크톱에서만 동작
-    if (window.innerWidth >= 768) {
-      setIsExpanded(!isExpanded);
-    }
+    e.stopPropagation(); // 카드 클릭 이벤트 방지
+    setIsExpanded(!isExpanded);
   };
 
   // 표시할 핵심 성과 데이터 처리
@@ -128,7 +125,7 @@ const ProjectCard = ({ project }) => {
               {/* 더 보기/접기 버튼 (조건부 렌더링) */}
               {(remainingResults.length > 0 || hiddenTagCount > 0) && (
                 <span 
-                  className="text-[11px] text-sunset-gold font-bold whitespace-nowrap md:cursor-pointer"
+                  className="text-[11px] text-sunset-gold font-bold whitespace-nowrap cursor-pointer"
                   onClick={handleShowMoreClick}
                 >
                   {isExpanded ? 'Collapse' : 'Expand'}
