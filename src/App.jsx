@@ -64,7 +64,7 @@ const App = () => {
   // 주요 성과 통계 데이터
   const stats = [
     { label: "서비스 가용성", value: "99.9%", desc: "고가용성(HA) 아키텍처 설계" },
-    { label: "플랫폼 구축", value: "3개월+", desc: "기술 스택 선정부터 MVP 런칭" },
+    { label: "플랫폼 구축", value: "3개월+", desc: "기술 스택 설계부터 MVP 출시까지" },
     { label: "데이터 처리 최적화", value: "400만+", desc: "대규모 실시간 데이터 스트리밍 설계" },
     { label: "AI 정확도", value: "99.2%", desc: "딥러닝 기반 이미지 분석 및 패턴 인식" },
   ];
