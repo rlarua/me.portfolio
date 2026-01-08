@@ -85,7 +85,7 @@
     },
     {
         "period": "2015 ~ 2018",
-        "milestone": "글로벌 스타트업 CTO",
+        "milestone": "글로벌 서비스 스타트업 CTO",
         "projects": [
             {
                 "title": "B9 – 당신의 펫 비디오 스토리 커뮤니티",
@@ -97,7 +97,7 @@
             },
             {
                 "title": "Love.ly – Live Social Community",
-                "client": "글로벌 스타트업",
+                "client": "글로벌 서비스 스타트업",
                 "period": "2016.08~2017.06",
                 "desc": "글로벌 실시간 스트리밍 플랫폼 구축 - Azure 기반 SNS, OpenGL 동영상 편집, 실시간 라이브 방송, C2C 마켓플레이스",
                 "tech": "Node.js, C#, Java, Swift, MySQL, MariaDB, NoSQL, OpenGL, MS Azure, RTMP, HLS, WebSocket",
@@ -113,7 +113,7 @@
             },
             {
                 "title": "BAUBOX",
-                "client": "글로벌 스타트업",
+                "client": "글로벌 서비스 스타트업",
                 "period": "2015.07~2015.12",
                 "desc": "반려동물 용품 정기구독 서비스 개발 - Facebook Paper 스타일 UI/UX, 정기 구독 플랫폼",
                 "tech": "Java, C#, MS-SQL, WebAPI",
