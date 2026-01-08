@@ -245,16 +245,32 @@ const HistoryCard = ({ project }) => {
   );
 };
 
+
 const TechStackItem = ({ subStack, onClick }) => {
   return (
-    <div onClick={onClick} className="cursor-pointer">
-      <span className="px-3 py-1 bg-slate-700 rounded-lg text-sm hover:bg-slate-600 transition-colors">
-        <span className="text-slate-300">{subStack.name}</span>
-        <span className="text-tech-cyan font-bold"> +{subStack.count}</span>
+    <div onClick={onClick} className="cursor-pointer group">
+      <span className="inline-flex items-center gap-1 bg-slate-700 rounded-lg 
+                       hover:bg-slate-600 hover:-translate-y-0.5 hover:shadow-lg 
+                       active:bg-slate-500 active:scale-95
+                       transition-all duration-200">
+        {/* Text Area - Mobile optimized padding */}
+        <span className="pl-2.5 pr-1.5 py-1 text-slate-400 text-sm font-normal">
+          {subStack.name}
+        </span>
+        {/* Badge Area - Semi-transparent brand color */}
+        <span className="px-1.5 py-0.5 bg-tech-cyan/20 text-slate-200 text-xs font-semibold 
+                         rounded-lg min-w-[20px] text-center mr-0.5
+                         group-hover:bg-tech-cyan/30 group-active:bg-tech-cyan
+                         transition-all">
+          +{subStack.count}
+        </span>
       </span>
     </div>
   );
 };
+
+
+
 
 const TechStackModal = ({ isOpen, onClose, stackName, skills, projects }) => {
   useEffect(() => {
@@ -308,7 +324,7 @@ const TechStackModal = ({ isOpen, onClose, stackName, skills, projects }) => {
               {/* Skills Section */}
               <div className="flex flex-wrap gap-2">
                 {skills.map((skill, idx) => (
-                  <span key={idx} className="px-3 py-1.5 bg-slate-50 text-slate-700 text-sm font-medium rounded-lg border border-slate-200">
+                  <span key={idx} className="px-3 py-1.5 bg-slate-800 text-white text-sm font-medium rounded-lg">
                     {skill}
                   </span>
                 ))}
@@ -316,13 +332,13 @@ const TechStackModal = ({ isOpen, onClose, stackName, skills, projects }) => {
 
               {/* Projects Section - Conditional */}
               {projects && projects.length > 0 && (
-                <div className="pt-6">
+                <div className="pt-8 mt-2">
                   <h4 className="text-sm font-bold text-slate-500 tracking-wider mb-3">
                     Used Projects
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {projects.map((project, idx) => (
-                      <span key={idx} className="px-3 py-1.5 bg-slate-50 text-slate-700 text-sm font-medium rounded-lg border border-slate-200">
+                      <span key={idx} className="px-3 py-1.5 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">
                         {project}
                       </span>
                     ))}
@@ -712,7 +728,7 @@ const App = () => {
                   {stack.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-4">{stack.category}</h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2.5 md:gap-2">
                   {stack.stacks.map((subStack, subIdx) => (
                     <TechStackItem 
                       key={subIdx} 
