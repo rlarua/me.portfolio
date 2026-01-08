@@ -567,13 +567,6 @@ const App = () => {
                   {item}
                 </a>
               ))}
-              <a 
-                href="/portfolio/portfolio_2026.pdf" 
-                download="portfolio_2026.pdf"
-                className="px-6 py-3 bg-sunset-gold text-white text-sm rounded-lg font-semibold hover:bg-orange-500 transition-all flex items-center gap-2 shadow-sm shadow-sunset-gold/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                PDF <ExternalLink className="w-3.5 h-3.5" />
-              </a>
             </div>
 
             {/* Mobile Nav Toggle */}
@@ -596,14 +589,6 @@ const App = () => {
                 {item}
               </a>
             ))}
-            <a 
-              href="/portfolio/portfolio_2026.pdf" 
-              download="portfolio_2026.pdf"
-              className="flex items-center justify-center gap-2 w-full py-3 bg-sunset-gold text-white rounded-xl font-semibold shadow-lg shadow-sunset-gold/20"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              포트폴리오 PDF <ExternalLink className="w-4 h-4" />
-            </a>
           </div>
         )}
       </nav>
@@ -957,7 +942,7 @@ const App = () => {
                 Let's <span className="text-sunset-gold">build</span> something great.
               </h2>
               <p className="text-xl text-slate-600 max-w-xl mx-auto font-medium">
-                프로젝트 제안이나 기술적 논의는 언제든 환영합니다.
+                경력기술서 및 포트폴리오(PDF)가 필요하시면 연락 부탁드립니다.
               </p>
             </div>
 
