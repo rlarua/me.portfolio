@@ -8,7 +8,7 @@
 ## 🔗 Quick Links
 
 * **Live Demo:** [justin-mk.me](https://justin-mk.me)
-* **GitHub Repository:** [rlarua/portfolio](https://github.com/rlarua/me.portfolio)
+* **GitHub Repository:** [rlarua/me.portfolio](https://github.com/rlarua/me.portfolio)
 * **Contact:** [rlarua@outlook.com](mailto:rlarua@outlook.com)
 
 ---
@@ -76,7 +76,7 @@
 
 ```bash
 # 1. 레포지토리 클론
-git clone https://github.com/rlarua/portfolio.git
+git clone https://github.com/rlarua/me.portfolio.git
 
 # 2. 의존성 설치
 npm install
