@@ -32,6 +32,7 @@ import ReadmeModal from './components/ReadmeModal';
 import HistoryCard from './components/HistoryCard';
 import ProjectCard from './components/ProjectCard';
 import TechStackItem from './components/TechStackItem';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 
 // App: 메인 애플리케이션 컴포넌트
 const App = () => {
@@ -102,6 +103,13 @@ const App = () => {
   const filteredProjects = activeTab === 'all' 
     ? projects 
     : projects.filter(p => p.category === activeTab);
+
+  const tabLabels = {
+    all: 'ALL',
+    enterprise: 'Enterprise',
+    mobile: 'Cross Platform',
+    ai: 'AI & Data'
+  };
 
   // 프로젝트 이력 데이터 처리 (아이콘 매핑 적용)
   const projectHistory = projectHistoryData.map(phase => ({
@@ -324,22 +332,19 @@ const App = () => {
               </p>
             </div>
             
-            {/* 프로젝트 카테고리 필터 버튼 */}
-            <div className="flex p-1 bg-slate-100 rounded-xl">
-              {['all', 'enterprise', 'mobile', 'ai'].map(tab => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`px-4 py-2 text-sm font-semibold rounded-lg capitalize transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tech-cyan ${
-                    activeTab === tab 
-                      ? 'bg-white text-sunset-gold shadow-sm' 
-                      : 'text-slate-500 hover:text-slate-700'
-                  }`}
-                >
-                  {tab === 'all' ? 'ALL' : tab === 'enterprise' ? 'Enterprise' : tab === 'mobile' ? 'Cross Platform' : 'AI & Data'}
-                </button>
-              ))}
-            </div>
+            <Tabs value={activeTab} onValueChange={setActiveTab}>
+              <TabsList className="bg-slate-100 p-1 rounded-xl h-auto">
+                {['all', 'enterprise', 'mobile', 'ai'].map(tab => (
+                  <TabsTrigger
+                    key={tab}
+                    value={tab}
+                    className="px-4 py-2 text-sm font-semibold rounded-lg capitalize data-[state=active]:bg-white data-[state=active]:text-sunset-gold data-[state=active]:shadow-sm data-[state=inactive]:text-slate-500 hover:text-slate-700"
+                  >
+                    {tabLabels[tab]}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </Tabs>
           </div>
 
           {/* 프로젝트 카드 그리드 */}
