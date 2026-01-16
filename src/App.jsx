@@ -104,6 +104,9 @@ const App = () => {
     ? projects
     : projects.filter(p => p.category === activeTab);
 
+  const [hoveredProjectId, setHoveredProjectId] = useState(null);
+  const [expandedProjectId, setExpandedProjectId] = useState(null);
+
   const tabLabels = {
     all: 'ALL',
     enterprise: 'Enterprise',
@@ -333,7 +336,11 @@ const App = () => {
               </p>
             </div>
 
-            <Tabs value={activeTab} onValueChange={setActiveTab}>
+            <Tabs value={activeTab} onValueChange={(value) => {
+              setActiveTab(value);
+              setHoveredProjectId(null);
+              setExpandedProjectId(null);
+            }}>
               <TabsList className="bg-slate-100 p-1 rounded-xl h-auto">
                 {['all', 'enterprise', 'mobile', 'ai'].map(tab => (
                   <TabsTrigger
@@ -349,11 +356,41 @@ const App = () => {
           </div>
 
           {/* 프로젝트 카드 그리드 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-            {filteredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.12, ease: "easeOut" }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
+            >
+              {filteredProjects.map((project, index) => {
+                const isExpanded = hoveredProjectId === project.id || expandedProjectId === project.id;
+                return (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{ duration: 0.12, delay: index * 0.02 }}
+                  >
+                    <ProjectCard
+                      project={project}
+                      isExpanded={isExpanded}
+                      onExpand={(nextExpanded) => {
+                        if (window.innerWidth < 768) {
+                          setExpandedProjectId(nextExpanded ? project.id : null);
+                          return;
+                        }
+                        setHoveredProjectId(nextExpanded ? project.id : null);
+                      }}
+                    />
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </section>
 
@@ -378,12 +415,16 @@ const App = () => {
       </div>
 
       {/* --- 전체 프로젝트 이력 타임라인 (Complete Project History Timeline) --- */}
-      <div className={`transition-all duration-700 ease-in-out transform ${isHistoryVisible
-          ? 'opacity-100 translate-y-0 max-h-[10000px]'
-          : 'opacity-0 -translate-y-4 max-h-0 overflow-hidden'
-        }`}>
+      <AnimatePresence>
         {isHistoryVisible && (
-          <section className="py-24 px-4 bg-white relative overflow-hidden animate-in fade-in slide-in-from-top-4 duration-700">
+          <motion.section
+            key="project-history"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 24 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="py-24 px-4 bg-white relative overflow-hidden"
+          >
             {/* 추상적 배경 장식 (Abstract Background) */}
             <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-sunset-gold/5 blur-[120px] rounded-full"></div>
             <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-tech-cyan/5 blur-[120px] rounded-full"></div>
@@ -434,9 +475,9 @@ const App = () => {
                 ))}
               </div>
             </div>
-          </section>
+          </motion.section>
         )}
-      </div>
+      </AnimatePresence>
 
       {/* --- 전문성 섹션 (Expertise Section) --- */}
       <section className="py-16 md:py-24 bg-charcoal-black text-white relative overflow-hidden">

@@ -3,30 +3,29 @@ import { CheckCircle2 } from 'lucide-react';
 import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
-const ProjectCard = ({ project }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+const ProjectCard = ({ project, isExpanded, onExpand }) => {
 
   const handleMouseEnter = () => {
     if (window.innerWidth >= 768) {
-      setIsExpanded(true);
+      onExpand(true);
     }
   };
   
   const handleMouseLeave = () => {
     if (window.innerWidth >= 768) {
-      setIsExpanded(false);
+      onExpand(false);
     }
   };
   
   const handleCardClick = () => {
     if (window.innerWidth < 768) {
-      setIsExpanded(!isExpanded);
+      onExpand(!isExpanded);
     }
   };
   
   const handleShowMoreClick = (e) => {
     e.stopPropagation();
-    setIsExpanded(!isExpanded);
+    onExpand(!isExpanded);
   };
 
   const topResult = project.keyResults && project.keyResults.length > 0 ? project.keyResults[0] : null;
@@ -37,12 +36,12 @@ const ProjectCard = ({ project }) => {
 
   return (
     <div 
-      className="group w-full max-w-full h-full"
+      className="group w-full max-w-full self-start"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <Card 
-        className="bg-white border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden min-h-[320px] md:min-h-[350px] cursor-pointer md:cursor-default h-full flex flex-col"
+        className="bg-white border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden min-h-[320px] md:min-h-[350px] cursor-pointer md:cursor-default flex flex-col"
         onClick={handleCardClick}
       >
         <CardHeader className="p-7 md:p-9 pb-3">
@@ -60,7 +59,7 @@ const ProjectCard = ({ project }) => {
 
         <CardContent className={`px-7 md:px-9 pb-4 transition-all duration-300 ${
           isExpanded ? 'max-h-[600px]' : 'max-h-[120px]'
-        } overflow-hidden flex-1`}>
+        } overflow-hidden`}>
           <div className="flex flex-wrap gap-1.5 mb-3">
             {project.tags.map((tag, index) => (
               <Badge 
