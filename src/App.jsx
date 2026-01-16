@@ -1,15 +1,15 @@
 // React 및 Hooks
 import React, { useState, useEffect } from 'react';
 // 아이콘 라이브러리 (lucide-react) - UI에 사용되는 다양한 아이콘들
-import { 
-  Github, 
-  Mail, 
-  ExternalLink, 
-  Code2, 
-  Cpu, 
-  Database, 
-  Globe, 
-  Layout, 
+import {
+  Github,
+  Mail,
+  ExternalLink,
+  Code2,
+  Cpu,
+  Database,
+  Globe,
+  Layout,
   Zap,
   Server,
   Smartphone,
@@ -100,8 +100,8 @@ const App = () => {
   const projects = projectsData;
 
   // 활성 탭에 따른 프로젝트 필터링 로직
-  const filteredProjects = activeTab === 'all' 
-    ? projects 
+  const filteredProjects = activeTab === 'all'
+    ? projects
     : projects.filter(p => p.category === activeTab);
 
   const tabLabels = {
@@ -145,7 +145,7 @@ const App = () => {
                 </span>
               </div>
             </div>
-            
+
             {/* 데스크톱 네비게이션 메뉴 (모바일에서는 숨김) */}
             <div className="hidden md:flex items-center gap-8">
               {['About', 'Skills', 'Projects', 'Contact'].map((item) => (
@@ -161,14 +161,14 @@ const App = () => {
             </button>
           </div>
         </div>
-        
+
         {/* 모바일 드롭다운 메뉴 */}
         {isMenuOpen && (
           <div className="md:hidden bg-white border-b border-slate-200 p-4 space-y-4">
             {['About', 'Skills', 'Projects', 'Contact'].map((item) => (
-              <a 
-                key={item} 
-                href={`#${item.toLowerCase()}`} 
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
                 className="block text-base font-medium text-slate-600"
                 onClick={() => setIsMenuOpen(false)} // 메뉴 클릭 시 닫기
               >
@@ -184,14 +184,14 @@ const App = () => {
         <div className="max-w-[1200px] mx-auto">
           <div className="flex flex-col items-center text-center space-y-6 md:space-y-10">
             {/* 히어로 헤더 컨테이너: 경력 년수 + 메인 타이틀 */}
-            <motion.div 
+            <motion.div
               className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
               {/* 왼쪽: 경력 년수 강조 (Left: Experience Highlight) */}
-              <motion.div 
+              <motion.div
                 className="experience-highlight flex-shrink-0 text-center"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -204,9 +204,9 @@ const App = () => {
                   YEARS
                 </div>
               </motion.div>
-              
+
               {/* 오른쪽: 메인 타이틀 블록 (Title Block) */}
-              <motion.div 
+              <motion.div
                 className="title-block text-center flex flex-col items-center gap-4"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -216,16 +216,16 @@ const App = () => {
                   <h1 className="text-4xl md:text-5xl font-extrabold leading-[1.2] tracking-tight text-slate-900 uppercase">
                     FULL-CYCLE<br />PRODUCT ENGINEER
                   </h1>
-                  
+
                   {/* AI-Orchestrated 배지: 클릭 시 README 모달 오픈 */}
-                  <motion.div 
+                  <motion.div
                     className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#00E5FF] text-[#1A1A1A] font-bold rounded-full shadow-lg shadow-[#00E5FF]/20 cursor-pointer group transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-[0_4px_15px_rgba(0,229,255,0.3)] ring-1 ring-transparent hover:ring-[#00E5FF]/60"
                     onClick={() => setIsReadmeOpen(true)}
                   >
                     <div className="relative">
                       <Sparkles className="w-3.5 h-3.5 text-[#1A1A1A] fill-[#1A1A1A]" />
                       {/* 배경 애니메이션 효과 */}
-                      <motion.div 
+                      <motion.div
                         className="absolute inset-0 bg-white rounded-full blur-sm -z-10 opacity-30"
                         animate={{ opacity: [0.1, 0.4, 0.1], scale: [1, 1.4, 1] }}
                         transition={{ repeat: Infinity, duration: 2 }}
@@ -238,7 +238,7 @@ const App = () => {
             </motion.div>
 
             {/* 히어로 설명 (Hero Description) - 모토 */}
-            <motion.p 
+            <motion.p
               className="hero-description text-3xl md:text-4xl font-bold text-slate-800 max-w-3xl leading-[1.3]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -246,19 +246,20 @@ const App = () => {
             >
               {profile.motto}
             </motion.p>
-            
+
             {/* 세부 설명 */}
-            <motion.p 
-                className="text-lg md:text-xl text-slate-500 max-w-3xl leading-[1.7]"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
-                {profile.description}
+            <motion.p
+              className="text-lg md:text-xl text-slate-500 max-w-3xl leading-[1.7]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              Hardware 엔지니어로 시작해 Mobile, Platform, AI로 영역을 확장하며, <span className="font-semibold">'어떤 기술이든 배워서 문제를 해결한다'</span>는 신념으로 일해왔습니다.
             </motion.p>
 
+
             {/* 통계 카드 그리드 - 데스크톱 4열, 모바일 2열 */}
-            <motion.div 
+            <motion.div
               className="w-full pt-4 md:pt-8"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -266,8 +267,8 @@ const App = () => {
             >
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 {stats.map((stat, idx) => (
-                  <motion.div 
-                    key={idx} 
+                  <motion.div
+                    key={idx}
                     className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -291,7 +292,7 @@ const App = () => {
             <h2 className="text-4xl md:text-5xl font-bold leading-[1.3]">Technology Stack</h2>
             <p className="text-slate-400">하드웨어 제어부터 분산 서버, AI 파이프라인까지의 통합 역량</p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
             {techStacks.map((stack, idx) => (
               <div key={idx} className="p-8 bg-slate-800/50 rounded-xl border border-slate-700 hover:border-blue-500/50 transition-all group">
@@ -302,13 +303,13 @@ const App = () => {
                 <div className="flex flex-wrap gap-2.5 md:gap-2">
                   {stack.stacks.map((subStack, subIdx) => (
                     // 각 기술 항목 (TechStackItem)
-                    <TechStackItem 
-                      key={subIdx} 
-                      subStack={subStack} 
-                      onClick={() => setSelectedStack({ 
-                        name: subStack.name, 
+                    <TechStackItem
+                      key={subIdx}
+                      subStack={subStack}
+                      onClick={() => setSelectedStack({
+                        name: subStack.name,
                         skills: subStack.skills,
-                        projects: subStack.projects 
+                        projects: subStack.projects
                       })}
                     />
                   ))}
@@ -331,7 +332,7 @@ const App = () => {
                 {/* <span className="text-sm text-slate-500">상세 내용을 확인하고 싶으시면 포트폴리오를 요청하세요.</span> */}
               </p>
             </div>
-            
+
             <Tabs value={activeTab} onValueChange={setActiveTab}>
               <TabsList className="bg-slate-100 p-1 rounded-xl h-auto">
                 {['all', 'enterprise', 'mobile', 'ai'].map(tab => (
@@ -361,7 +362,7 @@ const App = () => {
         <div className="text-center space-y-2 mb-2">
           <p className="text-sm text-slate-500 font-medium">더 많은 프로젝트가 궁금하신가요?</p>
         </div>
-        
+
         {/* 토글 버튼: 전체 이력 표시/숨김 */}
         <button
           onClick={() => setIsHistoryVisible(!isHistoryVisible)}
@@ -371,79 +372,77 @@ const App = () => {
           <span className="text-lg font-bold text-white">
             {isHistoryVisible ? '전체 이력 숨기기' : `전체 프로젝트 보기 (${totalProjectCount}+)`}
           </span>
-          <ChevronRight className={`w-5 h-5 text-white transition-transform duration-300 ${
-            isHistoryVisible ? 'rotate-90' : 'rotate-0'
-          }`} />
+          <ChevronRight className={`w-5 h-5 text-white transition-transform duration-300 ${isHistoryVisible ? 'rotate-90' : 'rotate-0'
+            }`} />
         </button>
       </div>
 
       {/* --- 전체 프로젝트 이력 타임라인 (Complete Project History Timeline) --- */}
-      <div className={`transition-all duration-700 ease-in-out transform ${
-        isHistoryVisible 
-          ? 'opacity-100 translate-y-0 max-h-[10000px]' 
+      <div className={`transition-all duration-700 ease-in-out transform ${isHistoryVisible
+          ? 'opacity-100 translate-y-0 max-h-[10000px]'
           : 'opacity-0 -translate-y-4 max-h-0 overflow-hidden'
-      }`}>
-      {isHistoryVisible && (
-      <section className="py-24 px-4 bg-white relative overflow-hidden animate-in fade-in slide-in-from-top-4 duration-700">
-        {/* 추상적 배경 장식 (Abstract Background) */}
-        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-sunset-gold/5 blur-[120px] rounded-full"></div>
-        <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-tech-cyan/5 blur-[120px] rounded-full"></div>
+        }`}>
+        {isHistoryVisible && (
+          <section className="py-24 px-4 bg-white relative overflow-hidden animate-in fade-in slide-in-from-top-4 duration-700">
+            {/* 추상적 배경 장식 (Abstract Background) */}
+            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-sunset-gold/5 blur-[120px] rounded-full"></div>
+            <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-tech-cyan/5 blur-[120px] rounded-full"></div>
 
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-20 space-y-4">
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.3]">Complete Project History</h2>
-            <div className="w-20 h-1.5 bg-sunset-gold mx-auto rounded-full"></div>
-            <p className="text-slate-600 text-lg max-w-2xl mx-auto">2007년부터 현재까지의 전체 프로젝트 이력을 연대순으로 정리했습니다.</p>
-          </div>
-
-          <div className="relative">
-            {/* 중앙 수직 타임라인 (Vertical Line) */}
-            <div className="absolute left-4 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-sunset-gold/50 via-slate-200 to-tech-cyan/50 hidden sm:block"></div>
-
-            {projectHistory.map((phase, phaseIdx) => (
-              <div key={phaseIdx} className="mb-24 last:mb-0">
-                {/* 단계 헤더 (마일스톤) */}
-                <div className="flex flex-col md:flex-row items-center md:items-center mb-16 relative gap-6">
-                  {/* 모바일용 구분선 */}
-                  <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent md:hidden"></div>
-                  
-                  {/* 중앙 아이콘 배지 */}
-                  <div className="relative md:absolute md:left-8 md:-translate-x-1/2 z-20 flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br from-sunset-gold to-amber-500 shadow-2xl flex-shrink-0">
-                    <Zap className="w-7 h-7 text-white" />
-                  </div>
-                  
-                  {/* 마일스톤 날짜 및 제목 */}
-                  <div className="relative z-20 bg-white md:bg-transparent px-8 md:pl-24 md:px-0 py-2 text-center md:text-left">
-                    <div className="text-[10px] font-black text-sunset-gold tracking-[0.3em] uppercase mb-1">{phase.period}</div>
-                    <h3 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">{phase.milestone}</h3>
-                  </div>
-                </div>
-
-                {/* 해당 단계의 프로젝트 목록 */}
-                <div className="space-y-8">
-                  {phase.projects.map((project, idx) => (
-                    <div key={idx} className="relative flex flex-col md:flex-row items-center">
-                      {/* 타임라인 노드 점 */}
-                      <div className="absolute left-4 md:left-8 top-10 w-3 h-3 bg-white border-2 border-slate-400 rounded-full transform -translate-x-1/2 z-20 hidden sm:block"></div>
-                      
-                      {/* 히스토리 카드 컴포넌트 */}
-                      <HistoryCard project={project} />
-                    </div>
-                  ))}
-                </div>
+            <div className="max-w-6xl mx-auto relative z-10">
+              <div className="text-center mb-20 space-y-4">
+                <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.3]">Complete Project History</h2>
+                <div className="w-20 h-1.5 bg-sunset-gold mx-auto rounded-full"></div>
+                <p className="text-slate-600 text-lg max-w-2xl mx-auto">2007년부터 현재까지의 전체 프로젝트 이력을 연대순으로 정리했습니다.</p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      )}
+
+              <div className="relative">
+                {/* 중앙 수직 타임라인 (Vertical Line) */}
+                <div className="absolute left-4 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-sunset-gold/50 via-slate-200 to-tech-cyan/50 hidden sm:block"></div>
+
+                {projectHistory.map((phase, phaseIdx) => (
+                  <div key={phaseIdx} className="mb-24 last:mb-0">
+                    {/* 단계 헤더 (마일스톤) */}
+                    <div className="flex flex-col md:flex-row items-center md:items-center mb-16 relative gap-6">
+                      {/* 모바일용 구분선 */}
+                      <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent md:hidden"></div>
+
+                      {/* 중앙 아이콘 배지 */}
+                      <div className="relative md:absolute md:left-8 md:-translate-x-1/2 z-20 flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br from-sunset-gold to-amber-500 shadow-2xl flex-shrink-0">
+                        <Zap className="w-7 h-7 text-white" />
+                      </div>
+
+                      {/* 마일스톤 날짜 및 제목 */}
+                      <div className="relative z-20 bg-white md:bg-transparent px-8 md:pl-24 md:px-0 py-2 text-center md:text-left">
+                        <div className="text-[10px] font-black text-sunset-gold tracking-[0.3em] uppercase mb-1">{phase.period}</div>
+                        <h3 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">{phase.milestone}</h3>
+                      </div>
+                    </div>
+
+                    {/* 해당 단계의 프로젝트 목록 */}
+                    <div className="space-y-8">
+                      {phase.projects.map((project, idx) => (
+                        <div key={idx} className="relative flex flex-col md:flex-row items-center">
+                          {/* 타임라인 노드 점 */}
+                          <div className="absolute left-4 md:left-8 top-10 w-3 h-3 bg-white border-2 border-slate-400 rounded-full transform -translate-x-1/2 z-20 hidden sm:block"></div>
+
+                          {/* 히스토리 카드 컴포넌트 */}
+                          <HistoryCard project={project} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
       </div>
 
       {/* --- 전문성 섹션 (Expertise Section) --- */}
       <section className="py-16 md:py-24 bg-charcoal-black text-white relative overflow-hidden">
         {/* 미세 패턴 배경 (Grid Pattern) */}
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
-        
+
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             {/* 왼쪽: 설명 텍스트 */}
@@ -456,7 +455,7 @@ const App = () => {
                   Full-Cycle <span className="text-sunset-gold">Ownership</span><br />타협 없는 제품 완성
                 </h2>
               </div>
-              
+
               <div className="space-y-6">
                 {[
                   { title: "Scale & Reliability", desc: "24/7 무중단 시스템 설계 및 99.9% 가동률 달성" },
@@ -468,19 +467,17 @@ const App = () => {
                   //   isSpecial: true 
                   // }
                 ].map((item, i) => (
-                  <div 
-                    key={i} 
-                    className={`flex gap-6 group p-4 rounded-xl transition-all duration-300 ${
-                      item.isSpecial ? 'border-none shadow-lg shadow-tech-cyan/20' : 'hover:bg-white/5'
-                    } cursor-pointer`}
+                  <div
+                    key={i}
+                    className={`flex gap-6 group p-4 rounded-xl transition-all duration-300 ${item.isSpecial ? 'border-none shadow-lg shadow-tech-cyan/20' : 'hover:bg-white/5'
+                      } cursor-pointer`}
                     style={item.isSpecial ? { background: 'linear-gradient(135deg, #00E5FF 0%, #00C9FF 100%)' } : {}}
                     onClick={item.isSpecial ? () => setIsReadmeOpen(true) : undefined}
                   >
-                    <div className={`mt-1 flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${
-                      item.isSpecial 
-                        ? 'bg-white/20 text-charcoal-black shadow-sm backdrop-blur-md' 
+                    <div className={`mt-1 flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${item.isSpecial
+                        ? 'bg-white/20 text-charcoal-black shadow-sm backdrop-blur-md'
                         : 'bg-white/5 border border-white/10 text-sunset-gold group-hover:bg-sunset-gold group-hover:border-sunset-gold group-hover:text-charcoal-black'
-                    }`}>
+                      }`}>
                       {item.isSpecial ? <Sparkles className="w-5 h-5 fill-charcoal-black/40" /> : <CheckCircle2 className="w-5 h-5" />}
                     </div>
                     <div>
@@ -499,7 +496,7 @@ const App = () => {
                 <div className="absolute top-0 right-0 p-8 opacity-10">
                   <Cpu className="w-32 h-32" />
                 </div>
-                
+
                 <div className="relative space-y-8">
                   <div className="flex items-center gap-3 text-sm font-black text-sunset-gold tracking-widest uppercase">
                     <span className="w-8 h-px bg-sunset-gold"></span> EXPERIENCE FOCUS
@@ -539,8 +536,8 @@ const App = () => {
 
             {/* 소셜 링크 및 이메일 */}
             <div className="flex justify-center gap-8 pt-4">
-              <a 
-                href="https://github.com/rlarua" 
+              <a
+                href="https://github.com/rlarua"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-20 h-20 md:w-20 md:h-20 min-h-[72px] min-w-[72px] rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center hover:border-sunset-gold/50 hover:bg-sunset-gold/5 transition-all duration-300 group shadow-sm hover:shadow-xl hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sunset-gold"
@@ -548,8 +545,8 @@ const App = () => {
               >
                 <Github className="w-8 h-8 text-slate-600 group-hover:text-sunset-gold transition-colors" />
               </a>
-              <a 
-                href="mailto:rlarua@outlook.com" 
+              <a
+                href="mailto:rlarua@outlook.com"
                 className="w-20 h-20 md:w-20 md:h-20 min-h-[72px] min-w-[72px] rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center hover:border-sunset-gold/50 hover:bg-sunset-gold/5 transition-all duration-300 group shadow-sm hover:shadow-xl hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sunset-gold"
                 aria-label="Email Contact"
               >
@@ -562,8 +559,8 @@ const App = () => {
               <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent w-full"></div>
               <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-slate-400 text-sm font-bold uppercase tracking-widest">
                 <span>© 2026 {profile.name}</span>
-                
-                <motion.div 
+
+                <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -572,7 +569,7 @@ const App = () => {
                   className="flex items-center gap-3 text-sm font-medium text-slate-500 hover:text-slate-800 transition-colors duration-300 cursor-pointer group"
                 >
                   <span className="normal-case tracking-normal">Built with</span>
-                  
+
                   {/* 하트 아이콘: 두근거리는 애니메이션 */}
                   <motion.span
                     animate={{ scale: [1, 1.2, 1] }}
@@ -586,9 +583,9 @@ const App = () => {
 
                   {/* 반짝이 아이콘: 회전 및 반짝임 애니메이션 */}
                   <motion.span
-                    animate={{ 
+                    animate={{
                       rotate: [0, 15, -15, 0],
-                      opacity: [1, 0.5, 1] 
+                      opacity: [1, 0.5, 1]
                     }}
                     transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
                     className="text-amber-400"
@@ -610,11 +607,11 @@ const App = () => {
 
       {/* 모달 컴포넌트 렌더링 */}
       <ReadmeModal isOpen={isReadmeOpen} onClose={() => setIsReadmeOpen(false)} />
-      <TechStackModal 
-        isOpen={!!selectedStack} 
-        onClose={() => setSelectedStack(null)} 
-        stackName={selectedStack?.name || ''} 
-        skills={selectedStack?.skills || []} 
+      <TechStackModal
+        isOpen={!!selectedStack}
+        onClose={() => setSelectedStack(null)}
+        stackName={selectedStack?.name || ''}
+        skills={selectedStack?.skills || []}
         projects={selectedStack?.projects || []}
       />
     </div>
