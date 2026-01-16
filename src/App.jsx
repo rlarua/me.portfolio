@@ -219,7 +219,7 @@ const App = () => {
                   
                   {/* AI-Orchestrated 배지: 클릭 시 README 모달 오픈 */}
                   <motion.div 
-                    className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#00E5FF] text-[#1A1A1A] font-bold rounded-full shadow-lg shadow-[#00E5FF]/20 cursor-pointer group transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-[0_4px_15px_rgba(0,229,255,0.3)]"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#00E5FF] text-[#1A1A1A] font-bold rounded-full shadow-lg shadow-[#00E5FF]/20 cursor-pointer group transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-[0_4px_15px_rgba(0,229,255,0.3)] ring-1 ring-transparent hover:ring-[#00E5FF]/60"
                     onClick={() => setIsReadmeOpen(true)}
                   >
                     <div className="relative">
@@ -231,7 +231,7 @@ const App = () => {
                         transition={{ repeat: Infinity, duration: 2 }}
                       />
                     </div>
-                    <span className="text-[10px] uppercase tracking-wider">AI-Orchestrated</span>
+                    <span className="text-[10px] uppercase tracking-wider group-hover:underline group-hover:decoration-[1.5px] group-hover:underline-offset-4">AI-Orchestrated</span>
                   </motion.div>
                 </div>
               </motion.div>
@@ -268,14 +268,14 @@ const App = () => {
                 {stats.map((stat, idx) => (
                   <motion.div 
                     key={idx} 
-                    className="bg-white p-6 rounded-xl border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col"
+                    className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.9 + idx * 0.1 }} // 순차적 등장 애니메이션
                   >
-                    <div className="text-3xl font-bold text-sunset-gold mb-1">{stat.value}</div>
-                    <div className="text-sm font-bold text-slate-800 mb-1">{stat.label}</div>
-                    <div className="text-xs text-slate-500">{stat.desc}</div>
+                    <div className="text-3xl font-bold text-sunset-gold mb-2">{stat.value}</div>
+                    <div className="text-sm font-extrabold text-slate-900 mb-1">{stat.label}</div>
+                    <div className="text-xs text-slate-600 leading-relaxed">{stat.desc}</div>
                   </motion.div>
                 ))}
               </div>
@@ -292,7 +292,7 @@ const App = () => {
             <p className="text-slate-400">하드웨어 제어부터 분산 서버, AI 파이프라인까지의 통합 역량</p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
             {techStacks.map((stack, idx) => (
               <div key={idx} className="p-8 bg-slate-800/50 rounded-xl border border-slate-700 hover:border-blue-500/50 transition-all group">
                 <div className="w-12 h-12 bg-tech-cyan/10 rounded-xl flex items-center justify-center text-tech-cyan mb-6 group-hover:bg-tech-cyan group-hover:text-charcoal-black transition-all">
@@ -543,14 +543,14 @@ const App = () => {
                 href="https://github.com/rlarua" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-20 h-20 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center hover:border-sunset-gold/50 hover:bg-sunset-gold/5 transition-all duration-300 group shadow-sm hover:shadow-xl hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sunset-gold"
+                className="w-20 h-20 md:w-20 md:h-20 min-h-[72px] min-w-[72px] rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center hover:border-sunset-gold/50 hover:bg-sunset-gold/5 transition-all duration-300 group shadow-sm hover:shadow-xl hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sunset-gold"
                 aria-label="GitHub Profile"
               >
                 <Github className="w-8 h-8 text-slate-600 group-hover:text-sunset-gold transition-colors" />
               </a>
               <a 
                 href="mailto:rlarua@outlook.com" 
-                className="w-20 h-20 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center hover:border-sunset-gold/50 hover:bg-sunset-gold/5 transition-all duration-300 group shadow-sm hover:shadow-xl hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sunset-gold"
+                className="w-20 h-20 md:w-20 md:h-20 min-h-[72px] min-w-[72px] rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center hover:border-sunset-gold/50 hover:bg-sunset-gold/5 transition-all duration-300 group shadow-sm hover:shadow-xl hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sunset-gold"
                 aria-label="Email Contact"
               >
                 <Mail className="w-8 h-8 text-slate-600 group-hover:text-sunset-gold transition-colors" />

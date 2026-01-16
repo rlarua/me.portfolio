@@ -37,12 +37,12 @@ const ProjectCard = ({ project }) => {
 
   return (
     <div 
-      className="group w-full max-w-full"
+      className="group w-full max-w-full h-full"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <Card 
-        className="bg-white border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden min-h-[320px] md:min-h-[350px] cursor-pointer md:cursor-default"
+        className="bg-white border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden min-h-[320px] md:min-h-[350px] cursor-pointer md:cursor-default h-full flex flex-col"
         onClick={handleCardClick}
       >
         <CardHeader className="p-7 md:p-9 pb-3">
@@ -53,14 +53,14 @@ const ProjectCard = ({ project }) => {
             </div>
           </div>
           
-          <p className="text-slate-600 text-base leading-[1.6] line-clamp-3">
+          <p className="text-slate-600 text-base leading-[1.7] line-clamp-3">
             {project.description}
           </p>
         </CardHeader>
 
         <CardContent className={`px-7 md:px-9 pb-4 transition-all duration-300 ${
           isExpanded ? 'max-h-[600px]' : 'max-h-[120px]'
-        } overflow-hidden`}>
+        } overflow-hidden flex-1`}>
           <div className="flex flex-wrap gap-1.5 mb-3">
             {project.tags.map((tag, index) => (
               <Badge 
@@ -108,7 +108,7 @@ const ProjectCard = ({ project }) => {
             <span className="text-sm text-slate-700 font-bold">{project.period}</span>
             {(remainingResults.length > 0 || hiddenTagCount > 0) && (
               <span 
-                className="text-[11px] text-sunset-gold font-bold whitespace-nowrap cursor-pointer"
+                className="text-[11px] text-sunset-gold font-bold whitespace-nowrap cursor-pointer inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-sunset-gold/40 bg-sunset-gold/10 hover:bg-sunset-gold/20 transition-colors"
                 onClick={handleShowMoreClick}
               >
                 {isExpanded ? 'Collapse' : 'Expand'}
