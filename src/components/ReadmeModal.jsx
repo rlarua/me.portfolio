@@ -8,6 +8,7 @@ import readmeContent from '../../README.md?raw';
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
@@ -28,12 +29,16 @@ const ReadmeModal = ({ isOpen, onClose }) => {
               </motion.div>
             </div>
             <div>
-              <DialogTitle className="text-xl font-bold text-slate-900 tracking-tight">
-                Development Story
-              </DialogTitle>
-              <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em]">
-                AI Orchestration
-              </p>
+          <DialogTitle className="text-xl font-bold text-slate-900 tracking-tight">
+            Development Story
+          </DialogTitle>
+          <DialogDescription className="sr-only">
+            Portfolio development story and documentation details
+          </DialogDescription>
+          <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em]">
+            AI Orchestration
+          </p>
+
             </div>
           </div>
         </DialogHeader>

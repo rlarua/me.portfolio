@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
@@ -15,6 +16,9 @@ const TechStackModal = ({ isOpen, onClose, stackName, skills, projects }) => {
           <DialogTitle className="text-xl font-bold text-slate-900">
             {stackName}
           </DialogTitle>
+          <DialogDescription className="sr-only">
+            {stackName} 기술 스택 상세 정보
+          </DialogDescription>
         </DialogHeader>
 
         <div className="min-h-[100px]">
