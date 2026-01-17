@@ -3,6 +3,9 @@ import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area"
 
 import { cn } from "@/lib/utils"
 
+// ScrollArea 래퍼: Viewport + ScrollBar를 포함한 Radix ScrollArea 구성
+// 사용 시 주의: ScrollArea(부모)에 높이/최대높이가 있어야 스크롤이 동작합니다.
+
 const ScrollArea = React.forwardRef(({ className, children, ...props }, ref) => (
   <ScrollAreaPrimitive.Root
     ref={ref}
@@ -19,6 +22,7 @@ ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName
 
 const ScrollBar = React.forwardRef(({ className, orientation = "vertical", ...props }, ref) => (
   <ScrollAreaPrimitive.ScrollAreaScrollbar
+    // orientation에 따라 수직/수평 스크롤바 레이아웃이 달라집니다.
     ref={ref}
     orientation={orientation}
     className={cn(

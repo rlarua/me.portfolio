@@ -5,6 +5,9 @@ import * as TabsPrimitive from "@radix-ui/react-tabs"
 
 import { cn } from "@/lib/utils"
 
+// Tabs 래퍼: Radix Tabs에 기본 클래스/스타일을 적용
+// Radix가 키보드 네비게이션(화살표 이동)을 처리합니다.
+
 const Tabs = TabsPrimitive.Root
 
 const TabsList = React.forwardRef(({ className, ...props }, ref) => (

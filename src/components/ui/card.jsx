@@ -2,6 +2,9 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
+// Card 프리미티브: 서브 컴포넌트들이 ref를 전달하도록 구성
+
+// Card 계열은 레이아웃/타이포를 위한 단순 컨테이너 컴포넌트들입니다.
 const Card = React.forwardRef(({ className, ...props }, ref) => (
   <div
     ref={ref}

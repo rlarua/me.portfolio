@@ -4,6 +4,9 @@ import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
+// Dialog 래퍼: Radix Dialog에 Overlay/Content 기본 스타일을 적용
+// a11y 주의: DialogTitle/DialogDescription을 함께 제공하는 것을 권장합니다.
+
 const Dialog = DialogPrimitive.Root
 
 const DialogTrigger = DialogPrimitive.Trigger
@@ -25,6 +28,7 @@ DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
 
 const DialogContent = React.forwardRef(({ className, children, ...props }, ref) => (
   <DialogPortal>
+    {/* Portal + Overlay: 부모 overflow/z-index 영향 없이 모달을 표시 */}
     <DialogOverlay />
     <DialogPrimitive.Content
       ref={ref}
