@@ -3,6 +3,16 @@ import { CheckCircle2 } from 'lucide-react';
 import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
+/**
+ * ProjectCard 컴포넌트
+ * 
+ * 주요 프로젝트를 카드 형태로 표시합니다.
+ * 데스크톱에서는 호버 시, 모바일에서는 클릭 시 확장/축소됩니다.
+ * 
+ * @param {Object} project - 프로젝트 정보 (client, title, description, tags, keyResults, period)
+ * @param {boolean} isExpanded - 카드 확장 상태
+ * @param {Function} onExpand - 확장 상태 변경 핸들러
+ */
 const ProjectCard = ({ project, isExpanded, onExpand }) => {
 
   const handleMouseEnter = () => {

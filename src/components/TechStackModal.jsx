@@ -8,6 +8,18 @@ import {
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 
+/**
+ * TechStackModal 컴포넌트
+ * 
+ * 특정 기술 스택의 상세 정보를 모달로 표시합니다.
+ * 선택된 기술 스킬에 대한 스킬 목록과 해당 스킬을 사용한 프로젝트를 보여줍니다.
+ * 
+ * @param {boolean} isOpen - 모달 열림/닫힘 상태
+ * @param {Function} onClose - 모달 닫기 핸들러
+ * @param {string} stackName - 기술 스킬 이름
+ * @param {string[]} skills - 관련 스킬 목록
+ * @param {string[]} projects - 해당 기술을 사용한 프로젝트 목록
+ */
 const TechStackModal = ({ isOpen, onClose, stackName, skills, projects }) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>

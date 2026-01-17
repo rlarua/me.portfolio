@@ -13,7 +13,15 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-
+/**
+ * ReadmeModal 컴포넌트
+ * 
+ * README.md 파일의 내용을 마크다운 형태로 렌더링하여 모달로 표시합니다.
+ * AI Orchestration 개발 스토리를 보여주며, Framer Motion 애니메이션을 적용합니다.
+ * 
+ * @param {boolean} isOpen - 모달 열림/닫힘 상태
+ * @param {Function} onClose - 모달 닫기 핸들러
+ */
 const ReadmeModal = ({ isOpen, onClose }) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
