@@ -105,7 +105,7 @@ const App = () => {
   const profile = {
     name: "김명겸",
     title: "Full-Cycle Product Engineer",
-    motto: "기술을 연결해 '제품의 완결성'을 만듭니다.",
+    motto: "AI Workflow를 연결해 '제품의 완결성'을 만듭니다.",
     description: "18년간 기획부터 개발, 배포, 운영까지 제품의 전체 수명주기를 책임지며 복잡한 시스템을 역할 단위로 분해하고 조율해왔습니다. 현재는 AI를 활용한 워크플로우 설계에 집중하고 있습니다.",
   };
 
