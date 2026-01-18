@@ -46,7 +46,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
  * - 주요 프로젝트 섹션 (탭 필터링 및 카드 애니메이션)
  * - 프로젝트 이력 타임라인 (토글 가능한 전체 이력)
  * - 전문성 섹션 (엔지니어링 철학 및 하이라이트)
- * - 푸터 및 연락처 (소셜 링크 및 AI Orchestration 배지)
+ * - 푸터 및 연락처 (소셜 링크 및 AI Workflow 배지)
  * 
  * 상태 관리:
  * - 모바일 메뉴, 프로젝트 필터, 모달 표시 등 UI 상태를 관리합니다.
@@ -54,29 +54,29 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
  */
 const App = () => {
   // --- 상태 관리 (State Management) ---
-  
+
   // 모바일 네비게이션 메뉴 열림/닫힘 상태
   // ESC 키로 닫기 기능 지원 (useEffect 참조)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
+
   // 프로젝트 필터링 탭 상태 (all, enterprise, mobile, ai)
   // 탭 변경 시 filteredProjects가 자동으로 재계산됩니다.
   const [activeTab, setActiveTab] = useState('all');
-  
+
   // 선택된 기술 스택 정보 (모달 표시용)
   // TechStackItem 클릭 시 해당 스택의 상세 정보를 저장하고 TechStackModal을 엽니다.
   const [selectedStack, setSelectedStack] = useState(null);
-  
+
   // 전체 프로젝트 이력 타임라인 표시 여부
   // "전체 프로젝트 보기" 버튼으로 토글됩니다.
   const [isHistoryVisible, setIsHistoryVisible] = useState(false);
-  
+
   // 개발 스토리(README) 모달 열림/닫힘 상태
   // "AI-Orchestrated" 배지 클릭 시 열립니다.
   const [isReadmeOpen, setIsReadmeOpen] = useState(false);
 
   // --- 이펙트 (Effects) ---
-  
+
   /**
    * ESC 키 이벤트 리스너
    * 
@@ -92,7 +92,7 @@ const App = () => {
   }, []);
 
   // --- 데이터 정의 (Data Definitions) ---
-  
+
   /**
    * 프로필 정보
    * 
@@ -106,7 +106,7 @@ const App = () => {
     name: "김명겸",
     title: "Full-Cycle Product Engineer",
     motto: "기술을 연결해 '제품의 완결성'을 만듭니다.",
-    description: "Hardware 엔지니어로 시작해 Mobile, Platform, AI로 영역을 확장하며, '어떤 기술이든 배워서 문제를 해결한다'는 신념으로 일해왔습니다.",
+    description: "18년간 기획부터 개발, 배포, 운영까지 제품의 전체 수명주기를 책임지며 복잡한 시스템을 역할 단위로 분해하고 조율해왔습니다. 현재는 AI를 활용한 워크플로우 설계에 집중하고 있습니다.",
   };
 
   /**
@@ -251,14 +251,14 @@ const App = () => {
       <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
-            
+
             {/* 로고 및 이름 영역 */}
             <div className="flex items-center gap-3 cursor-default">
               {/* 로고 아바타 - 이니셜 "M" 표시 */}
               <div className="w-10 h-10 bg-charcoal-black rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-md">
                 M
               </div>
-              
+
               {/* 이름 및 직함 */}
               <div className="flex flex-col">
                 <span className="text-xl md:text-xl font-black tracking-tight text-slate-900 uppercase leading-none mb-0.5">
@@ -273,9 +273,9 @@ const App = () => {
             {/* 데스크톱 네비게이션 메뉴 (md 이상에서만 표시) */}
             <div className="hidden md:flex items-center gap-8">
               {['About', 'Skills', 'Projects', 'Contact'].map((item) => (
-                <a 
-                  key={item} 
-                  href={`#${item.toLowerCase()}`} 
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
                   className="text-sm font-medium text-slate-600 hover:text-sunset-gold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tech-cyan rounded"
                 >
                   {item}
@@ -284,9 +284,9 @@ const App = () => {
             </div>
 
             {/* 모바일 네비게이션 토글 버튼 (md 미만에서만 표시) */}
-            <button 
-              className="md:hidden p-2 rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tech-cyan" 
-              onClick={() => setIsMenuOpen(!isMenuOpen)} 
+            <button
+              className="md:hidden p-2 rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tech-cyan"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
               {isMenuOpen ? <X /> : <Menu />}
@@ -325,7 +325,7 @@ const App = () => {
       <section id="about" className="pt-32 pb-20 px-6 md:px-4">
         <div className="max-w-[1200px] mx-auto">
           <div className="flex flex-col items-center text-center space-y-6 md:space-y-10">
-            
+
             {/* 히어로 헤더 컨테이너: 경력 년수 + 메인 타이틀 */}
             <motion.div
               className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8"
@@ -374,7 +374,7 @@ const App = () => {
                         transition={{ repeat: Infinity, duration: 2 }}
                       />
                     </div>
-                    <span className="text-[10px] uppercase tracking-wider group-hover:underline group-hover:decoration-[1.5px] group-hover:underline-offset-4">AI-Orchestrated</span>
+                    <span className="text-[10px] uppercase tracking-wider group-hover:underline group-hover:decoration-[1.5px] group-hover:underline-offset-4">AI Workflow</span>
                   </motion.div>
                 </div>
               </motion.div>
@@ -397,7 +397,8 @@ const App = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              Hardware 엔지니어로 시작해 Mobile, Platform, AI로 영역을 확장하며, <span className="font-semibold">'어떤 기술이든 배워서 문제를 해결한다'</span>는 신념으로 일해왔습니다.
+              {/* Hardware 엔지니어로 시작해 Mobile, Platform, AI로 영역을 확장하며, <span className="font-semibold">'어떤 기술이든 배워서 문제를 해결한다'</span>는 신념으로 일해왔습니다. */}
+              {profile.description}
             </motion.p>
 
 
@@ -447,7 +448,7 @@ const App = () => {
       */}
       <section id="skills" className="py-16 md:py-20 bg-charcoal-black text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
-          
+
           {/* 섹션 헤더 */}
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-4xl md:text-5xl font-bold leading-[1.3]">Technology Stack</h2>
@@ -458,15 +459,15 @@ const App = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
             {techStacks.map((stack, idx) => (
               <div key={idx} className="p-8 bg-slate-800/50 rounded-xl border border-slate-700 hover:border-blue-500/50 transition-all group">
-                
+
                 {/* 카테고리 아이콘 */}
                 <div className="w-12 h-12 bg-tech-cyan/10 rounded-xl flex items-center justify-center text-tech-cyan mb-6 group-hover:bg-tech-cyan group-hover:text-charcoal-black transition-all">
                   {stack.icon}
                 </div>
-                
+
                 {/* 카테고리명 */}
                 <h3 className="text-2xl font-semibold mb-4 leading-[1.4]">{stack.category}</h3>
-                
+
                 {/* 세부 기술 스택 배지 목록 */}
                 <div className="flex flex-wrap gap-2.5 md:gap-2">
                   {stack.stacks.map((subStack, subIdx) => (
@@ -501,7 +502,7 @@ const App = () => {
       */}
       <section id="projects" className="py-16 md:py-24 px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          
+
           {/* 섹션 헤더 및 필터 탭 */}
           <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-6">
             <div className="space-y-4">
@@ -628,7 +629,7 @@ const App = () => {
             <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-tech-cyan/5 blur-[120px] rounded-full"></div>
 
             <div className="max-w-6xl mx-auto relative z-10">
-              
+
               {/* 섹션 헤더 */}
               <div className="text-center mb-20 space-y-4">
                 <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.3]">Complete Project History</h2>
@@ -643,7 +644,7 @@ const App = () => {
                 {/* Phase별 프로젝트 목록 */}
                 {projectHistory.map((phase, phaseIdx) => (
                   <div key={phaseIdx} className="mb-24 last:mb-0">
-                    
+
                     {/* Phase 헤더 (마일스톤) */}
                     <div className="flex flex-col md:flex-row items-center md:items-center mb-16 relative gap-6">
                       {/* 모바일용 구분선 */}
@@ -697,7 +698,7 @@ const App = () => {
 
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
-            
+
             {/* 왼쪽: 전문성 설명 텍스트 */}
             <div className="space-y-10">
               <div className="space-y-4">
@@ -728,8 +729,8 @@ const App = () => {
                     onClick={item.isSpecial ? () => setIsReadmeOpen(true) : undefined}
                   >
                     <div className={`mt-1 flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${item.isSpecial
-                        ? 'bg-white/20 text-charcoal-black shadow-sm backdrop-blur-md'
-                        : 'bg-white/5 border border-white/10 text-sunset-gold group-hover:bg-sunset-gold group-hover:border-sunset-gold group-hover:text-charcoal-black'
+                      ? 'bg-white/20 text-charcoal-black shadow-sm backdrop-blur-md'
+                      : 'bg-white/5 border border-white/10 text-sunset-gold group-hover:bg-sunset-gold group-hover:border-sunset-gold group-hover:text-charcoal-black'
                       }`}>
                       {item.isSpecial ? <Sparkles className="w-5 h-5 fill-charcoal-black/40" /> : <CheckCircle2 className="w-5 h-5" />}
                     </div>
@@ -752,7 +753,7 @@ const App = () => {
             <div className="relative group">
               {/* 외곽 그라데이션 블러 효과 */}
               <div className="absolute -inset-1 bg-gradient-to-r from-sunset-gold to-tech-cyan rounded-[3rem] blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-              
+
               {/* 메인 카드 */}
               <div className="relative bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-10 md:p-14 border border-white/10 overflow-hidden">
                 {/* 배경 워터마크 아이콘 */}
@@ -765,12 +766,12 @@ const App = () => {
                   <div className="flex items-center gap-3 text-sm font-black text-sunset-gold tracking-widest uppercase">
                     <span className="w-8 h-px bg-sunset-gold"></span> EXPERIENCE FOCUS
                   </div>
-                  
+
                   {/* 철학 인용문 */}
                   <p className="text-2xl md:text-3xl leading-snug font-bold italic text-slate-100">
                     "운영 현장의 난제를 해결하기 위해 데이터를 분석하고, 최적화된 아키텍처를 설계하여 <span className="text-sunset-gold">신뢰할 수 있는 시스템</span>을 만드는 것에 가치를 둡니다."
                   </p>
-                  
+
                   {/* 통계 카드 2개 (경력 년수, 프로젝트 개수) */}
                   <div className="pt-8 grid grid-cols-2 gap-6">
                     <div className="p-6 bg-white/5 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
@@ -796,13 +797,13 @@ const App = () => {
         연락처 및 소셜 링크 섹션
         - CTA 메시지 ("Let's build something great")
         - GitHub 및 이메일 링크 버튼
-        - 하단 카피라이트 및 AI Orchestration 배지
+        - 하단 카피라이트 및 AI Workflow 배지
         - 클릭 시 README 모달 오픈
       */}
       <footer id="contact" className="bg-white pt-32 pb-16 relative">
         <div className="max-w-4xl mx-auto px-4 relative z-10">
           <div className="text-center space-y-12">
-            
+
             {/* CTA 헤더 */}
             <div className="space-y-6">
               <h2 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter leading-[1.2]">
@@ -833,11 +834,11 @@ const App = () => {
               </a>
             </div>
 
-            {/* 하단 카피라이트 및 AI Orchestration 배지 */}
+            {/* 하단 카피라이트 및 AI Workflow 배지 */}
             {/*
               푸터 하단 영역
               - 카피라이트 (© 2026 김명겸)
-              - "Built with ❤️ & ✨ AI Orchestration" 배지 (클릭 시 README 모달)
+              - "Built with ❤️ & ✨ AI Workflow" 배지 (클릭 시 README 모달)
               - 위치 정보 (South Korea)
               - 하트 및 반짝이 아이콘 애니메이션
             */}
@@ -846,7 +847,7 @@ const App = () => {
               <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-slate-400 text-sm font-bold uppercase tracking-widest">
                 <span>© 2026 {profile.name}</span>
 
-                {/* AI Orchestration 배지 (클릭 시 README 모달 오픈) */}
+                {/* AI Workflow 배지 (클릭 시 README 모달 오픈) */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -881,7 +882,7 @@ const App = () => {
                   </motion.span>
 
                   <span className="ml-1 tracking-tight uppercase text-[10px] bg-slate-100 px-3 py-1 rounded-full border border-slate-200 text-slate-600 font-black group-hover:border-sunset-gold/30 group-hover:bg-sunset-gold/5 transition-colors">
-                    AI Orchestration
+                    AI Workflow
                   </span>
                 </motion.div>
 
@@ -897,7 +898,7 @@ const App = () => {
           ======================================== */}
       {/*
         페이지 최하단에 모달 컴포넌트들을 렌더링
-        - ReadmeModal: AI Orchestration 개발 스토리 표시
+        - ReadmeModal: AI Workflow 개발 스토리 표시
         - TechStackModal: 기술 스택 상세 정보 표시
         
         상태에 따라 조건부 렌더링:

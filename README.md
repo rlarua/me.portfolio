@@ -1,4 +1,4 @@
-# 🚀 Next-Gen Portfolio: Built with AI Orchestration
+# 🚀 Next-Gen Portfolio: Built with AI Workflow
 
 > **18년 경력 엔지니어의 AI 도구 활용 실험**  
 > Antigravity IDE를 활용한 3일간의 개발 기록
@@ -52,7 +52,7 @@
 * **Animation:** Framer Motion
 * **Icons:** Lucide React
 
-### **AI Orchestration Tools**
+### **AI Workflow Tools**
 
 | 단계 | 활용 도구 | 역할 |
 | :--- | :--- | :--- |
