@@ -105,7 +105,7 @@ const App = () => {
   const profile = {
     name: "김명겸",
     title: "Full-Cycle Product Engineer",
-    motto: "AI Workflow를 연결해 '제품의 완결성'을 만듭니다.",
+    motto: "AI-Native Workflow로 제품을 완성합니다.",
     description: "18년간 기획부터 개발, 배포, 운영까지 제품의 전체 수명주기를 책임지며 복잡한 시스템을 역할 단위로 분해하고 조율해왔습니다. 현재는 AI를 활용한 워크플로우 설계에 집중하고 있습니다.",
   };
 
@@ -420,7 +420,7 @@ const App = () => {
                 {stats.map((stat, idx) => (
                   <motion.div
                     key={idx}
-                    className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col"
+                    className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm h-full flex flex-col"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.9 + idx * 0.1 }}
@@ -458,18 +458,18 @@ const App = () => {
           {/* 기술 스택 카테고리 그리드 (모바일 1열, 태블릿 2열, 데스크톱 4열) */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
             {techStacks.map((stack, idx) => (
-              <div key={idx} className="p-8 bg-slate-800/50 rounded-xl border border-slate-700 hover:border-blue-500/50 transition-all group">
+              <div key={idx} className="p-8 bg-slate-800/50 rounded-xl border border-slate-700">
 
                 {/* 카테고리 아이콘 */}
-                <div className="w-12 h-12 bg-tech-cyan/10 rounded-xl flex items-center justify-center text-tech-cyan mb-6 group-hover:bg-tech-cyan group-hover:text-charcoal-black transition-all">
+                <div className="w-12 h-12 bg-tech-cyan/10 rounded-xl flex items-center justify-center text-tech-cyan mb-6">
                   {stack.icon}
                 </div>
 
                 {/* 카테고리명 */}
-                <h3 className="text-2xl font-semibold mb-4 leading-[1.4]">{stack.category}</h3>
+                <h3 className="text-2xl font-bold mb-6 leading-[1.4] text-white">{stack.category}</h3>
 
                 {/* 세부 기술 스택 배지 목록 */}
-                <div className="flex flex-wrap gap-2.5 md:gap-2">
+                <div className="flex flex-wrap gap-2">
                   {stack.stacks.map((subStack, subIdx) => (
                     <TechStackItem
                       key={subIdx}
@@ -701,42 +701,35 @@ const App = () => {
 
             {/* 왼쪽: 전문성 설명 텍스트 */}
             <div className="space-y-10">
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sunset-gold text-xs font-bold tracking-widest uppercase">
                   <Zap className="w-3.5 h-3.5 fill-sunset-gold/20" /> Engineering Philosophy
                 </div>
-                <h2 className="text-4xl md:text-6xl font-black leading-[1.1] tracking-tight">
-                  Full-Cycle <span className="text-sunset-gold">Ownership</span><br />타협 없는 제품 완성
+                <h2 className="text-4xl md:text-5xl font-black leading-[1.2] tracking-tight">
+                  AI-Native Workflow
                 </h2>
+                <p className="text-lg md:text-xl text-slate-300 leading-relaxed">
+                  기획부터 운영까지 연결하는 워크플로우를 설계합니다.<br />
+                  속도보다 <span className="text-sunset-gold font-bold">일관성과 품질</span>을 우선합니다.
+                </p>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {[
-                  { title: "Scale & Reliability", desc: "24/7 무중단 시스템 설계 및 99.9% 가동률 달성" },
-                  { title: "Delivery & Speed", desc: "3개월 내 고도화 플랫폼 구축 및 타이트한 일정 준수" },
-                  { title: "Data & Monitoring", desc: "TSDB 기반 대용량 데이터 처리 및 응답속도 최적화" },
-                  // { 
-                  //   title: "AI & Human Synergy", 
-                  //   desc: "AI 에이전트를 활용한 초고속 아키텍처 설계 및 구현 (300%+ 생산성)",
-                  //   isSpecial: true 
-                  // }
+                  { title: "계획과 조율", desc: "작업계획서 기반으로 에이전트를 분업·조율해 일관된 실행 흐름을 만듭니다." },
+                  { title: "품질과 검증", desc: "테스트/리뷰/체크리스트로 AI 출력물을 검증해 신뢰 가능한 결과만 반영합니다." },
+                  { title: "문서화와 추적", desc: "결정과 변경 이력을 문서화해 재현 가능한 개발 프로세스를 유지합니다." },
                 ].map((item, i) => (
                   <div
                     key={i}
-                    className={`flex gap-6 group p-4 rounded-xl transition-all duration-300 ${item.isSpecial ? 'border-none shadow-lg shadow-tech-cyan/20' : 'hover:bg-white/5'
-                      } cursor-pointer`}
-                    style={item.isSpecial ? { background: 'linear-gradient(135deg, #00E5FF 0%, #00C9FF 100%)' } : {}}
-                    onClick={item.isSpecial ? () => setIsReadmeOpen(true) : undefined}
+                    className="flex gap-4"
                   >
-                    <div className={`mt-1 flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${item.isSpecial
-                      ? 'bg-white/20 text-charcoal-black shadow-sm backdrop-blur-md'
-                      : 'bg-white/5 border border-white/10 text-sunset-gold group-hover:bg-sunset-gold group-hover:border-sunset-gold group-hover:text-charcoal-black'
-                      }`}>
-                      {item.isSpecial ? <Sparkles className="w-5 h-5 fill-charcoal-black/40" /> : <CheckCircle2 className="w-5 h-5" />}
+                    <div className="mt-0.5 flex-shrink-0 w-6 h-6 rounded-lg flex items-center justify-center bg-white/5 border border-white/10 text-sunset-gold">
+                      <CheckCircle2 className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className={`font-bold text-xl mb-1 ${item.isSpecial ? 'text-charcoal-black' : 'text-white'}`}>{item.title}</h4>
-                      <p className={`leading-relaxed font-medium ${item.isSpecial ? 'text-charcoal-black/80' : 'text-slate-400'}`}>{item.desc}</p>
+                      <h4 className="font-bold text-lg mb-1.5 text-white">{item.title}</h4>
+                      <p className="leading-relaxed text-slate-400 text-[15px]">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -761,24 +754,27 @@ const App = () => {
                   <Cpu className="w-32 h-32" />
                 </div>
 
-                <div className="relative space-y-8">
+                <div className="relative space-y-12">
                   {/* 섹션 라벨 */}
                   <div className="flex items-center gap-3 text-sm font-black text-sunset-gold tracking-widest uppercase">
                     <span className="w-8 h-px bg-sunset-gold"></span> EXPERIENCE FOCUS
                   </div>
 
                   {/* 철학 인용문 */}
-                  <p className="text-2xl md:text-3xl leading-snug font-bold italic text-slate-100">
-                    "운영 현장의 난제를 해결하기 위해 데이터를 분석하고, 최적화된 아키텍처를 설계하여 <span className="text-sunset-gold">신뢰할 수 있는 시스템</span>을 만드는 것에 가치를 둡니다."
-                  </p>
+                  <div className="space-y-8">
+                    <p className="text-3xl md:text-4xl leading-[1.4] font-black text-white">
+                      "18년간 쌓아온 시스템 설계 경험과 AI 워크플로우를 결합해, 빠르면서도 신뢰할 수 있는 제품을 만듭니다."
+                    </p>
+                    <div className="w-16 h-1 bg-gradient-to-r from-sunset-gold to-tech-cyan rounded-full"></div>
+                  </div>
 
                   {/* 통계 카드 2개 (경력 년수, 프로젝트 개수) */}
-                  <div className="pt-8 grid grid-cols-2 gap-6">
-                    <div className="p-6 bg-white/5 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="p-6 bg-white/5 rounded-xl border border-white/5">
                       <div className="text-4xl font-black text-sunset-gold">18+</div>
                       <div className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">Years Exp.</div>
                     </div>
-                    <div className="p-6 bg-white/5 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
+                    <div className="p-6 bg-white/5 rounded-xl border border-white/5">
                       <div className="text-4xl font-black text-tech-cyan">{totalProjectCount}+</div>
                       <div className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">Projects</div>
                     </div>
