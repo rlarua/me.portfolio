@@ -540,22 +540,16 @@ const App = () => {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.12, ease: "easeOut" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
             >
               {filteredProjects.map((project, index) => {
                 const isExpanded = hoveredProjectId === project.id || expandedProjectId === project.id;
                 return (
-                  <motion.div
-                    key={project.id}
-                    initial={{ opacity: 0, scale: 0.96 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.96 }}
-                    transition={{ duration: 0.12, delay: index * 0.02 }}
-                  >
+                  <div key={project.id}>
                     <ProjectCard
                       project={project}
                       isExpanded={isExpanded}
@@ -567,7 +561,7 @@ const App = () => {
                         setHoveredProjectId(nextExpanded ? project.id : null);
                       }}
                     />
-                  </motion.div>
+                  </div>
                 );
               })}
             </motion.div>
@@ -592,13 +586,13 @@ const App = () => {
         {/* 토글 버튼 */}
         <button
           onClick={() => setIsHistoryVisible(!isHistoryVisible)}
-          className="group flex items-center gap-3 px-8 py-4 bg-charcoal-black hover:bg-sunset-gold border-2 border-charcoal-black hover:border-sunset-gold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sunset-gold"
+          className="group flex items-center gap-3 px-8 py-4 bg-charcoal-black hover:bg-sunset-gold border-2 border-charcoal-black hover:border-sunset-gold rounded-xl transition-[background-color,border-color,box-shadow,transform] duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sunset-gold"
           aria-expanded={isHistoryVisible}
         >
           <span className="text-lg font-bold text-white">
             {isHistoryVisible ? '전체 이력 숨기기' : `전체 프로젝트 보기 (${totalProjectCount}+)`}
           </span>
-          <ChevronRight className={`w-5 h-5 text-white transition-transform duration-300 ${isHistoryVisible ? 'rotate-90' : 'rotate-0'
+          <ChevronRight className={`w-5 h-5 text-white transition-transform duration-400 ease-in-out ${isHistoryVisible ? 'rotate-90' : 'rotate-0'
             }`} />
         </button>
       </div>
@@ -618,10 +612,10 @@ const App = () => {
         {isHistoryVisible && (
           <motion.section
             key="project-history"
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 24 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            exit={{ opacity: 0, y: 40 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
             className="py-24 px-4 bg-white relative overflow-hidden"
           >
             {/* 추상적 배경 장식 (블러 처리된 그라데이션 원) */}

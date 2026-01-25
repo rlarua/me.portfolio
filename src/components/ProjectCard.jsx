@@ -51,7 +51,7 @@ const ProjectCard = ({ project, isExpanded, onExpand }) => {
       onMouseLeave={handleMouseLeave}
     >
       <Card 
-        className="bg-white border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden min-h-[320px] md:min-h-[350px] cursor-pointer md:cursor-default flex flex-col"
+        className="bg-white border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden min-h-[320px] md:min-h-[350px] cursor-pointer md:cursor-default flex flex-col"
         onClick={handleCardClick}
       >
         <CardHeader className="p-7 md:p-9 pb-3">
@@ -67,7 +67,7 @@ const ProjectCard = ({ project, isExpanded, onExpand }) => {
           </p>
         </CardHeader>
 
-        <CardContent className={`px-7 md:px-9 pb-4 transition-all duration-300 ${
+        <CardContent className={`px-7 md:px-9 pb-4 transition-[max-height,opacity] duration-500 ease-in-out ${
           isExpanded ? 'max-h-[600px]' : 'max-h-[120px]'
         } overflow-hidden`}>
           <div className="flex flex-wrap gap-1.5 mb-3">
@@ -75,8 +75,8 @@ const ProjectCard = ({ project, isExpanded, onExpand }) => {
               <Badge 
                 key={tag} 
                 variant="secondary"
-                className={`bg-slate-50 border border-slate-100 text-slate-500 hover:bg-slate-100 text-[11px] font-bold uppercase whitespace-nowrap transition-opacity duration-300 ${
-                  !isExpanded && index >= visibleTagCount ? 'hidden' : 'opacity-100'
+                className={`bg-slate-50 border border-slate-100 text-slate-500 hover:bg-slate-100 text-[11px] font-bold uppercase whitespace-nowrap ${
+                  !isExpanded && index >= visibleTagCount ? 'hidden' : ''
                 }`}
               >
                 {tag}
@@ -98,8 +98,8 @@ const ProjectCard = ({ project, isExpanded, onExpand }) => {
               {remainingResults.length > 0 && remainingResults.map((result, idx) => (
                 <div 
                   key={idx} 
-                  className={`flex gap-2 items-start mb-2 transition-all duration-300 ${
-                    isExpanded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 hidden'
+                  className={`flex gap-2 items-start mb-2 transition-opacity duration-400 ${
+                    isExpanded ? 'opacity-100' : 'opacity-0 hidden'
                   }`}
                 >
                   <CheckCircle2 className="w-4 h-4 text-sunset-gold flex-shrink-0 mt-0.5" />
