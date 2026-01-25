@@ -408,7 +408,7 @@ const App = () => {
               - 모바일: 2열 그리드
               - 데스크톱: 4열 그리드
               - 순차적 등장 애니메이션 (각 카드마다 0.1초 딜레이)
-              - 호버 시 그림자 및 상승 효과
+              - 정적 표시 (호버 효과 없음)
             */}
             <motion.div
               className="w-full pt-4 md:pt-8"
@@ -498,7 +498,8 @@ const App = () => {
         - 카드 확장 기능:
           - 데스크톱: 호버 시 자동 확장 (hoveredProjectId)
           - 모바일: 클릭 시 토글 확장 (expandedProjectId)
-        - Framer Motion을 활용한 탭 전환 애니메이션
+        - 탭 전환: 부드러운 페이드 애니메이션 (0.25초, easeInOut)
+        - 개별 카드: 순차 애니메이션 없이 동시 등장
       */}
       <section id="projects" className="py-16 md:py-24 px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -575,7 +576,8 @@ const App = () => {
       {/*
         전체 프로젝트 이력 타임라인을 표시/숨김하는 토글 버튼
         - 버튼 클릭 시 isHistoryVisible 상태 변경
-        - 화살표 아이콘이 회전하여 상태 표시 (닫힘: 0도, 열림: 90도)
+        - 화살표 아이콘이 회전하여 상태 표시 (닫힘: 0도, 열림: 90도, 400ms ease-in-out)
+        - 버튼 호버: 2% 확대, 특정 속성만 애니메이션 (배경, 테두리, 그림자)
         - 총 프로젝트 개수 표시 (totalProjectCount)
       */}
       <div className="py-16 px-4 bg-gradient-to-b from-slate-50 to-white flex flex-col items-center gap-4">
@@ -603,6 +605,7 @@ const App = () => {
       {/*
         2007년부터 현재까지의 전체 프로젝트 이력을 타임라인 형태로 표시
         - isHistoryVisible이 true일 때만 렌더링 (AnimatePresence로 애니메이션 처리)
+        - 등장 애니메이션: Y축 40px 이동, 0.6초 duration, easeInOut
         - 수직 타임라인 디자인 (중앙 라인 + 노드 점)
         - Phase별로 그룹화 (예: "Hardware Era", "Mobile Era", "Platform Era")
         - 각 프로젝트는 HistoryCard 컴포넌트로 표시 (3D 플립 카드)
