@@ -30,3 +30,6 @@ Thumbs.db
 
 # Tools
 .eslintcache
+
+# 에이전트팀
+.agentteams
