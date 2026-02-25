@@ -53,6 +53,8 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
  * - Framer Motion을 활용한 부드러운 애니메이션 효과를 제공합니다.
  */
 const App = () => {
+  const HeroMotion = motion.div;
+
   // --- 상태 관리 (State Management) ---
 
   // 모바일 네비게이션 메뉴 열림/닫힘 상태
@@ -327,7 +329,7 @@ const App = () => {
           <div className="flex flex-col items-center text-center space-y-6 md:space-y-10">
 
             {/* 히어로 헤더 컨테이너: 경력 년수 + 메인 타이틀 */}
-            <motion.div
+            <HeroMotion
               className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -378,7 +380,7 @@ const App = () => {
                   </motion.div>
                 </div>
               </motion.div>
-            </motion.div>
+            </HeroMotion>
 
             {/* 히어로 설명 (Hero Description) - 모토 */}
             <motion.p
@@ -547,7 +549,7 @@ const App = () => {
               transition={{ duration: 0.25, ease: "easeInOut" }}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
             >
-              {filteredProjects.map((project, index) => {
+              {filteredProjects.map((project) => {
                 const isExpanded = hoveredProjectId === project.id || expandedProjectId === project.id;
                 return (
                   <div key={project.id}>
