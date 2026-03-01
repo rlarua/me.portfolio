@@ -7,5 +7,3 @@ agentInstruction: |
 # AgentTeams Convention
 
 **Before starting any task, always refer to `.agentteams/convention.md`.**
-
-## 한국어 존댓말을 사용할 것
